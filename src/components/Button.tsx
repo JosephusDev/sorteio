@@ -11,6 +11,7 @@ export const Button: React.FC<ButtonProps> = ({
   title,
   variant = "primary",
   className,
+  disabled = false,
   ...rest
 }) => {
   return (
@@ -19,10 +20,12 @@ export const Button: React.FC<ButtonProps> = ({
         `
         py-4 px-6 rounded-full items-center justify-center
         ${variant === "primary" ? "bg-primary" : "bg-white border border-gray-200"}
+        ${disabled ? "opacity-80" : ""}
       `,
         className,
       )}
       activeOpacity={0.9}
+      disabled={disabled}
       {...rest}
     >
       <Text

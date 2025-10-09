@@ -12,8 +12,9 @@ import { Text } from "@/components/Text";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
 import { router } from "expo-router";
+import Divider from "@/components/Divider";
 
-export default function SignUp() {
+export default function SignIn() {
   const [name, setName] = useState("");
   const [telefone, setTelefone] = useState("");
   const [password, setPassword] = useState("");
@@ -25,17 +26,11 @@ export default function SignUp() {
 
         {/* Título */}
         <Text className="text-3xl font-urbanist-bold text-gray-900 mb-12">
-          Crie sua conta
+          Fazer Login
         </Text>
 
         {/* Formulário */}
         <View className="flex-col gap-4 mb-8">
-          <InputField
-            label="Nome"
-            value={name}
-            onChangeText={setName}
-            icon={<UserIcon />}
-          />
 
           <InputField
             label="Telefone"
@@ -55,14 +50,18 @@ export default function SignUp() {
             onRightIconPress={() => setShowPassword(!showPassword)}
           />
 
-          <Button title="Criar Conta" onPress={() => {}} className="mt-4" />
+          <Button title="Entrar" onPress={() => router.push('/(protected)/home')} className="mt-4" />
         </View>
 
+        <TouchableOpacity activeOpacity={1} onPress={()=>router.push("/forgot-password")}>
+          <Divider text="Esqueceu a palavra-passe?" />
+        </TouchableOpacity>
+
         {/* Login Link */}
-        <View className="flex-row justify-center items-center mb-8">
-          <Text className="text-gray-500">Já tem uma conta?</Text>
-          <TouchableOpacity className="ml-1" onPress={()=>router.push("/sign-in")}>
-            <Text className="text-primary font-urbanist-bold">Fazer Login</Text>
+        <View className="flex-row justify-center items-center my-8">
+          <Text className="text-gray-500">Ainda não tem uma conta?</Text>
+          <TouchableOpacity className="ml-1" onPress={()=>router.push("/sign-up")}>
+            <Text className="text-primary font-urbanist-bold">Criar Conta</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

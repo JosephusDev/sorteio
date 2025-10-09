@@ -7,11 +7,15 @@ import {
   Urbanist_600SemiBold,
   Urbanist_700Bold,
 } from "@expo-google-fonts/urbanist";
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, StatusBar } from "react-native";
 import { Fragment } from "react";
-import { StatusBar } from "expo-status-bar";
+
+export const unstable_settings = {
+  initialRouteName: "(auth)",
+};
 
 export default function Layout() {
+  const isAuthenticated = true
   const [fontsLoaded] = useFonts({
     Urbanist_400Regular,
     Urbanist_500Medium,
@@ -29,8 +33,13 @@ export default function Layout() {
 
   return (
     <Fragment>
-      <StatusBar style="dark" />
-      <Stack screenOptions={{ headerShown: false }} />
+      <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
+      <Stack screenOptions={{ headerShown: false }} initialRouteName="(auth)">
+        <Stack.Screen name="(auth)" />
+        <Stack.Protected guard={isAuthenticated}>
+          <Stack.Screen name="(protected)" />
+        </Stack.Protected>
+      </Stack>
     </Fragment>
   );
 }

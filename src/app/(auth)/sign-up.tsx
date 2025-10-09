@@ -1,5 +1,5 @@
 import SignUp from "@/screens/sign-up";
 
-export default function IndexScreen() {
+export default function SignUpScreen() {
   return <SignUp />;
 }

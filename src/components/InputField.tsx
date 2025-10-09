@@ -9,12 +9,12 @@ import {
 } from "react-native";
 
 interface InputFieldProps extends ViewProps {
-  label: string;
-  icon: React.ReactNode;
+  label?: string;
+  icon?: React.ReactNode;
   secureTextEntry?: boolean;
-  value: string;
+  value?: string;
   keyboardType?: TextInputProps["keyboardType"];
-  onChangeText: (text: string) => void;
+  onChangeText?: (text: string) => void;
   rightIcon?: React.ReactNode;
   onRightIconPress?: () => void;
 }
