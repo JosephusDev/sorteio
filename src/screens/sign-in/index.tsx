@@ -50,7 +50,7 @@ export default function SignIn() {
             onRightIconPress={() => setShowPassword(!showPassword)}
           />
 
-          <Button title="Entrar" onPress={() => router.push('/(protected)/home')} className="mt-4" />
+          <Button title="Entrar" onPress={() => router.push('/(tabs)/home')} className="mt-4" />
         </View>
 
         <TouchableOpacity activeOpacity={1} onPress={()=>router.push("/forgot-password")}>

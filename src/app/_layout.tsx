@@ -10,12 +10,8 @@ import {
 import { View, ActivityIndicator, StatusBar } from "react-native";
 import { Fragment } from "react";
 
-export const unstable_settings = {
-  initialRouteName: "(auth)",
-};
-
 export default function Layout() {
-  const isAuthenticated = true
+  const isAuthenticated = false
   const [fontsLoaded] = useFonts({
     Urbanist_400Regular,
     Urbanist_500Medium,
@@ -34,10 +30,14 @@ export default function Layout() {
   return (
     <Fragment>
       <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
-      <Stack screenOptions={{ headerShown: false }} initialRouteName="(auth)">
+      <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Protected guard={!isAuthenticated}>
         <Stack.Screen name="(auth)" />
+        </Stack.Protected>
         <Stack.Protected guard={isAuthenticated}>
-          <Stack.Screen name="(protected)" />
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="notifications" />
+          <Stack.Screen name="search" />
         </Stack.Protected>
       </Stack>
     </Fragment>
