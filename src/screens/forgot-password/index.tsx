@@ -34,15 +34,18 @@ export default function ForgotPassword() {
     if (fullCode.length === 4) {
       console.log("Código:", fullCode);
       // Adicione sua lógica de verificação aqui
-      router.push('/recovery-password')
+      router.push("/recovery-password");
     }
   };
 
   return (
     <View className="flex-1 bg-white">
       <ScrollView className="flex-1 px-6 pt-12">
-
-        <Image source={require("@/assets/images/recovery.png")} resizeMode="contain" className="w-48 h-48 self-center" />
+        <Image
+          source={require("@/assets/images/recovery.png")}
+          resizeMode="contain"
+          className="w-48 h-48 self-center"
+        />
 
         {/* Título */}
         <Text className="text-center text-gray-900 my-4">
@@ -57,7 +60,9 @@ export default function ForgotPassword() {
               className="w-16 h-16 rounded-xl bg-gray-50 border border-gray-200 justify-center items-center focus:rounded-xl focus:border focus:border-primary/50 focus:bg-primary/5"
             >
               <TextInput
-                ref={(ref) => { inputRefs.current[index] = ref; }}
+                ref={(ref) => {
+                  inputRefs.current[index] = ref;
+                }}
                 className="text-center text-2xl font-urbanist-bold text-gray-900 w-full h-full"
                 value={digit}
                 onChangeText={(text) => handleCodeChange(text, index)}

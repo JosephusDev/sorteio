@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, ScrollView, TouchableOpacity } from "react-native";
 import {
-  ChevronLeftIcon,
+  EmailIcon,
   EyeIcon,
   EyeOffIcon,
   LockIcon,
@@ -12,17 +12,43 @@ import { Text } from "@/components/Text";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
 import { router } from "expo-router";
+import { useSignUpMutation } from "@/queries/auth";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { SignUpSchema } from "@/schemas/Auth";
+import { LabelError } from "@/components/LabelError";
 
 export default function SignUp() {
-  const [name, setName] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    control,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(SignUpSchema),
+  });
+
   const [showPassword, setShowPassword] = useState(false);
+
+  const {
+    mutateAsync: signUp,
+    isPending,
+    error,
+  } = useSignUpMutation({
+    name: getValues("name"),
+    email: getValues("email"),
+    phone: getValues("phone"),
+    password: getValues("password"),
+  });
+
+  const onSubmit = () => {
+    signUp();
+    console.log(error);
+  };
 
   return (
     <View className="flex-1 bg-white">
       <ScrollView className="flex-1 px-6 pt-12">
-
         {/* Título */}
         <Text className="text-3xl font-urbanist-bold text-gray-900 mb-12">
           Crie sua conta
@@ -30,38 +56,97 @@ export default function SignUp() {
 
         {/* Formulário */}
         <View className="flex-col gap-4 mb-8">
-          <InputField
-            label="Nome"
-            value={name}
-            onChangeText={setName}
-            icon={<UserIcon />}
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <InputField
+                label="Nome"
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                icon={<UserIcon />}
+              />
+            )}
+            name="name"
           />
+          {errors.name && <LabelError message={errors.name.message!} />}
 
-          <InputField
-            label="Telefone"
-            value={telefone}
-            onChangeText={setTelefone}
-            icon={<PhoneIcon />}
-            keyboardType="phone-pad"
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <InputField
+                label="Telefone"
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                icon={<PhoneIcon />}
+                keyboardType="number-pad"
+              />
+            )}
+            name="phone"
           />
+          {errors.phone && <LabelError message={errors.phone.message!} />}
 
-          <InputField
-            label="Palavra-passe"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!showPassword}
-            icon={<LockIcon />}
-            rightIcon={showPassword ? <EyeIcon /> : <EyeOffIcon />}
-            onRightIconPress={() => setShowPassword(!showPassword)}
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <InputField
+                label="E-mail"
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                icon={<EmailIcon />}
+                keyboardType="email-address"
+              />
+            )}
+            name="email"
           />
+          {errors.email && <LabelError message={errors.email.message!} />}
 
-          <Button title="Criar Conta" onPress={() => {}} className="mt-4" />
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <InputField
+                label="Palavra-passe"
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                secureTextEntry={!showPassword}
+                icon={<LockIcon />}
+                rightIcon={showPassword ? <EyeIcon /> : <EyeOffIcon />}
+                onRightIconPress={() => setShowPassword(!showPassword)}
+              />
+            )}
+            name="password"
+          />
+          {errors.password && <LabelError message={errors.password.message!} />}
+
+          <Button
+            title={isPending ? "Carregando..." : "Criar Conta"}
+            onPress={handleSubmit(onSubmit)}
+            className="mt-4"
+          />
         </View>
 
         {/* Login Link */}
         <View className="flex-row justify-center items-center mb-8">
           <Text className="text-gray-500">Já tem uma conta?</Text>
-          <TouchableOpacity className="ml-1" onPress={()=>router.push("/sign-in")}>
+          <TouchableOpacity
+            className="ml-1"
+            onPress={() => router.push("/sign-in")}
+          >
             <Text className="text-primary font-urbanist-bold">Fazer Login</Text>
           </TouchableOpacity>
         </View>

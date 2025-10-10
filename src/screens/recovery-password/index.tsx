@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { View, ScrollView, Image } from "react-native";
-import {
-  EyeIcon,
-  EyeOffIcon,
-  LockIcon,
-} from "@/assets/icons";
+import { EyeIcon, EyeOffIcon, LockIcon } from "@/assets/icons";
 import { Text } from "@/components/Text";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
@@ -26,12 +22,14 @@ export default function RecoveryPassword() {
   return (
     <View className="flex-1 bg-white">
       <ScrollView className="flex-1 px-6 pt-12">
-        <Image source={require("@/assets/images/new-password.png")} resizeMode="contain" className="w-48 h-48 self-center" />
+        <Image
+          source={require("@/assets/images/new-password.png")}
+          resizeMode="contain"
+          className="w-48 h-48 self-center"
+        />
 
         {/* Título */}
-        <Text className="text-gray-900 mt-12">
-          Crie sua nova senha
-        </Text>
+        <Text className="text-gray-900 mt-12">Crie sua nova senha</Text>
 
         {/* Campos de Código */}
         <View className="flex justify-center gap-4 my-8">
@@ -51,7 +49,9 @@ export default function RecoveryPassword() {
             secureTextEntry={!showConfirmPassword}
             icon={<LockIcon />}
             rightIcon={showConfirmPassword ? <EyeIcon /> : <EyeOffIcon />}
-            onRightIconPress={() => setShowConfirmPassword(!showConfirmPassword)}
+            onRightIconPress={() =>
+              setShowConfirmPassword(!showConfirmPassword)
+            }
           />
         </View>
       </ScrollView>
@@ -61,7 +61,11 @@ export default function RecoveryPassword() {
         <Button
           title="Continuar"
           onPress={handleContinue}
-          disabled={password !== confirmPassword || password.length === 0 || confirmPassword.length === 0}
+          disabled={
+            password !== confirmPassword ||
+            password.length === 0 ||
+            confirmPassword.length === 0
+          }
         />
       </View>
     </View>

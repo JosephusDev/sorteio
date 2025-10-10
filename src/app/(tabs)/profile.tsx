@@ -1,7 +1,8 @@
-import { Text } from "@/components/Text";
-import { View } from "react-native";
+import { useLogOutMutation } from "@/queries/auth";
+import { Profile } from "@/screens/profile";
 
+export default function ProfileScreen() {
+  const { mutateAsync: logout, isPending } = useLogOutMutation();
 
-export default function ProfileScreen(){
-    return <View><Text>Tela Perfil</Text></View>
+  return <Profile onLogout={logout} isLoading={isPending} />;
 }

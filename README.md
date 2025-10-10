@@ -1,25 +1,34 @@
 # Expo starter
 
-A plain project with the usual suspects set up:
+O que o projeto usa:
 
 - Expo Router
 - Nativewind
 - ESLint & Prettier
 - TypeScript
+- Supabase
+- React Query
+- Async Storage
 
-It also contains two components:
-- `src/components/AppText.tsx` for text
-- `src/components/Button.tsx` for 3 button variants
+## Links
 
-And one utility:
-- `src/utils/cn.ts` for merging Tailwind classes
+https://mageicons.com/
 
-## Start a new project with this template
+## Como executar
 
 ```sh
 # with bun
-bun create expo-app my-app --template https://github.com/kadikraman/expo-starter
-
-# with npm
-npx create-expo-app my-app --template https://github.com/kadikraman/expo-starter
+npm install
 ```
+```sh
+# with npm
+npx expo start
+```
+
+## Limpar o código antes do commit
+
+```sh
+# with npm
+npm run format
+```
+

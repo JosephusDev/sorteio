@@ -8,16 +8,31 @@ import {
   Urbanist_700Bold,
 } from "@expo-google-fonts/urbanist";
 import { View, ActivityIndicator, StatusBar } from "react-native";
-import { Fragment } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { Session } from "@supabase/supabase-js";
+import supabase from "@/services/supabase";
 
 export default function Layout() {
-  const isAuthenticated = false
+  const queryClient = new QueryClient();
+
+  const [session, setSession] = useState<Session | null>(null);
+
   const [fontsLoaded] = useFonts({
     Urbanist_400Regular,
     Urbanist_500Medium,
     Urbanist_600SemiBold,
     Urbanist_700Bold,
   });
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
 
   if (!fontsLoaded) {
     return (
@@ -28,18 +43,18 @@ export default function Layout() {
   }
 
   return (
-    <Fragment>
+    <QueryClientProvider client={queryClient}>
       <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
       <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Protected guard={!isAuthenticated}>
-        <Stack.Screen name="(auth)" />
+        <Stack.Protected guard={!session?.user}>
+          <Stack.Screen name="(auth)" />
         </Stack.Protected>
-        <Stack.Protected guard={isAuthenticated}>
+        <Stack.Protected guard={!!session?.user}>
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="notifications" />
           <Stack.Screen name="search" />
         </Stack.Protected>
       </Stack>
-    </Fragment>
+    </QueryClientProvider>
   );
 }
