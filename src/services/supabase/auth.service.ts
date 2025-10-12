@@ -33,3 +33,17 @@ export async function logOut() {
   const { error } = await supabase.auth.signOut();
   if (error) throw error;
 }
+
+export async function getUserInfo(){
+  const session = await supabase.auth.getSession()
+  if(session.data.session?.user){
+    const userId = session.data.session?.user.id
+    const { data, error } = await supabase.from("usuario").select("*").eq("auth_id", userId!).maybeSingle();
+    const {data: imageData, error: imageError} = await supabase.from("imagem_usuario").select("url").eq("id_usuario", userId!).maybeSingle();
+    if (error) throw error;
+    if(imageError) throw imageError;
+    const result = {...data, avatarUrl: imageData?.url}
+    return result
+  }
+  throw new Error("Usuário não encontrado")
+}

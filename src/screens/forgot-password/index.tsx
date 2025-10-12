@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
-import { View, ScrollView, TextInput, Image } from "react-native";
+import { View, ScrollView, TextInput } from "react-native";
 import { Text } from "@/components/Text";
 import Button from "@/components/Button";
 import { router } from "expo-router";
+import { OtpImage } from "@/assets/icons";
 
 export default function ForgotPassword() {
   const [code, setCode] = useState(["", "", "", ""]);
@@ -40,12 +41,8 @@ export default function ForgotPassword() {
 
   return (
     <View className="flex-1 bg-white">
-      <ScrollView className="flex-1 px-6 pt-12">
-        <Image
-          source={require("@/assets/images/recovery.png")}
-          resizeMode="contain"
-          className="w-48 h-48 self-center"
-        />
+      <ScrollView className="flex-1 px-6 pt-6" contentContainerStyle={{ alignItems: 'center' }}>
+        <OtpImage width={200} />
 
         {/* Título */}
         <Text className="text-center text-gray-900 my-4">

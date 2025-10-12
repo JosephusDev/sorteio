@@ -7,19 +7,32 @@ import Button from "@/components/Button";
 import { router } from "expo-router";
 import Divider from "@/components/Divider";
 import { useSignInMutation } from "@/queries/auth";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { LabelError } from "@/components/LabelError";
+import { SignInSchema } from "@/schemas/Auth";
 
 export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
-  const { mutateAsync: onSubmit, isPending } = useSignInMutation({
-    email,
-    password,
+  const {
+    control,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(SignInSchema),
   });
 
-  const handleSubmit = () => {
-    onSubmit();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const { mutateAsync: signIn, isPending, error } = useSignInMutation({
+    email: getValues("email"),
+    password: getValues("password"),
+  });
+
+  const onSubmit = () => {
+    signIn();
+    console.log(error);
   };
 
   return (
@@ -32,31 +45,55 @@ export default function SignIn() {
 
         {/* Formulário */}
         <View className="flex-col gap-4 mb-8">
-          <InputField
-            label="E-mail"
-            value={email}
-            onChangeText={setEmail}
-            icon={<EmailIcon />}
-            keyboardType="email-address"
+          {/* E-mail */}
+          <Controller
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <InputField
+                label="E-mail"
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                icon={<EmailIcon />}
+                keyboardType="email-address"
+              />
+            )}
+            name="email"
           />
+          {errors.email && <LabelError message={errors.email.message!} />}
 
-          <InputField
-            label="Palavra-passe"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!showPassword}
-            icon={<LockIcon />}
-            rightIcon={showPassword ? <EyeIcon /> : <EyeOffIcon />}
-            onRightIconPress={() => setShowPassword(!showPassword)}
+          {/* Palavra-passe */}
+          <Controller
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <InputField
+                label="Palavra-passe"
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                secureTextEntry={!showPassword}
+                icon={<LockIcon />}
+                rightIcon={showPassword ? <EyeIcon /> : <EyeOffIcon />}
+                onRightIconPress={() => setShowPassword(!showPassword)}
+              />
+            )}
+            name="password"
           />
+          {errors.password && (
+            <LabelError message={errors.password.message!} />
+          )}
 
           <Button
             title={isPending ? "Entrando..." : "Entrar"}
-            onPress={handleSubmit}
+            onPress={handleSubmit(onSubmit)}
+            disabled={isPending}
             className="mt-4"
           />
         </View>
 
+        {/* Esqueceu a senha */}
         <TouchableOpacity
           activeOpacity={1}
           onPress={() => router.push("/forgot-password")}
@@ -64,7 +101,7 @@ export default function SignIn() {
           <Divider text="Esqueceu a palavra-passe?" />
         </TouchableOpacity>
 
-        {/* Login Link */}
+        {/* Criar conta */}
         <View className="flex-row justify-center items-center my-8">
           <Text className="text-gray-500">Ainda não tem uma conta?</Text>
           <TouchableOpacity

@@ -9,7 +9,7 @@ const supabase = createClient<Database>(
   {
     auth: {
       storage: AsyncStorage,
-      autoRefreshToken: false, // 🔄 renova tokens automaticamente
+      autoRefreshToken: true, // 🔄 renova tokens automaticamente
       persistSession: true, // 💾 salva sessão entre reinícios
       detectSessionInUrl: false, // 🔒 necessário no React Native
     },

@@ -1,10 +1,7 @@
-import { Text } from "@/components/Text";
-import { View } from "react-native";
+import Search from "@/screens/search";
 
-export default function NotificationsScreen() {
+export default function SearchScreen() {
   return (
-    <View>
-      <Text>Tela Search</Text>
-    </View>
+    <Search />
   );
 }

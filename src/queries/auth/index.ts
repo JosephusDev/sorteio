@@ -1,6 +1,6 @@
-import { signUp, signIn, logOut } from "@/services/supabase/auth.service";
+import { signUp, signIn, logOut, getUserInfo } from "@/services/supabase/auth.service";
 import { Auth } from "@/types";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export function useSignUpMutation({ name, password, email, phone }: Auth) {
   return useMutation({
@@ -20,5 +20,14 @@ export function useSignInMutation({
 export function useLogOutMutation() {
   return useMutation({
     mutationFn: () => logOut(),
+  });
+}
+
+
+export function useGetUserInfo() {
+  return useQuery({
+    queryKey: ["user-info"],
+    queryFn: () => getUserInfo(),
+    staleTime: Infinity
   });
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { View, ScrollView, Image } from "react-native";
-import { EyeIcon, EyeOffIcon, LockIcon } from "@/assets/icons";
+import { View, ScrollView } from "react-native";
+import { EyeIcon, EyeOffIcon, LockIcon, NewPasswordImage } from "@/assets/icons";
 import { Text } from "@/components/Text";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
@@ -21,18 +21,14 @@ export default function RecoveryPassword() {
 
   return (
     <View className="flex-1 bg-white">
-      <ScrollView className="flex-1 px-6 pt-12">
-        <Image
-          source={require("@/assets/images/new-password.png")}
-          resizeMode="contain"
-          className="w-48 h-48 self-center"
-        />
+      <ScrollView className="flex-1 px-6 pt-6" contentContainerStyle={{ alignItems: 'center' }}>
+        <NewPasswordImage />
 
         {/* Título */}
-        <Text className="text-gray-900 mt-12">Crie sua nova senha</Text>
+        <Text className="text-gray-900 mt-12 text-left w-full">Crie sua nova senha</Text>
 
         {/* Campos de Código */}
-        <View className="flex justify-center gap-4 my-8">
+        <View className="flex w-full justify-center gap-4 my-8">
           <InputField
             label="Palavra-passe"
             value={password}

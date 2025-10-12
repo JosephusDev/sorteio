@@ -136,6 +136,7 @@ export default function SignUp() {
           <Button
             title={isPending ? "Carregando..." : "Criar Conta"}
             onPress={handleSubmit(onSubmit)}
+            disabled={isPending}
             className="mt-4"
           />
         </View>

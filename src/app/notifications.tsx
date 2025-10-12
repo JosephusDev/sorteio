@@ -1,10 +1,7 @@
-import { Text } from "@/components/Text";
-import { View } from "react-native";
+import { Notifications } from "@/screens/notifications";
 
 export default function NotificationsScreen() {
   return (
-    <View>
-      <Text>Tela Notificações</Text>
-    </View>
+      <Notifications />
   );
 }
