@@ -47,7 +47,7 @@ export default function Layout() {
   return (
     <QueryClientProvider client={queryClient}>
       <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
-      <Stack 
+      <Stack
         screenOptions={{
           headerShown: false,
           animation: "fade",
@@ -59,8 +59,24 @@ export default function Layout() {
         </Stack.Protected>
         <Stack.Protected guard={!!session?.user}>
           <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="notifications" options={{ headerShown: true, title: "Notificações" }} />
-          <Stack.Screen name="search" options={{ headerShown: true, title: "Pesquisar" }} />
+          <Stack.Screen name="notifications" />
+          <Stack.Screen name="search" />
+          <Stack.Screen
+            name="help"
+            options={{ headerShown: true, title: "Ajuda" }}
+          />
+          <Stack.Screen
+            name="edit-profile"
+            options={{ headerShown: true, title: "Editar Perfil" }}
+          />
+          <Stack.Screen
+            name="modal-logout"
+            options={{
+              presentation: "formSheet",
+              sheetAllowedDetents: [0.35],
+              sheetCornerRadius: 20,
+            }}
+          />
         </Stack.Protected>
       </Stack>
     </QueryClientProvider>

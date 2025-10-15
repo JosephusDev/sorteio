@@ -1,0 +1,499 @@
+import React, { useState } from "react";
+import {
+  View,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+  Alert,
+  TextInput,
+  Modal,
+} from "react-native";
+import {
+  UserIcon,
+  LockIcon,
+  BellIcon,
+  CreditCardIcon,
+  HistoryIcon,
+  EmailIcon,
+  PhoneIcon,
+  CalendarIcon,
+} from "@/assets/icons";
+import { Text } from "@/components/Text";
+import InputField from "@/components/InputField";
+import Button from "@/components/Button";
+
+interface ProfileProps {
+  onLogout: () => void;
+  isLoading?: boolean;
+  userName?: string;
+  userEmail?: string;
+}
+
+interface MenuItemProps {
+  icon: React.ReactNode;
+  title: string;
+  subtitle?: string;
+  onPress: () => void;
+  isDestructive?: boolean;
+  showEditIcon?: boolean;
+}
+
+// Criando ícones faltantes com os disponíveis
+const EditIcon = () => (
+  <View className="w-5 h-5 bg-gray-400 rounded items-center justify-center">
+    <Text className="text-white text-xs">✎</Text>
+  </View>
+);
+
+const LogOutIcon = () => (
+  <View className="w-6 h-6 bg-red-500 rounded-full items-center justify-center">
+    <Text className="text-white text-xs">🚪</Text>
+  </View>
+);
+
+const HelpIcon = () => (
+  <View className="w-6 h-6 bg-orange-500 rounded-full items-center justify-center">
+    <Text className="text-white text-xs">?</Text>
+  </View>
+);
+
+const CloseIcon = () => (
+  <View className="w-6 h-6 bg-gray-500 rounded-full items-center justify-center">
+    <Text className="text-white text-xs">✕</Text>
+  </View>
+);
+
+const SaveIcon = () => (
+  <View className="w-6 h-6 bg-green-500 rounded-full items-center justify-center">
+    <Text className="text-white text-xs">✓</Text>
+  </View>
+);
+
+const WarningIcon = () => (
+  <View className="w-16 h-16 bg-red-100 rounded-full items-center justify-center mb-4">
+    <Text className="text-red-600 text-2xl">⚠️</Text>
+  </View>
+);
+
+export function Profile({
+  onLogout,
+  isLoading = false,
+  userName = "Enoque",
+  userEmail = "enoque@gmail.com",
+}: ProfileProps) {
+  const [notificationCount, setNotificationCount] = useState(3);
+  const [paymentMethods, setPaymentMethods] = useState([
+    { id: 1, type: "Cartão de Crédito", last4: "4242", default: true },
+    { id: 2, type: "Pix", key: "email@exemplo.com", default: false },
+  ]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [formData, setFormData] = useState({
+    name: userName,
+    email: userEmail,
+    phone: "",
+    address: "",
+    birthDate: "",
+  });
+
+  const handleEditProfile = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveProfile = () => {
+    // Aqui você pode adicionar a lógica para salvar os dados
+    Alert.alert("Sucesso", "Perfil atualizado com sucesso!");
+    setIsEditing(false);
+  };
+
+  const handleCancelEdit = () => {
+    setFormData({
+      name: userName,
+      email: userEmail,
+      phone: "",
+      address: "",
+      birthDate: "",
+    });
+    setIsEditing(false);
+  };
+
+  const handleLogout = () => {
+    setShowLogoutModal(true);
+  };
+
+  const confirmLogout = () => {
+    setShowLogoutModal(false);
+    onLogout();
+  };
+
+  const cancelLogout = () => {
+    setShowLogoutModal(false);
+  };
+
+  const handleHelp = () => {
+    Alert.alert(
+      "Central de Ajuda",
+      "Entre em contato pelo email: suporte@sorteio.com",
+    );
+  };
+
+  const handleNotifications = () => {
+    Alert.alert(
+      "Notificações",
+      `Você tem ${notificationCount} notificações não lidas.`,
+    );
+    setNotificationCount(0);
+  };
+
+  const handlePaymentMethods = () => {
+    Alert.alert(
+      "Métodos de Pagamento",
+      "Gerencie seus métodos de pagamento aqui.",
+    );
+  };
+
+  const handleHistory = () => {
+    Alert.alert("Histórico", "Veja seu histórico completo de atividades.");
+  };
+
+  const handlePrivacy = () => {
+    Alert.alert(
+      "Privacidade e Segurança",
+      "Configurações de privacidade e segurança.",
+    );
+  };
+
+  const updateFormData = (field: string, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const MenuItem = ({
+    icon,
+    title,
+    subtitle,
+    onPress,
+    isDestructive = false,
+    showEditIcon = true,
+  }: MenuItemProps) => (
+    <TouchableOpacity
+      className="flex-row items-center justify-between py-4 px-4 border-b border-gray-100"
+      onPress={onPress}
+      disabled={isLoading}
+    >
+      <View className="flex-row items-center flex-1">
+        <View className="w-8 mr-3">
+          {icon}
+        </View>
+        <View className="flex-1">
+          <Text className={`font-urbanist-medium ${isDestructive ? "text-red-500" : "text-gray-800"}`}>
+            {title}
+          </Text>
+          {subtitle && (
+            <Text className="text-gray-500 text-sm mt-1">{subtitle}</Text>
+          )}
+        </View>
+      </View>
+
+      {showEditIcon && !isDestructive && (
+        <View className="text-gray-400">
+          <EditIcon />
+        </View>
+      )}
+    </TouchableOpacity>
+  );
+
+  // Modal de Confirmação de Logout
+  const LogoutModal = () => (
+    <Modal
+      visible={showLogoutModal}
+      transparent={true}
+      animationType="fade"
+      onRequestClose={cancelLogout}
+    >
+      <View className="flex-1 justify-center items-center bg-black/50">
+        <View className="bg-white rounded-2xl mx-6 p-6 w-11/12 max-w-sm">
+          <View className="items-center mb-4">
+            <WarningIcon />
+            <Text className="text-xl font-urbanist-bold text-red-500 text-center mb-2">
+              Terminar Sessão?
+            </Text>
+            <Text className="text-gray-600 text-center text-sm">
+              Tem certeza que deseja sair da sua conta? Você precisará fazer
+              login novamente para acessar o aplicativo.
+            </Text>
+          </View>
+
+          <View className="mt-6">
+            <TouchableOpacity
+              className="bg-primary py-3 rounded-xl mb-3"
+              onPress={confirmLogout}
+            >
+              <Text className="text-white text-center font-urbanist-bold">
+                Sair
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              className="border border-blue-500 bg-gray-100 py-3 rounded-xl"
+              onPress={cancelLogout}
+            >
+              <Text className="text-blue-500 text-center font-urbanist-medium">
+                Cancelar
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  );
+
+  // Formulário de Edição de Perfil
+  const EditProfileForm = () => (
+    <View className="flex-1 bg-white">
+      {/* Header do Formulário */}
+      <View className="flex-row items-center justify-between p-4 border-b border-gray-200">
+        <TouchableOpacity onPress={handleCancelEdit}>
+          <CloseIcon />
+        </TouchableOpacity>
+        <Text className="text-lg font-urbanist-bold text-gray-800">
+          Editar Perfil
+        </Text>
+        <TouchableOpacity onPress={handleSaveProfile}>
+          <SaveIcon />
+        </TouchableOpacity>
+      </View>
+
+      <ScrollView className="flex-1 px-6 pt-6">
+        {/* Foto de Perfil */}
+        <View className="items-center mb-6">
+          <View className="w-24 h-24 bg-gray-200 rounded-full items-center justify-center mb-4 border-4 border-white">
+            <Text className="text-primary text-3xl font-urbanist-bold">
+              {formData.name.charAt(0)}
+            </Text>
+          </View>
+          <TouchableOpacity className="bg-primary px-4 py-2 rounded-md">
+            <Text className="text-white font-urbanist-medium">
+              Alterar Foto
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Formulário */}
+        <View className="flex-col gap-4 mb-8">
+          <InputField
+            label="Nome Completo"
+            value={formData.name}
+            onChangeText={(value) => updateFormData("name", value)}
+            icon={<UserIcon />}
+          />
+
+          <InputField
+            label="E-mail"
+            value={formData.email}
+            onChangeText={(value) => updateFormData("email", value)}
+            icon={<EmailIcon />}
+            keyboardType="email-address"
+          />
+
+          <InputField
+            label="Telefone"
+            value={formData.phone}
+            onChangeText={(value) => updateFormData("phone", value)}
+            icon={<PhoneIcon />}
+            keyboardType="phone-pad"
+          />
+
+          <InputField
+            label="Endereço"
+            value={formData.address}
+            onChangeText={(value) => updateFormData("address", value)}
+            icon={<UserIcon />}
+          />
+
+          <InputField
+            label="Data de Nascimento"
+            value={formData.birthDate}
+            onChangeText={(value) => updateFormData("birthDate", value)}
+            icon={<CalendarIcon />}
+            keyboardType="numeric"
+          />
+
+          <View className="flex-col gap-3 mt-4">
+            <Button
+              title="Salvar Alterações"
+              onPress={handleSaveProfile}
+              className="mt-4"
+            />
+
+            <TouchableOpacity
+              className="border border-gray-300 py-4 rounded-md"
+              onPress={handleCancelEdit}
+            >
+              <Text className="text-gray-600 text-center font-urbanist-bold text-lg">
+                Cancelar
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+
+  if (isLoading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-white">
+        <ActivityIndicator size="large" color="#6366F1" />
+        <Text className="mt-4 text-gray-600">Carregando...</Text>
+      </View>
+    );
+  }
+
+  // Se estiver editando, mostra o formulário
+  if (isEditing) {
+    return <EditProfileForm />;
+  }
+
+  return (
+    <View className="flex-1 bg-white">
+      {/* Header do Perfil */}
+      <View className="items-center pt-8 pb-4 px-6 bg-primary">
+        <View className="w-24 h-24 bg-white rounded-full items-center justify-center mb-4 border-4 border-white">
+          <Text className="text-primary text-3xl font-urbanist-bold">
+            {userName.charAt(0)}
+          </Text>
+        </View>
+        <Text className="text-2xl font-urbanist-bold text-white text-center">
+          {userName}
+        </Text>
+        <Text className="text-gray-100 mt-1 text-center">{userEmail}</Text>
+      </View>
+
+      <ScrollView className="flex-1">
+        {/* SEÇÃO PERFIL */}
+        <View className="py-4">
+          <Text className="text-lg font-urbanist-bold text-gray-800 px-4 mb-2">
+            Perfil
+          </Text>
+          <MenuItem
+            icon={<UserIcon />}
+            title="Editar Perfil"
+            subtitle="Altere suas informações pessoais"
+            onPress={handleEditProfile}
+            showEditIcon={true}
+          />
+
+          <MenuItem
+            icon={<BellIcon />}
+            title="Notificações"
+            subtitle={
+              notificationCount > 0
+                ? `${notificationCount} notificações não lidas`
+                : "Sem novas notificações"
+            }
+            onPress={handleNotifications}
+            showEditIcon={true}
+          />
+
+          <MenuItem
+            icon={<CreditCardIcon />}
+            title="Métodos de Pagamento"
+            subtitle={`${paymentMethods.length} métodos cadastrados`}
+            onPress={handlePaymentMethods}
+            showEditIcon={true}
+          />
+
+          <MenuItem
+            icon={<HistoryIcon />}
+            title="Histórico de Atividades"
+            subtitle="Veja suas ações recentes"
+            onPress={handleHistory}
+            showEditIcon={true}
+          />
+
+          {/* Lista de métodos de pagamento */}
+          <View className="px-4 py-2 mt-2">
+            <Text className="text-gray-800 font-urbanist-medium mb-2">
+              Seus Métodos de Pagamento
+            </Text>
+
+            {paymentMethods.map((method) => (
+              <View key={method.id} className="py-3 border-b border-gray-100">
+                <View className="flex-row justify-between">
+                  <Text className="text-gray-800 font-urbanist-medium">
+                    {method.type}
+                  </Text>
+                  {method.default && (
+                    <View className="bg-primary/10 px-2 py-0.5 rounded">
+                      <Text className="text-primary text-xs">Padrão</Text>
+                    </View>
+                  )}
+                </View>
+                <Text className="text-gray-500 text-sm mt-1">
+                  {method.type === "Cartão de Crédito"
+                    ? `•••• ${method.last4}`
+                    : method.key}
+                </Text>
+              </View>
+            ))}
+
+            <TouchableOpacity
+              className="mt-3 py-2 bg-primary/10 rounded-md items-center"
+              onPress={() =>
+                Alert.alert(
+                  "Adicionar",
+                  "Adicione um novo método de pagamento",
+                )
+              }
+            >
+              <Text className="text-primary font-urbanist-medium">
+                + Adicionar Novo
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* SEÇÃO AJUDA */}
+        <View className="py-4">
+          <Text className="text-lg font-urbanist-bold text-gray-800 px-4 mb-2">
+            Ajuda
+          </Text>
+          <MenuItem
+            icon={<HelpIcon />}
+            title="Central de Ajuda"
+            subtitle="Tire suas dúvidas e obtenha suporte"
+            onPress={handleHelp}
+            showEditIcon={true}
+          />
+        </View>
+
+        {/* SEÇÃO CONFIGURAÇÕES */}
+        <View className="py-4">
+          <Text className="text-lg font-urbanist-bold text-gray-800 px-4 mb-2">
+            Configurações
+          </Text>
+          <MenuItem
+            icon={<LockIcon />}
+            title="Privacidade e Segurança"
+            subtitle="Gerencie suas configurações de segurança"
+            onPress={handlePrivacy}
+            showEditIcon={true}
+          />
+
+          <MenuItem
+            icon={<LogOutIcon />}
+            title="Terminar Sessão"
+            onPress={handleLogout}
+            isDestructive={true}
+            showEditIcon={false}
+          />
+        </View>
+      </ScrollView>
+
+      {/* Modal de Confirmação de Logout */}
+      <LogoutModal />
+    </View>
+  );
+}
