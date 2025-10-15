@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { View, Animated, Dimensions } from "react-native";
+import { View, Animated } from "react-native";
 
 export function ProductSkeleton() {
   const opacity = useRef(new Animated.Value(0.3)).current;

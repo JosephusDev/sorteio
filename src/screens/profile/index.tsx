@@ -20,7 +20,7 @@ interface MenuItemProps {
   isDestructive?: boolean;
 }
 export function Profile({
-  userName = "Usuario",
+  userName = "Usuário",
   userEmail = "usuario@email.com",
 }: ProfileProps) {
   const MenuItem = ({
