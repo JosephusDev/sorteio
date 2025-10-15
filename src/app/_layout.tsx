@@ -45,7 +45,13 @@ export default function Layout() {
   return (
     <QueryClientProvider client={queryClient}>
       <StatusBar barStyle={"dark-content"} backgroundColor={"white"} />
-      <Stack screenOptions={{ headerShown: false }}>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          animation: "fade",
+          headerTitleStyle: { fontFamily: "Urbanist_700Bold", fontSize: 18 },
+        }}
+      >
         <Stack.Protected guard={!session?.user}>
           <Stack.Screen name="(auth)" />
         </Stack.Protected>
@@ -53,6 +59,22 @@ export default function Layout() {
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="notifications" />
           <Stack.Screen name="search" />
+          <Stack.Screen
+            name="help"
+            options={{ headerShown: true, title: "Ajuda" }}
+          />
+          <Stack.Screen
+            name="edit-profile"
+            options={{ headerShown: true, title: "Editar Perfil" }}
+          />
+          <Stack.Screen
+            name="modal-logout"
+            options={{
+              presentation: "formSheet",
+              sheetAllowedDetents: [0.35],
+              sheetCornerRadius: 20,
+            }}
+          />
         </Stack.Protected>
       </Stack>
     </QueryClientProvider>

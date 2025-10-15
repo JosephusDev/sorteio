@@ -1,4 +1,13 @@
-import Svg, { Path, Rect, SvgProps } from "react-native-svg";
+import Svg, {
+  Circle,
+  Defs,
+  Image,
+  Path,
+  Pattern,
+  Rect,
+  SvgProps,
+  Use,
+} from "react-native-svg";
 import { View } from "react-native";
 import { cn } from "@/utils/cn";
 
@@ -31,6 +40,84 @@ export const BellIcon = ({ className, ...props }: IconProps) => {
           stroke-width="1.5"
           stroke-linecap="round"
           stroke-linejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const LogOutIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        strokeWidth={1.6}
+        viewBox="0 0 24 24"
+        fill="none"
+        color="#F75555"
+        {...props}
+      >
+        <Path
+          d="M13.4767 21.2448H8.34067C7.04877 21.3045 5.78536 20.8527 4.82407 19.9876C3.86278 19.1224 3.28099 17.9134 3.2047 16.6224V7.37762C3.28099 6.08659 3.86278 4.87757 4.82407 4.01241C5.78536 3.14724 7.04877 2.69559 8.34067 2.75524H13.4767"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M20.7953 12H7.44174"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+        />
+        <Path
+          d="M16.0833 17.136L20.4874 12.7319C20.6802 12.5371 20.7884 12.2742 20.7884 12C20.7884 11.7259 20.6802 11.4629 20.4874 11.2681L16.0833 6.86404"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const HelpStrikeIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        strokeWidth={1.6}
+        viewBox="0 0 24 24"
+        fill="none"
+        color="#676767"
+        {...props}
+      >
+        <Path
+          d="M12 17.1388V10.9722"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M11.9575 7.5625H11.9664"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Rect
+          x="2.75"
+          y="2.75"
+          width="18.5"
+          height="18.5"
+          rx="6"
+          stroke="currentColor"
+          stroke-width="1.5"
         />
       </Svg>
     </View>
@@ -695,6 +782,37 @@ export const UserIcon = ({ className, ...props }: IconProps) => {
   );
 };
 
+export const UserStrokeIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        color={"#676767"}
+        strokeWidth={1.5}
+        {...props}
+      >
+        <Path
+          d="M19.6177 21.25C19.6177 17.6479 15.6021 14.7206 12 14.7206C8.39794 14.7206 4.38235 17.6479 4.38235 21.25"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M12 11.4559C14.404 11.4559 16.3529 9.50701 16.3529 7.10294C16.3529 4.69888 14.404 2.75 12 2.75C9.59594 2.75 7.64706 4.69888 7.64706 7.10294C7.64706 9.50701 9.59594 11.4559 12 11.4559Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
 export const TagIcon = ({ className, ...props }: IconProps) => {
   return (
     <View className={cn(className)}>
@@ -820,5 +938,186 @@ export const CardIcon = ({ className, ...props }: IconProps) => {
         />
       </Svg>
     </View>
+  );
+};
+
+export const CalendarFillIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#676767"
+        {...props}
+      >
+        <Path
+          d="M17.75 3.935V2.625C17.75 2.42609 17.671 2.23532 17.5303 2.09467C17.3897 1.95401 17.1989 1.875 17 1.875C16.8011 1.875 16.6103 1.95401 16.4697 2.09467C16.329 2.23532 16.25 2.42609 16.25 2.625V3.875H7.75V2.625C7.75 2.42609 7.67099 2.23532 7.53033 2.09467C7.38968 1.95401 7.19891 1.875 7 1.875C6.80109 1.875 6.61033 1.95401 6.46967 2.09467C6.32902 2.23532 6.25 2.42609 6.25 2.625V3.935C5.13533 4.11528 4.12105 4.68595 3.38831 5.54507C2.65558 6.4042 2.25212 7.49584 2.25 8.625V17.375C2.25 18.6348 2.75045 19.843 3.64124 20.7337C4.53204 21.6245 5.74022 22.125 7 22.125H17C18.2598 22.125 19.468 21.6245 20.3588 20.7337C21.2496 19.843 21.75 18.6348 21.75 17.375V8.625C21.7479 7.49584 21.3444 6.4042 20.6117 5.54507C19.879 4.68595 18.8647 4.11528 17.75 3.935ZM20.25 9.875H3.75V8.625C3.75098 7.8951 3.99839 7.18691 4.45214 6.61519C4.90589 6.04347 5.53939 5.6417 6.25 5.47499V6.625C6.25 6.82391 6.32902 7.01467 6.46967 7.15532C6.61033 7.29597 6.80109 7.375 7 7.375C7.19891 7.375 7.38968 7.29597 7.53033 7.15532C7.67099 7.01467 7.75 6.82391 7.75 6.625V5.375H16.25V6.625C16.25 6.82391 16.329 7.01467 16.4697 7.15532C16.6103 7.29597 16.8011 7.375 17 7.375C17.1989 7.375 17.3897 7.29597 17.5303 7.15532C17.671 7.01467 17.75 6.82391 17.75 6.625V5.47499C18.4606 5.6417 19.0941 6.04347 19.5479 6.61519C20.0016 7.18691 20.249 7.8951 20.25 8.625V9.875Z"
+          fill="currentColor"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const CreditCardIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#676767"
+        {...props}
+      >
+        <Path
+          d="M21 5.25H3C2.58579 5.25 2.25 5.58579 2.25 6V18C2.25 18.4142 2.58579 18.75 3 18.75H21C21.4142 18.75 21.75 18.4142 21.75 18V6C21.75 5.58579 21.4142 5.25 21 5.25Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M15.75 15.75H18.75"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M11.25 15.75H12.75"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M2.25 9.08008H21.75"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const HistoryIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#676767"
+        {...props}
+      >
+        <Path
+          d="M12 8V12L14.5 14.5"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M5.63246 18.3675C7.05468 19.7897 8.95967 20.6378 11.0001 20.6378C15.0799 20.6378 18.3848 17.3329 18.3848 13.2531C18.3848 9.17321 15.0799 5.86841 11.0001 5.86841C6.92035 5.86841 3.61542 9.17321 3.61542 13.2531C3.61542 14.5873 3.9616 15.8447 4.56463 16.9341L3.04932 20.9499L7.06516 19.4346C7.06516 19.4346 8.63606 20.6378 11.0001 20.6378"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M20.4231 7.96154C20.4231 4.65661 17.7665 2 14.4615 2C12.0975 2 10.0513 3.30769 9 5.19231"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const PencilStrokeIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="10"
+        height="10"
+        viewBox="0 0 20 20"
+        fill="none"
+        strokeWidth={1.6}
+        color="white"
+        {...props}
+      >
+        <Path
+          d="M21.9111 7.14173C21.5607 5.93839 20.9125 4.84289 20.0263 3.95667C19.14 3.07044 18.0445 2.42212 16.8412 2.07172C16.5132 1.98704 16.1691 1.98704 15.8412 2.07172C15.5114 2.16747 15.2117 2.34658 14.9712 2.59174L12.7412 4.83173L3.20118 14.3617C2.90077 14.6744 2.70501 15.0728 2.64112 15.5017L2.03114 19.6617C1.98412 19.973 2.00812 20.291 2.1012 20.5917C2.20336 20.8914 2.3707 21.1646 2.59119 21.3917C2.81507 21.6138 3.0847 21.7844 3.38123 21.8917C3.58772 21.9596 3.80378 21.9934 4.02113 21.9917H4.31117L8.4712 21.3817C8.9055 21.326 9.30953 21.1292 9.62122 20.8217L19.1712 11.2717L21.3911 9.06171C21.6413 8.81691 21.8229 8.51075 21.9176 8.17383C22.0124 7.83691 22.017 7.48103 21.9312 7.14173H21.9111ZM20.4512 7.77173C20.424 7.85576 20.3758 7.93148 20.3112 7.99173L18.6212 9.68173L14.3012 5.37174L16.0111 3.66171C16.0768 3.60126 16.1556 3.55677 16.2412 3.53171H16.3911H16.4712C17.4179 3.81331 18.2795 4.32657 18.9779 5.025C19.6763 5.72342 20.1896 6.58497 20.4712 7.53171C20.4817 7.61222 20.4749 7.69407 20.4512 7.77173Z"
+          fill="currentColor"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const BackStrokeIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#676767"
+        {...props}
+      >
+        <Path
+          d="M4 12L20 12"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+        />
+        <Path
+          d="M11.0325 4.33939L4.45961 10.9122C4.31606 11.0546 4.20206 11.224 4.12432 11.4108C4.04646 11.5975 4.00641 11.7977 4.00641 12C4.00641 12.2023 4.04646 12.4025 4.12432 12.5892C4.20206 12.776 4.31606 12.9454 4.45961 13.0877L11.0325 19.6606"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const AvatarImage = ({ className, ...props }: IconProps) => {
+  return (
+    <Svg width={100} height={100} viewBox="0 0 140 140" fill="none" {...props}>
+      <Circle cx={70} cy={70} r={70} fill="url(#pattern0_1515_564)" />
+      <Defs>
+        <Pattern
+          id="pattern0_1515_564"
+          patternContentUnits="objectBoundingBox"
+          width={1}
+          height={1}
+        >
+          <Use xlinkHref="#image0_1515_564" transform="scale(0.00806452)" />
+        </Pattern>
+        <Image
+          id="image0_1515_564"
+          width={124}
+          height={124}
+          preserveAspectRatio="none"
+          xlinkHref="data:image/png;base64,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"
+        />
+      </Defs>
+    </Svg>
   );
 };
