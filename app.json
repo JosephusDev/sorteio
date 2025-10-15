@@ -20,7 +20,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.josephusdev.sorteio"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -31,6 +32,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "e0655a68-8397-499a-ae29-ae7a20ee5f07"
+      }
     }
   }
 }

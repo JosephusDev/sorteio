@@ -9,7 +9,7 @@ import {
 } from "@expo-google-fonts/urbanist";
 import { View, ActivityIndicator, StatusBar } from "react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { Session } from "@supabase/supabase-js";
 import supabase from "@/services/supabase";
 
@@ -17,6 +17,7 @@ export default function Layout() {
   const queryClient = new QueryClient();
 
   const [session, setSession] = useState<Session | null>(null);
+  const [isReady, setIsReady] = useState(false)
 
   const [fontsLoaded] = useFonts({
     Urbanist_400Regular,
@@ -32,9 +33,10 @@ export default function Layout() {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
+    setIsReady(true)
   }, []);
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded || !isReady) {
     return (
       <View className="flex-1 items-center justify-center">
         <ActivityIndicator color={"#4D5DFA"} size={"large"} />
