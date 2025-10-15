@@ -75,6 +75,7 @@ export function Header() {
         <TouchableOpacity
           className="relative ml-2"
           onPress={() => goToNotificationsPage(qtdNotifications)}
+          activeOpacity={1}
         >
           <NotificationIcon />
           {qtdNotifications > 0 && (
