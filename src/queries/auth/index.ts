@@ -1,6 +1,7 @@
-import { signUp, signIn, logOut, getUserInfo } from "@/services/supabase/auth.service";
+import { signUp, signIn, logOut, getUserInfo, updateProfile } from "@/services/supabase/auth.service";
 import { Auth } from "@/types";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { User } from "@/types/database.types";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useSignUpMutation({ name, password, email, phone }: Auth) {
   return useMutation({
@@ -29,5 +30,12 @@ export function useGetUserInfo() {
     queryKey: ["user-info"],
     queryFn: () => getUserInfo(),
     staleTime: Infinity
+  });
+}
+
+export function useUpdateProfileMutation(data: Omit<User, 'auth_id' | 'created_at' | 'role_id'>) {
+  return useMutation({
+    mutationFn: () => updateProfile(data),
+    onSuccess: () => useQueryClient().invalidateQueries({ queryKey: ["user-info"] })
   });
 }
