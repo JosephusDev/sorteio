@@ -25,7 +25,11 @@ export default function SignIn() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const { mutateAsync: signIn, isPending, error } = useSignInMutation({
+  const {
+    mutateAsync: signIn,
+    isPending,
+    error,
+  } = useSignInMutation({
     email: getValues("email"),
     password: getValues("password"),
   });
@@ -81,9 +85,7 @@ export default function SignIn() {
             )}
             name="password"
           />
-          {errors.password && (
-            <LabelError message={errors.password.message!} />
-          )}
+          {errors.password && <LabelError message={errors.password.message!} />}
 
           <Button
             title={isPending ? "Entrando..." : "Entrar"}

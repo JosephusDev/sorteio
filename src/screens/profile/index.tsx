@@ -9,7 +9,8 @@ interface ProfileProps {
   onLogout: () => void;
   isLoading?: boolean;
   userName?: string;
-  userEmail?: string;
+  userPhone?: string;
+  avatarUrl?: string;
 }
 
 interface MenuItemProps {
@@ -20,8 +21,9 @@ interface MenuItemProps {
   isDestructive?: boolean;
 }
 export function Profile({
-  userName = "Usuário",
-  userEmail = "usuario@email.com",
+  userName = "",
+  userPhone = "",
+  avatarUrl,
 }: ProfileProps) {
   const MenuItem = ({
     icon,
@@ -55,11 +57,13 @@ export function Profile({
     <View className="flex-1 bg-white">
       {/* Header do Perfil - REMOVIDO O BG AZUL */}
       <View className="items-center pt-8 pb-4 px-6 bg-white">
-        <ProfilePhoto />
+        <ProfilePhoto url={avatarUrl} />
         <Text className="text-2xl font-urbanist-bold text-gray-800 text-center mt-4">
           {userName}
         </Text>
-        <Text className="text-gray-600 mt-1 text-center">{userEmail}</Text>
+        <Text className="text-gray-600 mt-1 text-center font-urbanist-semiBold">
+          +244 {userPhone}
+        </Text>
       </View>
 
       <ScrollView className="flex-1 mt-4" showsVerticalScrollIndicator={false}>
@@ -88,7 +92,7 @@ export function Profile({
           <MenuItem
             icon={<LogOutIcon />}
             title="Terminar Sessão"
-            onPress={() => router.push("/modal-logout")}
+            onPress={() => router.push("/(modals)/confirm-logout")}
             isDestructive={true}
           />
         </View>

@@ -8,9 +8,17 @@ export function ProductSkeleton() {
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(opacity, { toValue: 1, duration: 700, useNativeDriver: true }),
-        Animated.timing(opacity, { toValue: 0.3, duration: 700, useNativeDriver: true }),
-      ])
+        Animated.timing(opacity, {
+          toValue: 1,
+          duration: 700,
+          useNativeDriver: true,
+        }),
+        Animated.timing(opacity, {
+          toValue: 0.3,
+          duration: 700,
+          useNativeDriver: true,
+        }),
+      ]),
     ).start();
   }, []);
 

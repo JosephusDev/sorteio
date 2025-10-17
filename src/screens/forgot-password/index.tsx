@@ -41,7 +41,10 @@ export default function ForgotPassword() {
 
   return (
     <View className="flex-1 bg-white">
-      <ScrollView className="flex-1 px-6 pt-6" contentContainerStyle={{ alignItems: 'center' }}>
+      <ScrollView
+        className="flex-1 px-6 pt-6"
+        contentContainerStyle={{ alignItems: "center" }}
+      >
         <OtpImage width={200} />
 
         {/* Título */}

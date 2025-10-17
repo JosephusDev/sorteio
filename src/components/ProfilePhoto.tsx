@@ -13,7 +13,7 @@ export const ProfilePhoto = ({
   <View className="relative">
     <View className="bg-white w-24 h-24 rounded-full items-center justify-center border-4 border-white">
       {url ? (
-        <Image source={{ uri: url }} className="w-20 h-20 rounded-full" />
+        <Image source={{ uri: url }} className="w-24 h-24 rounded-full" />
       ) : (
         <AvatarImage />
       )}

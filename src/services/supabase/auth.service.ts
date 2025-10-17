@@ -35,26 +35,40 @@ export async function logOut() {
   if (error) throw error;
 }
 
-export async function getUserInfo(){
-  const session = await supabase.auth.getSession()
-  if(session.data.session?.user){
-    const userId = session.data.session?.user.id
-    const email = session.data.session?.user.email
-    const { data, error } = await supabase.from("usuario").select("*").eq("auth_id", userId!).maybeSingle();
-    const {data: imageData, error: imageError} = await supabase.from("imagem_usuario").select("url").eq("id_usuario", userId!).maybeSingle();
+export async function getUserInfo() {
+  const session = await supabase.auth.getSession();
+  if (session.data.session?.user) {
+    const userId = session.data.session?.user.id;
+    const email = session.data.session?.user.email;
+    const { data, error } = await supabase
+      .from("usuario")
+      .select("*")
+      .eq("auth_id", userId!)
+      .maybeSingle();
+    const { data: imageData, error: imageError } = await supabase
+      .from("imagem_usuario")
+      .select("url")
+      .eq("id_usuario", userId!)
+      .order("created_at")
+      .maybeSingle();
     if (error) throw error;
-    if(imageError) throw imageError;
-    const result = {...data, email, avatarUrl: imageData?.url}
-    return result
+    if (imageError) throw imageError;
+    const result = { ...data, email, avatarUrl: imageData?.url };
+    return result;
   }
-  throw new Error("Usuário não encontrado")
+  throw new Error("Usuário não encontrado");
 }
 
-export async function updateProfile(data: Omit<User, 'auth_id' | 'created_at' | 'role_id'>) {
-  const session = await supabase.auth.getSession()
-  if(session.data.session?.user){
-    const userId = session.data.session?.user.id
-    const { error } = await supabase.from("usuario").update(data).eq("auth_id", userId!);
+export async function updateProfile(
+  data: Omit<User, "auth_id" | "created_at" | "role_id">,
+) {
+  const session = await supabase.auth.getSession();
+  if (session.data.session?.user) {
+    const userId = session.data.session?.user.id;
+    const { error } = await supabase
+      .from("usuario")
+      .update(data)
+      .eq("auth_id", userId!);
     if (error) throw error;
   }
 }

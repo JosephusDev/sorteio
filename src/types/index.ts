@@ -1,4 +1,5 @@
 import { useGetActiveProducts } from "@/queries/products";
+import * as ImagePicker from "expo-image-picker";
 
 export type Auth = {
   name: string;
@@ -12,7 +13,13 @@ export type ProductsData = NonNullable<
 >;
 
 export type NotificationStore = {
-  qtd: number
-  setQtd: (qtd: number) => void
-  resetQtd: () => void
-}
+  qtd: number;
+  setQtd: (qtd: number) => void;
+  resetQtd: () => void;
+};
+
+export type ImageStore = {
+  image: ImagePicker.ImagePickerResult | null;
+  setImage: (image: ImagePicker.ImagePickerResult) => void;
+  resetImage: () => void;
+};
