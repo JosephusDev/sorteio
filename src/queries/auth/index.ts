@@ -9,18 +9,18 @@ import { Auth } from "@/types";
 import { User } from "@/types/database.types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-export function useSignUpMutation({ name, password, email, phone }: Auth) {
+export function useSignUpMutation() {
   return useMutation({
-    mutationFn: () => signUp({ name, password, email, phone }),
+    mutationFn: ({ name, password, email, phone }: Auth) => signUp({ name, password, email, phone }),
   });
 }
 
-export function useSignInMutation({
+export function useSignInMutation() {
+  return useMutation({
+    mutationFn: ({
   password,
   email,
-}: Omit<Auth, "name" | "phone">) {
-  return useMutation({
-    mutationFn: () => signIn({ password, email }),
+}: Omit<Auth, "name" | "phone">) => signIn({ password, email }),
   });
 }
 
@@ -38,12 +38,10 @@ export function useGetUserInfo() {
   });
 }
 
-export function useUpdateProfileMutation(
-  data: Omit<User, "auth_id" | "created_at" | "role_id">,
-) {
+export function useUpdateProfileMutation() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => updateProfile(data),
+    mutationFn: (data: Omit<User, "auth_id" | "created_at" | "role_id">) => updateProfile(data),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["user-info"] });
     },

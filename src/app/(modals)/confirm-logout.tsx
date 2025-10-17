@@ -18,10 +18,8 @@ export default function ModalLogout() {
             Tem certeza que deseja sair da sua conta?
           </Text>
         </View>
-
         <View className="mt-6">
           <Button className="mb-3" onPress={() => logout()} title="Sair" />
-
           <Button
             variant="outline"
             onPress={() => router.back()}

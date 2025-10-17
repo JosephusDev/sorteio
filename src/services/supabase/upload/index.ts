@@ -45,8 +45,8 @@ export async function uploadFile(
         console.error("❌ Upload falhou:", error);
         reject(error);
       },
-      onProgress: (bytesUploaded, bytesTotal) => {
-        const percentage = ((bytesUploaded / bytesTotal) * 100).toFixed(2);
+      onProgress: (bytesUploaded, bytesTotal) => {      
+        const percentage = ((Math.min(bytesUploaded, bytesTotal) / bytesTotal) * 100).toFixed(2);
         console.log(`📤 Upload progress: ${percentage}%`);
       },
       onSuccess: () => {

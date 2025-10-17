@@ -11,7 +11,7 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { LabelError } from "@/components/LabelError";
-import { SignInSchema } from "@/schemas/Auth";
+import { SignInType, SignInSchema } from "@/schemas/Auth";
 
 export default function SignIn() {
   const {
@@ -29,13 +29,10 @@ export default function SignIn() {
     mutateAsync: signIn,
     isPending,
     error,
-  } = useSignInMutation({
-    email: getValues("email"),
-    password: getValues("password"),
-  });
+  } = useSignInMutation();
 
-  const onSubmit = () => {
-    signIn();
+  const onSubmit = (data: SignInType) => {
+    signIn(data);
     console.log(error);
   };
 

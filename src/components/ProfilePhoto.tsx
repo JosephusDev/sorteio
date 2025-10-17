@@ -10,6 +10,12 @@ export const ProfilePhoto = ({
   url?: string;
   onEditPress?: () => void;
 }) => (
+  <TouchableOpacity
+     onPress={onEditPress}
+      activeOpacity={0.9}
+  >
+
+
   <View className="relative">
     <View className="bg-white w-24 h-24 rounded-full items-center justify-center border-4 border-white">
       {url ? (
@@ -19,13 +25,12 @@ export const ProfilePhoto = ({
       )}
     </View>
     {isEditable && (
-      <TouchableOpacity
+      <View
         className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary rounded-2xl items-center justify-center border-2 border-white"
-        onPress={onEditPress}
-        activeOpacity={0.9}
       >
         <PencilStrokeIcon />
-      </TouchableOpacity>
+      </View>
     )}
   </View>
+    </TouchableOpacity>
 );

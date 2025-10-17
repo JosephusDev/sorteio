@@ -15,7 +15,7 @@ import { router } from "expo-router";
 import { useSignUpMutation } from "@/queries/auth";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SignUpSchema } from "@/schemas/Auth";
+import { SignUpType, SignUpSchema } from "@/schemas/Auth";
 import { LabelError } from "@/components/LabelError";
 
 export default function SignUp() {
@@ -34,15 +34,10 @@ export default function SignUp() {
     mutateAsync: signUp,
     isPending,
     error,
-  } = useSignUpMutation({
-    name: getValues("name"),
-    email: getValues("email"),
-    phone: getValues("phone"),
-    password: getValues("password"),
-  });
+  } = useSignUpMutation();
 
-  const onSubmit = () => {
-    signUp();
+  const onSubmit = (data: SignUpType) => {
+    signUp(data);
     console.log(error);
   };
 
