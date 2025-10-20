@@ -25,11 +25,7 @@ export default function SignIn() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const {
-    mutateAsync: signIn,
-    isPending,
-    error,
-  } = useSignInMutation();
+  const { mutateAsync: signIn, isPending, error } = useSignInMutation();
 
   const onSubmit = (data: SignInType) => {
     signIn(data);

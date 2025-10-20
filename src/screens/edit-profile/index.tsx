@@ -20,7 +20,7 @@ import { LabelError } from "@/components/LabelError";
 import { formateDate } from "@/utils";
 
 export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
-  const {data} = useGetUserInfo()
+  const { data } = useGetUserInfo();
   const {
     control,
     handleSubmit,
@@ -29,10 +29,10 @@ export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
   } = useForm({
     resolver: yupResolver(ProfileSchema),
     defaultValues: {
-        name: data?.nome!,
-        phone: data?.telefone!,
-        address: data?.endereco!,
-        birthdate: formateDate({date: data?.data_nascimento!, inverse: true})
+      name: data?.nome!,
+      phone: data?.telefone!,
+      address: data?.endereco!,
+      birthdate: formateDate({ date: data?.data_nascimento!, inverse: true }),
     },
   });
 
@@ -42,20 +42,19 @@ export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
     error,
   } = useUpdateProfileMutation();
 
-const onSubmit = async (values: ProfileFormValues) => {
-  try {
-    await updateProfile({
-      nome: values.name,
-      telefone: values.phone,
-      data_nascimento: formateDate({ date: values.birthdate }),
-      endereco: values.address,
-    });
-    router.back();
-  } catch (err) {
-    console.log(err);
-  }
-};
-
+  const onSubmit = async (values: ProfileFormValues) => {
+    try {
+      await updateProfile({
+        nome: values.name,
+        telefone: values.phone,
+        data_nascimento: formateDate({ date: values.birthdate }),
+        endereco: values.address,
+      });
+      router.back();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const [image, setImage] = useState<string | null>(avatarUrl!);
   const { setImage: setPickerResult } = usePickerImageStore();
@@ -105,90 +104,101 @@ const onSubmit = async (values: ProfileFormValues) => {
 
       {/* Formulário */}
       <View className="flex-col gap-4 my-8">
-           <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <InputField
-                label="Nome Completo"
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                icon={<UserIcon width={15}/>}
-              />
-            )}
-            name="name"
-          />
-          {errors.name && <LabelError message={errors.name.message!} />}
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <InputField
-                label="Telefone"
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                icon={<PhoneIcon width={15} />}
-                keyboardType="number-pad"
-                hasMask
-                mask={[/\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/]}
-              />
-            )}
-            name="phone"
-          />
-          {errors.phone && <LabelError message={errors.phone.message!} />}
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputField
+              label="Nome Completo"
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              icon={<UserIcon width={15} />}
+            />
+          )}
+          name="name"
+        />
+        {errors.name && <LabelError message={errors.name.message!} />}
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputField
+              label="Telefone"
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              icon={<PhoneIcon width={15} />}
+              keyboardType="number-pad"
+              hasMask
+              mask={[
+                /\d/,
+                /\d/,
+                /\d/,
+                " ",
+                /\d/,
+                /\d/,
+                /\d/,
+                " ",
+                /\d/,
+                /\d/,
+                /\d/,
+              ]}
+            />
+          )}
+          name="phone"
+        />
+        {errors.phone && <LabelError message={errors.phone.message!} />}
 
         <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <InputField
-                label="Endereço"
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                icon={<LocationFilledIcon width={15}/>}
-              />
-            )}
-            name="address"
-          />
-          {errors.address && <LabelError message={errors.address.message!} />}
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputField
+              label="Endereço"
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              icon={<LocationFilledIcon width={15} />}
+            />
+          )}
+          name="address"
+        />
+        {errors.address && <LabelError message={errors.address.message!} />}
 
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <InputField
-                label="Data de Nascimento"
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                icon={<CalendarFillIcon width={15} />}
-                keyboardType="number-pad"
-                hasMask
-                mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
-              />
-            )}
-            name="birthdate"
-          />
-          {errors.birthdate && <LabelError message={errors.birthdate.message!} />}
-
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <InputField
+              label="Data de Nascimento"
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              icon={<CalendarFillIcon width={15} />}
+              keyboardType="number-pad"
+              hasMask
+              mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
+            />
+          )}
+          name="birthdate"
+        />
+        {errors.birthdate && <LabelError message={errors.birthdate.message!} />}
 
         {/* Botão Salvar Alterações apenas */}
         <View className="mt-4">
-          <Button 
-          title={isPending ? "Carregando..." : "Salvar Alterações"}
-          onPress={handleSubmit(onSubmit)}
-          disabled={isPending}  
+          <Button
+            title={isPending ? "Carregando..." : "Salvar Alterações"}
+            onPress={handleSubmit(onSubmit)}
+            disabled={isPending}
           />
         </View>
       </View>

@@ -62,7 +62,7 @@ export const InputField: React.FC<InputFieldProps> = ({
   return (
     <View
       className={cn(
-        "flex-row items-center py-2 px-4 rounded-xl bg-gray-50",
+        "flex-row items-center py-2 px-4 rounded-xl bg-gray-100",
         isFocused && "border border-primary/50 bg-primary/5",
         className,
       )}
@@ -70,10 +70,7 @@ export const InputField: React.FC<InputFieldProps> = ({
       {icon && <View className="mr-3">{renderIconWithColor(icon)}</View>}
 
       {hasMask ? (
-        <MaskInput
-          {...commonInputProps}
-          mask={mask}
-        />
+        <MaskInput {...commonInputProps} mask={mask} />
       ) : (
         <TextInput {...commonInputProps} />
       )}

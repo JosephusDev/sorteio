@@ -33,7 +33,9 @@ export default function Layout() {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-    setIsReady(true);
+    setTimeout(() => {
+      setIsReady(true);
+    }, 2_000);
   }, []);
 
   if (!fontsLoaded || !isReady) {

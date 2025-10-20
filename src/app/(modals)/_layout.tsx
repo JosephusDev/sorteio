@@ -11,6 +11,7 @@ export default function ModalLayout() {
       >
         <Stack.Screen name="confirm-logout" />
         <Stack.Screen name="confirm-upload" />
+        <Stack.Screen name="confirm-delete-bet" />
       </Stack>
     </Fragment>
   );

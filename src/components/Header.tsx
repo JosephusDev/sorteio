@@ -1,17 +1,11 @@
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  StatusBar,
-  Platform,
-} from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
 import { Text } from "./Text";
 import { NotificationIcon, SearchIcon } from "@/assets/icons";
 import { router } from "expo-router";
 import { useGetUserInfo } from "@/queries/auth";
 import { UserInfoSkeleton } from "./skeleton/UserInfoSkeleton";
 import { useGetNotificationsByUser } from "@/queries/notifications";
-import { useNotificationCountStore } from "@/stores/Notifications";
+import { useNotificationStore } from "@/stores/Notifications";
 import { useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -19,8 +13,9 @@ export function Header() {
   const { data, isPending } = useGetUserInfo();
   const { data: notifications, isPending: isPendingNotifications } =
     useGetNotificationsByUser();
-  const notificationStore = useNotificationCountStore();
-  const [qtdNotifications, setQtdNotifications] = useState(0);
+  const notificationStore = useNotificationStore();
+  const [hasNotification, setHasNotification] = useState(false);
+
   const [isHydrated, setIsHydrated] = useState(false);
 
   // safe area
@@ -28,10 +23,10 @@ export function Header() {
   const statusBarHeight = insets.top ?? 0;
 
   useEffect(() => {
-    const unsub = useNotificationCountStore.persist.onFinishHydration(() => {
+    const unsub = useNotificationStore.persist.onFinishHydration(() => {
       setIsHydrated(true);
     });
-    if (useNotificationCountStore.persist.hasHydrated()) {
+    if (useNotificationStore.persist.hasHydrated()) {
       setIsHydrated(true);
     }
     return unsub;
@@ -39,15 +34,18 @@ export function Header() {
 
   useEffect(() => {
     if (!isHydrated || !notifications) return;
-    const storedQtd = Number(notificationStore.qtd ?? 0);
-    const totalNotifications = Number(notifications?.length ?? 0);
-    const qtd_notifications = Math.max(totalNotifications - storedQtd, 0);
-    setQtdNotifications(qtd_notifications);
+    setTimeout(() => {
+      const existingQtdNotification = notificationStore.qtdNotification || 0;
+      const hasNotification = notifications.length > existingQtdNotification;
+      if (hasNotification) {
+        setHasNotification(hasNotification);
+        notificationStore.setQtdNotification(notifications.length);
+      }
+    }, 5_000);
   }, [isHydrated, notifications]);
 
-  const goToNotificationsPage = (qtd: number) => {
-    setQtdNotifications(0);
-    notificationStore.setQtd(notifications?.length ?? 0);
+  const goToNotificationsPage = () => {
+    setHasNotification(false);
     router.push("/notifications");
   };
 
@@ -108,21 +106,12 @@ export function Header() {
         </TouchableOpacity>
         <TouchableOpacity
           style={{ marginLeft: 8 }}
-          onPress={() => goToNotificationsPage(qtdNotifications)}
+          onPress={goToNotificationsPage}
           activeOpacity={1}
         >
           <NotificationIcon />
-          {qtdNotifications > 0 && (
-            <View className="absolute top-2 right-2 w-4 h-4 bg-error rounded-full items-center justify-center">
-              {" "}
-              <Text
-                className="text-white text-xs font-urbanist-bold"
-                style={{ fontSize: 9 }}
-              >
-                {" "}
-                {qtdNotifications > 9 ? "+9" : qtdNotifications}{" "}
-              </Text>{" "}
-            </View>
+          {hasNotification && (
+            <View className="absolute top-3 right-3 w-3 h-3 bg-error rounded-full items-center justify-center" />
           )}
         </TouchableOpacity>
       </View>

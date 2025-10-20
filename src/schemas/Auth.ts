@@ -21,7 +21,7 @@ export const SignUpSchema = yup
   })
   .required();
 
-export type SignUpType = yup.InferType<typeof SignUpSchema>
+export type SignUpType = yup.InferType<typeof SignUpSchema>;
 
 export const SignInSchema = yup
   .object({
@@ -36,4 +36,4 @@ export const SignInSchema = yup
   })
   .required();
 
-export type SignInType = yup.InferType<typeof SignInSchema>
+export type SignInType = yup.InferType<typeof SignInSchema>;

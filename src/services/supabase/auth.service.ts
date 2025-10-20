@@ -49,7 +49,7 @@ export async function getUserInfo() {
       .from("imagem_usuario")
       .select("url")
       .eq("id_usuario", userId!)
-      .order("created_at", {ascending: false})
+      .order("created_at", { ascending: false });
     if (error) throw error;
     if (imageError) throw imageError;
     const result = { ...data, email, avatarUrl: imageData[0]?.url };

@@ -4,7 +4,7 @@ import { Text } from "./Text";
 
 export function EmptyList({ description }: { description: string }) {
   return (
-    <View>
+    <View className="items-center">
       <NotFoundImage width={50} />
       <Text className="text-greyscale-400 text-base font-urbanist-medium text-center">
         {description}

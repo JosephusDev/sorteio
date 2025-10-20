@@ -30,11 +30,7 @@ export default function SignUp() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const {
-    mutateAsync: signUp,
-    isPending,
-    error,
-  } = useSignUpMutation();
+  const { mutateAsync: signUp, isPending, error } = useSignUpMutation();
 
   const onSubmit = (data: SignUpType) => {
     signUp(data);
