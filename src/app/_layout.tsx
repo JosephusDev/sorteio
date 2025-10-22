@@ -84,6 +84,9 @@ export default function Layout() {
               options={{ headerShown: true, title: "Editar Perfil" }}
             />
             <Stack.Screen
+              name="bet-viewer"
+            />
+            <Stack.Screen
               name="(modals)"
               options={{
                 presentation: "formSheet",

@@ -1,11 +1,11 @@
-import { SearchIcon } from "@/assets/icons";
+import { ClockIcon, SearchIcon, TrophyIcon } from "@/assets/icons";
 import { EmptyList } from "@/components/EmptyList";
 import InputField from "@/components/InputField";
 import { BetSkeleton } from "@/components/skeleton/BetSkeleton";
 import { Text } from "@/components/Text";
 import { useGetAllBets } from "@/queries/bets";
 import { BetsData } from "@/types";
-import { capitalizeText, formateDate, formatPrice } from "@/utils";
+import { capitalizeText, formatDate, formatPrice } from "@/utils";
 import { router } from "expo-router";
 import { useState } from "react";
 import {
@@ -19,17 +19,22 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const BetCard = ({ item }: ListRenderItemInfo<BetsData[0]>) => {
+
   const handleLongPress = () => {
     Vibration.vibrate(50);
-    router.push(`/(modals)/confirm-delete-bet?id=${item.aposta_id}`);
+    router.push(`/(modals)/confirm-delete-bet?id=${item.aposta_id}&name=${item.nome_produto}`);
+  };
+
+  const handlePress = () => {
+    router.push(`/bet-viewer?id=${item.aposta_id}`);
   };
 
   return (
     <TouchableOpacity
-      disabled={item.status_produto === "inactivo"}
       activeOpacity={0.9}
       key={item.aposta_id}
-      onLongPress={handleLongPress}
+      onPress={handlePress}
+      onLongPress={item.status_produto === "inactivo" ? () => {} : handleLongPress}
     >
       <View className="flex-row justify-between items-center">
         <View className="flex-row justify-center items-center gap-4">
@@ -40,7 +45,7 @@ const BetCard = ({ item }: ListRenderItemInfo<BetsData[0]>) => {
             </Text>
             <Text className="text-gray-400">{formatPrice(item.valor)}</Text>
             <Text className="text-gray-400">
-              {formateDate({
+              {formatDate({
                 date: item.aposta_created_at.split("T")[0],
                 inverse: true,
               })}
@@ -49,19 +54,25 @@ const BetCard = ({ item }: ListRenderItemInfo<BetsData[0]>) => {
         </View>
         <View className="flex-col justify-center items-end gap-2">
           {item.status_produto === "activo" ? (
-            <Text
-              numberOfLines={1}
-              className="font-urbanist-bold text-right w-18 text-success"
-            >
-              Em andamento
-            </Text>
+            <View className="flex-row gap-2 items-center">
+              <ClockIcon width={15} color={"#4ADE80"} />
+              <Text
+                numberOfLines={1}
+                className="font-urbanist-bold text-right w-18 text-success"
+              >
+                Em andamento
+              </Text>
+            </View>
           ) : (
-            <Text
-              numberOfLines={1}
-              className="font-urbanist-bold text-right w-18 text-error"
-            >
-              Encerrado
-            </Text>
+            <View className="flex-row gap-2 items-center">
+              <TrophyIcon width={15} color={"#F75555"} />
+              <Text
+                numberOfLines={1}
+                className="font-urbanist-bold text-right w-18 text-error"
+              >
+                Encerrada
+              </Text>
+            </View>
           )}
         </View>
       </View>

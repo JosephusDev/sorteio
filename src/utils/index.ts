@@ -5,7 +5,7 @@ export const capitalizeText = (text: string | null) => {
   return text ? `${text.charAt(0).toUpperCase()}${text.slice(1)}` : "";
 };
 
-export const formateDate = ({
+export const formatDate = ({
   date,
   inverse = false,
 }: {
@@ -20,3 +20,15 @@ export const formateDate = ({
   const [day, month, year] = date.split("/");
   return `${year}-${month}-${day}`;
 };
+
+
+export function formatToExtensionDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("pt-AO", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}

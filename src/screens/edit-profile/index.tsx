@@ -17,7 +17,7 @@ import { ProfileFormValues, ProfileSchema } from "@/schemas/Profile";
 import { Controller, useForm } from "react-hook-form";
 import { useGetUserInfo, useUpdateProfileMutation } from "@/queries/auth";
 import { LabelError } from "@/components/LabelError";
-import { formateDate } from "@/utils";
+import { formatDate } from "@/utils";
 
 export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
   const { data } = useGetUserInfo();
@@ -32,7 +32,7 @@ export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
       name: data?.nome!,
       phone: data?.telefone!,
       address: data?.endereco!,
-      birthdate: formateDate({ date: data?.data_nascimento!, inverse: true }),
+      birthdate: formatDate({ date: data?.data_nascimento!, inverse: true }),
     },
   });
 
@@ -47,7 +47,7 @@ export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
       await updateProfile({
         nome: values.name,
         telefone: values.phone,
-        data_nascimento: formateDate({ date: values.birthdate }),
+        data_nascimento: formatDate({ date: values.birthdate }),
         endereco: values.address,
       });
       router.back();
