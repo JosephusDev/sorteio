@@ -9,10 +9,11 @@ import {
 } from "@expo-google-fonts/urbanist";
 import { View, ActivityIndicator, StatusBar } from "react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Session } from "@supabase/supabase-js";
 import supabase from "@/services/supabase";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import * as NavigationBar from 'expo-navigation-bar';
 
 export default function Layout() {
   const queryClient = new QueryClient();
@@ -26,7 +27,13 @@ export default function Layout() {
     Urbanist_700Bold,
   });
 
+  async function configNavigationBar(){
+    await NavigationBar.setBackgroundColorAsync("#FFF")
+    await NavigationBar.setButtonStyleAsync("dark")
+  } 
+
   useEffect(() => {
+    configNavigationBar()
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
@@ -40,9 +47,16 @@ export default function Layout() {
 
   if (!fontsLoaded || !isReady) {
     return (
-      <View className="flex-1 items-center justify-center">
-        <ActivityIndicator color={"#4D5DFA"} size={"large"} />
-      </View>
+      <Fragment>
+        <StatusBar
+          translucent={false}
+          barStyle="dark-content"
+          backgroundColor="#fff"
+        />
+        <View className="flex-1 items-center justify-center bg-white">
+          <ActivityIndicator color={"#4D5DFA"} size={"large"} />
+        </View>
+      </Fragment>
     );
   }
 
@@ -59,10 +73,11 @@ export default function Layout() {
             headerShown: false,
             animation: "fade",
             headerTitleStyle: { fontFamily: "Urbanist_700Bold", fontSize: 18 },
-            contentStyle: { backgroundColor: "white" }, // evita sobreposição
+            contentStyle: { backgroundColor: "white" },
           }}
         >
           <Stack.Protected guard={!session?.user}>
+            <Stack.Screen name="index" />
             <Stack.Screen name="(auth)" />
           </Stack.Protected>
           <Stack.Protected guard={!!session?.user}>

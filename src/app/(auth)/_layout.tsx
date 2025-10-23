@@ -1,6 +1,10 @@
 import { Stack } from "expo-router";
 import { Fragment } from "react";
 
+export const unstable_settings = {
+	initialRouteName: 'sign-in',
+}
+
 export default function AuthLayout() {
   return (
     <Fragment>
@@ -23,7 +27,7 @@ export default function AuthLayout() {
         />
         <Stack.Screen
           name="congrats"
-          options={{ presentation: "containedTransparentModal" }}
+          options={{ presentation: "modal" }}
         />
       </Stack>
     </Fragment>

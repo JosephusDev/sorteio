@@ -1,10 +1,29 @@
 import React from "react";
 import ContentLoader, { Rect, Circle } from "react-content-loader/native";
 import { View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export function UserInfoSkeleton() {
+
+  // safe area
+  const insets = useSafeAreaInsets();
+  const statusBarHeight = insets.top ?? 0;
+
   return (
-    <View className="bg-white px-5 p-4 flex-row items-center justify-between shadow-sm">
+    <View
+      style={{
+        backgroundColor: "white",
+        paddingTop: statusBarHeight + 10, // fixo e consistente
+        paddingHorizontal: 20,
+        paddingBottom: 16,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        shadowColor: "#000",
+        shadowOpacity: 0.05,
+        shadowOffset: { width: 0, height: 1 },
+      }}
+    >
       {/* Bloco esquerdo: avatar e textos */}
       <View className="flex-row items-center">
         <ContentLoader

@@ -63,7 +63,7 @@ export default function RecoveryPassword() {
       </ScrollView>
 
       {/* Botão Fixo na Parte Inferior */}
-      <View className="px-6 pb-8 pt-4 bg-white border-t border-gray-100">
+      <View className="px-6 pb-20 pt-4 bg-white border-t border-gray-100">
         <Button
           title="Continuar"
           onPress={handleContinue}

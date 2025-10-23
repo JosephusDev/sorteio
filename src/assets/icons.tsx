@@ -2247,3 +2247,54 @@ export const PrizeIcon = ({ className, ...props }: IconProps) => {
     </View>
   );
 };
+
+export const CongratsImage = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="83"
+        height="80"
+        viewBox="0 0 83 80"
+        fill="none"
+        strokeWidth={1.6}
+        color="#4D5DFA"
+        {...props}
+      >
+        <Circle
+      cx="42.5"
+      cy="40.5"
+      r="31.5"
+      fill="url(#paint0_linear_936_15505)"
+    ></Circle>
+    <Circle cx="79.5" cy="12.5" r="3.5" fill="#4D5DFA"></Circle>
+    <Circle cx="8.5" cy="4.5" r="4.5" fill="#4D5DFA"></Circle>
+    <Circle cx="4" cy="59" r="2" fill="#4D5DFA"></Circle>
+    <Circle cx="73" cy="71" r="1" fill="#4D5DFA"></Circle>
+    <Path
+      fill="#fff"
+      fillRule="evenodd"
+      d="M37.309 29.167H46.7c3.672 0 6.132 2.578 6.132 6.413v8.852c0 3.823-2.46 6.401-6.132 6.401h-9.392c-3.673 0-6.143-2.578-6.143-6.401V35.58c0-3.835 2.47-6.413 6.143-6.413m4.073 14.072 5.146-5.145a.955.955 0 0 0 0-1.344.955.955 0 0 0-1.344 0l-4.474 4.474-1.896-1.895a.954.954 0 0 0-1.343 0 .955.955 0 0 0 0 1.343l2.578 2.567c.184.184.423.271.661.271.25 0 .487-.087.672-.27"
+      clipRule="evenodd"
+    ></Path>
+    <Circle cx="47" cy="2" r="1" fill="#4D5DFA"></Circle>
+    <Circle cx="27.5" cy="78.5" r="1.5" fill="#4D5DFA"></Circle>
+    <Circle cx="54.5" cy="76.5" r="0.5" fill="#4D5DFA"></Circle>
+    <Circle cx="76" cy="49" r="1" fill="#4D5DFA"></Circle>
+    <Circle cx="0.5" cy="33.5" r="0.5" fill="#4D5DFA"></Circle>
+    <Defs>
+      <LinearGradient
+        id="paint0_linear_936_15505"
+        x1="74"
+        x2="-0.964"
+        y1="72"
+        y2="50.265"
+        gradientUnits="userSpaceOnUse"
+      >
+        <Stop stopColor="#4D5DFA"></Stop>
+        <Stop offset="1" stopColor="#4D5DFA"></Stop>
+      </LinearGradient>
+    </Defs>
+      </Svg>
+    </View>
+  );
+};

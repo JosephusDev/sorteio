@@ -13,7 +13,7 @@ export async function getAllBets(product_name: string) {
 
 export async function getParticipantsByBet(product_id: string) {
   const { data, error } = await supabase.rpc(
-    "count_unique_users_for_product",
+    "get_users_for_product",
     { p_produto_id: product_id },
     { get: true },
   );

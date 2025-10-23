@@ -41,7 +41,7 @@ export default function SignUp() {
     <View className="flex-1 bg-white">
       <ScrollView className="flex-1 px-6 pt-12">
         {/* Título */}
-        <Text className="text-3xl font-urbanist-bold text-gray-900 mb-12">
+        <Text className="text-3xl font-urbanist-bold text-gray-900 my-12">
           Crie sua conta
         </Text>
 
