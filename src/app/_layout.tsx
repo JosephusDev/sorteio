@@ -28,7 +28,6 @@ export default function Layout() {
   });
 
   async function configNavigationBar(){
-    await NavigationBar.setBackgroundColorAsync("#FFF")
     await NavigationBar.setButtonStyleAsync("dark")
   } 
 
@@ -74,6 +73,7 @@ export default function Layout() {
             animation: "fade",
             headerTitleStyle: { fontFamily: "Urbanist_700Bold", fontSize: 18 },
             contentStyle: { backgroundColor: "white" },
+            headerShadowVisible: false
           }}
         >
           <Stack.Protected guard={!session?.user}>
@@ -100,6 +100,10 @@ export default function Layout() {
             />
             <Stack.Screen
               name="bet-viewer"
+              options={({ route }) => ({
+                headerShown: true,
+                headerTitle: (route.params as { nome?: string })?.nome,
+              })}
             />
             <Stack.Screen
               name="(modals)"

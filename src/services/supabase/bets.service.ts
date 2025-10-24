@@ -1,11 +1,18 @@
 import supabase from ".";
 
 export async function getAllBets(product_name: string) {
+  const session = await supabase.auth.getSession();
+
+  if (!session.data.session?.user.id)
+    throw new Error("Usuário não autenticado");
+
+  const id_usuario = session.data.session.user.id;
+
   const { data, error } = await supabase.rpc(
     "getbets",
-    { p_name: product_name },
+    { p_name: product_name, p_user_id: id_usuario },
     { get: true },
-  );
+  )
 
   if (error) throw error;
   return data;

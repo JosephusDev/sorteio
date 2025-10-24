@@ -26,7 +26,7 @@ const BetCard = ({ item }: ListRenderItemInfo<BetsData[0]>) => {
   };
 
   const handlePress = () => {
-    router.push(`/bet-viewer?id=${item.aposta_id}`);
+    router.push(`/bet-viewer?id=${item.aposta_id}&nome=${item.nome_produto}`);
   };
 
   return (
@@ -86,7 +86,7 @@ export function Bets() {
   const { data, isLoading } = useGetAllBets(search);
 
   return (
-    <SafeAreaView className="flex-1 bg-white h-screen w-full py-4 px-6 gap-8">
+    <SafeAreaView className="flex-1 bg-white h-screen w-full pt-4 px-6 gap-8">
       <View className="gap-2">
         <Text className="font-urbanist-bold text-2xl text-primary">
           Apostas
@@ -100,20 +100,23 @@ export function Bets() {
         icon={<SearchIcon width={16} />}
         onChangeText={setSearch}
       />
-      {isLoading ? (
-        <BetSkeleton />
-      ) : (
-        <FlatList
-          data={data}
-          renderItem={BetCard}
-          ItemSeparatorComponent={() => (
-            <View className="w-full border border-gray-100 my-4" />
-          )}
-          ListEmptyComponent={
-            <EmptyList description="Nenhuma aposta encontrada." />
-          }
-        />
-      )}
+        <View className="flex-1">
+          {isLoading ? (
+            <BetSkeleton />
+              ) : (
+                  <FlatList
+                    data={data}
+                    renderItem={BetCard}
+                    ItemSeparatorComponent={() => (
+                      <View className="w-full border border-gray-100 my-4" />
+                    )}
+                    ListEmptyComponent={
+                      <EmptyList description="Nenhuma aposta encontrada." />
+                    }
+                    ListFooterComponent={<View className="h-8" />}
+                  />
+              )}
+        </View>
     </SafeAreaView>
   );
 }

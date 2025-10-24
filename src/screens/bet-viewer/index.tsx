@@ -1,12 +1,15 @@
 import { Text } from "@/components/Text";
 import { useGetBetDetails, useGetParticipantsByBet } from "@/queries/bets";
-import { router, useLocalSearchParams } from "expo-router";
-import { View, Image, ScrollView, ActivityIndicator, StatusBar, TouchableOpacity } from "react-native";
-import { Fragment, useEffect, useState } from "react";
-import { ClockIcon, CalendarFillIcon, MoneyIcon, ChevronLeftIcon, UsersIcon, TrophyIcon, PrizeIcon } from "@/assets/icons";
+import { useLocalSearchParams } from "expo-router";
+import { View, Image, ScrollView, ActivityIndicator } from "react-native";
+import { Fragment, useEffect, useState, useRef } from "react";
+import { ClockIcon, CalendarFillIcon, MoneyIcon, UsersIcon, TrophyIcon } from "@/assets/icons";
 import { formatPrice, formatToExtensionDate } from "@/utils";
 import { EmptyList } from "@/components/EmptyList";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { DrawWheel } from "@/components/DrawWheel";
+import { Confetti, ConfettiMethods } from 'react-native-fast-confetti'
+import { useAudioPlayer } from 'expo-audio';
+import Divider from "@/components/Divider";
 
 interface TimeRemaining {
   days: number;
@@ -40,6 +43,9 @@ export function BetViewer() {
   const { data, isLoading } = useGetBetDetails(id as string);
   const {data: participants} = useGetParticipantsByBet(data?.produto_id!)
   const [timeRemaining, setTimeRemaining] = useState<TimeRemaining | null>(null);
+  const [showDrawComplete, setShowDrawComplete] = useState(false);
+  const confettiRef = useRef<ConfettiMethods>(null)
+  const player = useAudioPlayer(require("../../assets/sounds/winner.mp3"));
 
   useEffect(() => {
     if (!data?.aposta_data_evento) return;
@@ -53,6 +59,17 @@ export function BetViewer() {
 
     return () => clearInterval(interval);
   }, [data?.aposta_data_evento]);
+
+  const handleDrawComplete = (winnerId: string) => {
+    setShowDrawComplete(true);
+    player.play()
+    console.log("Sorteio concluído! Vencedor:", winnerId);
+    
+    // Dispara o confetti
+    if (confettiRef.current) {
+      confettiRef.current.restart();
+    }
+  };
 
   if (isLoading) {
     return (
@@ -72,45 +89,27 @@ export function BetViewer() {
 
   const isActive = data.status_produto === "activo";
   const hasEventDate = data.aposta_data_evento !== null;
+  const isDrawTime = hasEventDate && timeRemaining && timeRemaining.isPast && isActive;
 
   return (
     <Fragment>
-      <StatusBar barStyle={"light-content"} backgroundColor={"#4D5DFA"} />
-        <ScrollView className="flex-1 bg-greyscale-50" showsVerticalScrollIndicator={false}>
-          {/* Header com Status */}
-          <View className="px-6 py-16 h-60 bg-primary">
-            <View className="flex-row justify-between items-center">
-                <TouchableOpacity activeOpacity={0.9} onPress={() => router.back()}>
-                    <ChevronLeftIcon color={"#fff"} />
-                </TouchableOpacity>
-                <View className="flex-row items-start justify-end">
-                    {isActive ? <ClockIcon width={20} color={"#fff"} /> : <TrophyIcon width={20} color={"#fff"} />}
-                    <Text className="ml-2 text-lg font-urbanist-bold text-white">
-                        {isActive ? "Em Andamento" : "Encerrada"}
-                    </Text>
-                </View>
+        <ScrollView className="flex-1 bg-white" showsVerticalScrollIndicator={false}>
+          <View className="flex-row items-center h-36">
+            {/* Imagem do Produto */}
+            <View className="bg-white w-full h-48 p-6">
+              <Image
+                source={{ uri: data.imagem_url }}
+                className="w-full h-full"
+                resizeMode="contain"
+              />
             </View>
           </View>
 
-          <View className="flex-row">
-            {/* Imagem do Produto */}
-            <View className="px-6 -mt-24">
-              <View className="bg-white w-48 h-48 p-6 rounded-full shadow-lg overflow-hidden">
-                <Image
-                  source={{ uri: data.imagem_url }}
-                  className="w-full h-full"
-                  resizeMode="contain"
-                />
-              </View>
-            </View>
-            <Text numberOfLines={2} className="-mt-16 w-24 text-xl font-urbanist-bold text-white">
-              {data.nome_produto}
-            </Text>
-          </View>
+          <Divider />
 
           {/* Informações do Produto */}
-          <View className="px-6 mt-6">
-            <View className="mt-6 flex-row items-center">
+          <View className="px-6">
+            <View className="flex-row items-center">
                 <UsersIcon width={20} />
                 <Text className="ml-2 text-sm font-urbanist-medium text-greyscale-700">
                     Número de participantes
@@ -147,22 +146,25 @@ export function BetViewer() {
 
           {/* Resultado Final da Aposta */}
           {hasEventDate && timeRemaining && timeRemaining.isPast && data.status_produto === "inactivo" && (
-            <View className="mx-6 mt-6 bg-white rounded-2xl p-6 shadow-sm">
+            <View className="mx-6 mt-6 bg-greyscale-50 rounded-2xl p-6 shadow-md">
                 <View className="flex-row items-center mb-4">
-                    <TrophyIcon />
+                    <TrophyIcon color={"#4D5DFA"} />
                     <Text className="ml-2 text-sm font-urbanist-medium text-greyscale-700">
-                        Vencedor(a)
+                        Vencedor(a) 🎉
                     </Text>
                 </View>
-                <Text className="mt-1 text-xl font-urbanist-bold text-primary">
-                    {data.nome_vencedor || "Brevemente..."}
-                </Text>
+                <View className="justify-center items-center gap-4">
+                  <Image src={participants?.find(p=>p.id === data.id_vencedor)?.imagem_url} className="w-20 h-20 rounded-2xl" />
+                  <Text className="mt-1 text-xl font-urbanist-semiBold">
+                      {data.nome_vencedor}
+                  </Text>
+                </View>
             </View>
           )}
 
           {/* Timer de Contagem Regressiva */}
           {hasEventDate && timeRemaining && !timeRemaining.isPast && (
-            <View className="mx-6 mt-6 bg-white rounded-2xl p-6 shadow-sm">
+            <View className="mx-6 mt-6 bg-greyscale-50 rounded-2xl p-6 shadow-md">
               <View className="flex-row items-center mb-4">
                 <ClockIcon width={20} />
                 <Text className="ml-2 text-base font-urbanist-semiBold text-greyscale-900">
@@ -218,23 +220,35 @@ export function BetViewer() {
             </View>
           )}
 
-          {/* Sorteio ao Vivo */}
-          {hasEventDate && timeRemaining && timeRemaining.isPast && data.status_produto === "activo" && (
-            <View className="mx-6 mt-6 bg-white rounded-2xl p-6 shadow-sm">
+          {/* Sorteio ao Vivo - Novo Componente */}
+          {isDrawTime && participants && participants.length > 0 && !showDrawComplete && (
+            <DrawWheel
+              participants={participants}
+              winnerId={data.id_vencedor}
+              onDrawComplete={handleDrawComplete}
+            />
+          )}
+
+          {/* Mensagem pós-sorteio com Confetti */}
+          {isDrawTime && showDrawComplete && (
+            <View className="mx-6 mt-6 bg-greyscale-50 rounded-2xl p-6 shadow-md">
                 <View className="flex-row items-center mb-4">
-                    <PrizeIcon />
+                    <TrophyIcon color={"#4D5DFA"} />
                     <Text className="ml-2 text-sm font-urbanist-medium text-greyscale-700">
-                        Sorteio ao vivo
+                        Vencedor 🎉
                     </Text>
                 </View>
-                <Text className="mt-1 text-xl font-urbanist-bold text-primary">
-                    Processando...
-                </Text>
+                <View className="justify-center items-center gap-4">
+                  <Image src={participants?.find(p=>p.id === data.id_vencedor)?.imagem_url} className="w-20 h-20 rounded-2xl" />
+                  <Text className="mt-1 text-xl font-urbanist-semiBold">
+                      {data.nome_vencedor}
+                  </Text>
+                </View>
             </View>
           )}
 
           {/* Detalhes Adicionais */}
-          <View className="mx-6 mt-6 bg-white rounded-2xl p-6 shadow-sm">
+          <View className="mx-6 mt-6 bg-greyscale-50 rounded-2xl p-6 shadow-md">
             <Text className="text-lg font-urbanist-semiBold text-greyscale-900 mb-4">
               Detalhes
             </Text>
@@ -279,6 +293,11 @@ export function BetViewer() {
           {/* Espaçamento final */}
           <View className="h-20" />
         </ScrollView>
+
+        {/* Confetti Cannon - posicionado de forma absoluta */}
+        {(showDrawComplete || !isActive) && (
+          <Confetti ref={confettiRef} autoStartDelay={2000} autoplay={true} count={300} fadeOutOnEnd colors={['#4D5DFA', '#FF6B6B', '#4ECDC4', '#FFD93D', '#6BCB77']} />
+        )}
     </Fragment>
   );
 }

@@ -33,7 +33,7 @@ export function useGetUserInfo() {
   return useQuery({
     queryKey: ["user-info"],
     queryFn: () => getUserInfo(),
-    staleTime: Infinity,
+    refetchInterval: 1000 * 5,
   });
 }
 

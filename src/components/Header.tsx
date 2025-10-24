@@ -85,7 +85,7 @@ export function Header() {
               justifyContent: "center",
             }}
           >
-            <Text className="text-greyscale-800 text-lg font-urbanist-medium">
+            <Text className="text-greyscale-600 text-lg font-urbanist-medium">
               {data?.nome ? data.nome.charAt(0).toUpperCase() : ""}
             </Text>
           </View>
@@ -94,7 +94,7 @@ export function Header() {
           <Text className="text-greyscale-600 text-sm font-urbanist-regular">
             Olá! 👋
           </Text>
-          <Text className="text-greyscale-900 text-lg font-urbanist-bold">
+          <Text className="text-greyscale-800 text-lg font-urbanist-bold">
             {data.nome}
           </Text>
         </View>
