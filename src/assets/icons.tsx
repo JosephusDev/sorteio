@@ -1,4 +1,17 @@
-import Svg, { Circle, ClipPath, Defs, G, LinearGradient, Path, Rect, Stop, SvgProps } from "react-native-svg";
+import Svg, {
+  Circle,
+  ClipPath,
+  Defs,
+  G,
+  Image,
+  LinearGradient,
+  Path,
+  Pattern,
+  Rect,
+  Stop,
+  SvgProps,
+  Use,
+} from "react-native-svg";
 import { View } from "react-native";
 import { cn } from "@/utils/cn";
 
@@ -31,6 +44,84 @@ export const BellIcon = ({ className, ...props }: IconProps) => {
           stroke-width="1.5"
           stroke-linecap="round"
           stroke-linejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const LogOutIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        strokeWidth={1.6}
+        viewBox="0 0 24 24"
+        fill="none"
+        color="#F75555"
+        {...props}
+      >
+        <Path
+          d="M13.4767 21.2448H8.34067C7.04877 21.3045 5.78536 20.8527 4.82407 19.9876C3.86278 19.1224 3.28099 17.9134 3.2047 16.6224V7.37762C3.28099 6.08659 3.86278 4.87757 4.82407 4.01241C5.78536 3.14724 7.04877 2.69559 8.34067 2.75524H13.4767"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M20.7953 12H7.44174"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+        />
+        <Path
+          d="M16.0833 17.136L20.4874 12.7319C20.6802 12.5371 20.7884 12.2742 20.7884 12C20.7884 11.7259 20.6802 11.4629 20.4874 11.2681L16.0833 6.86404"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const HelpStrikeIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        strokeWidth={1.6}
+        viewBox="0 0 24 24"
+        fill="none"
+        color="#676767"
+        {...props}
+      >
+        <Path
+          d="M12 17.1388V10.9722"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M11.9575 7.5625H11.9664"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Rect
+          x="2.75"
+          y="2.75"
+          width="18.5"
+          height="18.5"
+          rx="6"
+          stroke="currentColor"
+          stroke-width="1.5"
         />
       </Svg>
     </View>
@@ -625,28 +716,6 @@ export const MoneyIcon = ({ className, ...props }: IconProps) => {
   );
 };
 
-
-export const CalendarFillIcon = ({ className, ...props }: IconProps) => {
-  return (
-    <View className={cn(className)}>
-      <Svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        strokeWidth={1.6}
-        color="#676767"
-        {...props}
-      >
-        <Path
-          d="M17.75 3.935V2.625C17.75 2.42609 17.671 2.23532 17.5303 2.09467C17.3897 1.95401 17.1989 1.875 17 1.875C16.8011 1.875 16.6103 1.95401 16.4697 2.09467C16.329 2.23532 16.25 2.42609 16.25 2.625V3.875H7.75V2.625C7.75 2.42609 7.67099 2.23532 7.53033 2.09467C7.38968 1.95401 7.19891 1.875 7 1.875C6.80109 1.875 6.61033 1.95401 6.46967 2.09467C6.32902 2.23532 6.25 2.42609 6.25 2.625V3.935C5.13533 4.11528 4.12105 4.68595 3.38831 5.54507C2.65558 6.4042 2.25212 7.49584 2.25 8.625V17.375C2.25 18.6348 2.75045 19.843 3.64124 20.7337C4.53204 21.6245 5.74022 22.125 7 22.125H17C18.2598 22.125 19.468 21.6245 20.3588 20.7337C21.2496 19.843 21.75 18.6348 21.75 17.375V8.625C21.7479 7.49584 21.3444 6.4042 20.6117 5.54507C19.879 4.68595 18.8647 4.11528 17.75 3.935ZM20.25 9.875H3.75V8.625C3.75098 7.8951 3.99839 7.18691 4.45214 6.61519C4.90589 6.04347 5.53939 5.6417 6.25 5.47499V6.625C6.25 6.82391 6.32902 7.01467 6.46967 7.15532C6.61033 7.29597 6.80109 7.375 7 7.375C7.19891 7.375 7.38968 7.29597 7.53033 7.15532C7.67099 7.01467 7.75 6.82391 7.75 6.625V5.375H16.25V6.625C16.25 6.82391 16.329 7.01467 16.4697 7.15532C16.6103 7.29597 16.8011 7.375 17 7.375C17.1989 7.375 17.3897 7.29597 17.5303 7.15532C17.671 7.01467 17.75 6.82391 17.75 6.625V5.47499C18.4606 5.6417 19.0941 6.04347 19.5479 6.61519C20.0016 7.18691 20.249 7.8951 20.25 8.625V9.875Z"
-          fill="currentColor"
-        />
-      </Svg>
-    </View>
-  );
-};
-
 export const CalendarIcon = ({ className, ...props }: IconProps) => {
   return (
     <View className={cn(className)}>
@@ -711,6 +780,37 @@ export const UserIcon = ({ className, ...props }: IconProps) => {
         <Path
           d="M17.1 7.11002C17.098 8.11827 16.7972 9.1033 16.2356 9.94067C15.674 10.778 14.8768 11.4302 13.9448 11.8147C13.0127 12.1991 11.9876 12.2987 10.9989 12.1008C10.0103 11.9029 9.10249 11.4164 8.39024 10.7027C7.67799 9.98908 7.19327 9.08031 6.99729 8.09128C6.80132 7.10225 6.90289 6.07735 7.28919 5.14603C7.67549 4.21471 8.32917 3.41878 9.16764 2.85883C10.0061 2.29887 10.9918 2 12 2C13.3535 2.00265 14.6507 2.54219 15.6069 3.50021C16.563 4.45824 17.1 5.75649 17.1 7.11002Z"
           fill="currentColor"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const UserStrokeIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        color={"#676767"}
+        strokeWidth={1.5}
+        {...props}
+      >
+        <Path
+          d="M19.6177 21.25C19.6177 17.6479 15.6021 14.7206 12 14.7206C8.39794 14.7206 4.38235 17.6479 4.38235 21.25"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M12 11.4559C14.404 11.4559 16.3529 9.50701 16.3529 7.10294C16.3529 4.69888 14.404 2.75 12 2.75C9.59594 2.75 7.64706 4.69888 7.64706 7.10294C7.64706 9.50701 9.59594 11.4559 12 11.4559Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         />
       </Svg>
     </View>
@@ -845,6 +945,187 @@ export const CardIcon = ({ className, ...props }: IconProps) => {
   );
 };
 
+export const CalendarFillIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#676767"
+        {...props}
+      >
+        <Path
+          d="M17.75 3.935V2.625C17.75 2.42609 17.671 2.23532 17.5303 2.09467C17.3897 1.95401 17.1989 1.875 17 1.875C16.8011 1.875 16.6103 1.95401 16.4697 2.09467C16.329 2.23532 16.25 2.42609 16.25 2.625V3.875H7.75V2.625C7.75 2.42609 7.67099 2.23532 7.53033 2.09467C7.38968 1.95401 7.19891 1.875 7 1.875C6.80109 1.875 6.61033 1.95401 6.46967 2.09467C6.32902 2.23532 6.25 2.42609 6.25 2.625V3.935C5.13533 4.11528 4.12105 4.68595 3.38831 5.54507C2.65558 6.4042 2.25212 7.49584 2.25 8.625V17.375C2.25 18.6348 2.75045 19.843 3.64124 20.7337C4.53204 21.6245 5.74022 22.125 7 22.125H17C18.2598 22.125 19.468 21.6245 20.3588 20.7337C21.2496 19.843 21.75 18.6348 21.75 17.375V8.625C21.7479 7.49584 21.3444 6.4042 20.6117 5.54507C19.879 4.68595 18.8647 4.11528 17.75 3.935ZM20.25 9.875H3.75V8.625C3.75098 7.8951 3.99839 7.18691 4.45214 6.61519C4.90589 6.04347 5.53939 5.6417 6.25 5.47499V6.625C6.25 6.82391 6.32902 7.01467 6.46967 7.15532C6.61033 7.29597 6.80109 7.375 7 7.375C7.19891 7.375 7.38968 7.29597 7.53033 7.15532C7.67099 7.01467 7.75 6.82391 7.75 6.625V5.375H16.25V6.625C16.25 6.82391 16.329 7.01467 16.4697 7.15532C16.6103 7.29597 16.8011 7.375 17 7.375C17.1989 7.375 17.3897 7.29597 17.5303 7.15532C17.671 7.01467 17.75 6.82391 17.75 6.625V5.47499C18.4606 5.6417 19.0941 6.04347 19.5479 6.61519C20.0016 7.18691 20.249 7.8951 20.25 8.625V9.875Z"
+          fill="currentColor"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const CreditCardIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#676767"
+        {...props}
+      >
+        <Path
+          d="M21 5.25H3C2.58579 5.25 2.25 5.58579 2.25 6V18C2.25 18.4142 2.58579 18.75 3 18.75H21C21.4142 18.75 21.75 18.4142 21.75 18V6C21.75 5.58579 21.4142 5.25 21 5.25Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M15.75 15.75H18.75"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M11.25 15.75H12.75"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M2.25 9.08008H21.75"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const HistoryIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#676767"
+        {...props}
+      >
+        <Path
+          d="M12 8V12L14.5 14.5"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M5.63246 18.3675C7.05468 19.7897 8.95967 20.6378 11.0001 20.6378C15.0799 20.6378 18.3848 17.3329 18.3848 13.2531C18.3848 9.17321 15.0799 5.86841 11.0001 5.86841C6.92035 5.86841 3.61542 9.17321 3.61542 13.2531C3.61542 14.5873 3.9616 15.8447 4.56463 16.9341L3.04932 20.9499L7.06516 19.4346C7.06516 19.4346 8.63606 20.6378 11.0001 20.6378"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <Path
+          d="M20.4231 7.96154C20.4231 4.65661 17.7665 2 14.4615 2C12.0975 2 10.0513 3.30769 9 5.19231"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const PencilStrokeIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="10"
+        height="10"
+        viewBox="0 0 20 20"
+        fill="none"
+        strokeWidth={1.6}
+        color="white"
+        {...props}
+      >
+        <Path
+          d="M21.9111 7.14173C21.5607 5.93839 20.9125 4.84289 20.0263 3.95667C19.14 3.07044 18.0445 2.42212 16.8412 2.07172C16.5132 1.98704 16.1691 1.98704 15.8412 2.07172C15.5114 2.16747 15.2117 2.34658 14.9712 2.59174L12.7412 4.83173L3.20118 14.3617C2.90077 14.6744 2.70501 15.0728 2.64112 15.5017L2.03114 19.6617C1.98412 19.973 2.00812 20.291 2.1012 20.5917C2.20336 20.8914 2.3707 21.1646 2.59119 21.3917C2.81507 21.6138 3.0847 21.7844 3.38123 21.8917C3.58772 21.9596 3.80378 21.9934 4.02113 21.9917H4.31117L8.4712 21.3817C8.9055 21.326 9.30953 21.1292 9.62122 20.8217L19.1712 11.2717L21.3911 9.06171C21.6413 8.81691 21.8229 8.51075 21.9176 8.17383C22.0124 7.83691 22.017 7.48103 21.9312 7.14173H21.9111ZM20.4512 7.77173C20.424 7.85576 20.3758 7.93148 20.3112 7.99173L18.6212 9.68173L14.3012 5.37174L16.0111 3.66171C16.0768 3.60126 16.1556 3.55677 16.2412 3.53171H16.3911H16.4712C17.4179 3.81331 18.2795 4.32657 18.9779 5.025C19.6763 5.72342 20.1896 6.58497 20.4712 7.53171C20.4817 7.61222 20.4749 7.69407 20.4512 7.77173Z"
+          fill="currentColor"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const BackStrokeIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#676767"
+        {...props}
+      >
+        <Path
+          d="M4 12L20 12"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+        />
+        <Path
+          d="M11.0325 4.33939L4.45961 10.9122C4.31606 11.0546 4.20206 11.224 4.12432 11.4108C4.04646 11.5975 4.00641 11.7977 4.00641 12C4.00641 12.2023 4.04646 12.4025 4.12432 12.5892C4.20206 12.776 4.31606 12.9454 4.45961 13.0877L11.0325 19.6606"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const AvatarImage = ({ className, ...props }: IconProps) => {
+  return (
+    <Svg width={100} height={100} viewBox="0 0 140 140" fill="none" {...props}>
+      <Circle cx={70} cy={70} r={70} fill="url(#pattern0_1515_564)" />
+      <Defs>
+        <Pattern
+          id="pattern0_1515_564"
+          patternContentUnits="objectBoundingBox"
+          width={1}
+          height={1}
+        >
+          <Use xlinkHref="#image0_1515_564" transform="scale(0.00806452)" />
+        </Pattern>
+        <Image
+          id="image0_1515_564"
+          width={124}
+          height={124}
+          preserveAspectRatio="none"
+          xlinkHref="data:image/png;base64,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"
+        />
+      </Defs>
+    </Svg>
+  );
+};
+
 export const SearchIcon = ({ className, ...props }: IconProps) => {
   return (
     <View className={cn(className)}>
@@ -857,64 +1138,22 @@ export const SearchIcon = ({ className, ...props }: IconProps) => {
         color="#DA4BDD"
         {...props}
       >
-       <Circle
-        cx="13.728"
-        cy="13.728"
-        r="10.487"
-        stroke="#4D5DFA"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
-      <Path
-        stroke="#4D5DFA"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-        d="m21.021 21.566 4.112 4.1"
-      />
-      </Svg>
-    </View>
-  );
-};
-
-export const LocationIcon = ({ className, ...props }: IconProps) => {
-  return (
-    <View className={cn(className)}>
-      <Svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        strokeWidth={1.6}
-        color="#4D5DFA"
-        {...props}
-      >
-        <Path d="M12 12.7998C13.8502 12.7998 15.3499 11.3001 15.3499 9.4499C15.3499 7.59978 13.8502 6.09995 12 6.09995C10.1498 6.09995 8.65004 7.59978 8.65004 9.4499C8.65004 11.3001 10.1498 12.7998 12 12.7998Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-        <Path d="M12 2.75C5.3001 2.75 4.18345 8.33325 5.3001 12.5654C6.28275 16.2726 9.23071 18.8074 11.1737 20.8844C11.2783 20.9995 11.4059 21.0915 11.5482 21.1545C11.6905 21.2175 11.8444 21.25 12 21.25C12.1556 21.25 12.3095 21.2175 12.4518 21.1545C12.594 21.0915 12.7217 20.9995 12.8263 20.8844C14.7693 18.8074 17.7172 16.2726 18.6999 12.5654C19.8165 8.33325 18.6999 2.75 12 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-      </Svg>
-    </View>
-  );
-};
-
-export const DeliveryIcon = ({ className, ...props }: IconProps) => {
-  return (
-    <View className={cn(className)}>
-      <Svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        strokeWidth={1.6}
-        color="#4D5DFA"
-        {...props}
-      >
-        <Path d="M16 6.25V15.76C15.8805 15.9087 15.7828 16.0737 15.71 16.25H8.29C8.09507 15.8049 7.77466 15.4263 7.36796 15.1604C6.96126 14.8945 6.4859 14.7529 6 14.7529C5.5141 14.7529 5.03874 14.8945 4.63204 15.1604C4.22534 15.4263 3.90493 15.8049 3.71 16.25H3C2.73478 16.25 2.48043 16.1446 2.29289 15.9571C2.10536 15.7696 2 15.5152 2 15.25V6.25C2 5.71957 2.21071 5.21086 2.58579 4.83579C2.96086 4.46071 3.46957 4.25 4 4.25H14C14.5304 4.25 15.0391 4.46071 15.4142 4.83579C15.7893 5.21086 16 5.71957 16 6.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <Path d="M22 13.36V16.25H20.29C20.1163 15.848 19.8396 15.4989 19.4879 15.2379C19.1362 14.9769 18.7219 14.8134 18.2868 14.7637C17.8517 14.714 17.4111 14.7799 17.0096 14.9548C16.6081 15.1298 16.2599 15.4075 16 15.76V7.25H18.43C18.6035 7.25003 18.7741 7.29522 18.9249 7.38114C19.0757 7.46705 19.2015 7.59072 19.29 7.74L20.2 9.25L21.43 11.3C21.8033 11.9223 22.0004 12.6343 22 13.36Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <Path d="M8.49999 17.25C8.49999 17.913 8.2366 18.5489 7.76776 19.0178C7.29892 19.4866 6.66304 19.75 5.99999 19.75C5.33695 19.75 4.70107 19.4866 4.23223 19.0178C3.76339 18.5489 3.49999 17.913 3.49999 17.25C3.49802 16.9055 3.56962 16.5646 3.70999 16.25C3.90492 15.8049 4.22533 15.4263 4.63203 15.1604C5.03873 14.8945 5.5141 14.7529 5.99999 14.7529C6.48589 14.7529 6.96125 14.8945 7.36796 15.1604C7.77466 15.4263 8.09506 15.8049 8.28999 16.25C8.43037 16.5646 8.50197 16.9055 8.49999 17.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <Path d="M20.5 17.25C20.5 17.913 20.2366 18.5489 19.7678 19.0178C19.2989 19.4866 18.663 19.75 18 19.75C17.337 19.75 16.7011 19.4866 16.2322 19.0178C15.7634 18.5489 15.5 17.913 15.5 17.25C15.498 16.9055 15.5696 16.5646 15.71 16.25C15.7828 16.0737 15.8805 15.9087 16 15.76C16.2599 15.4075 16.6081 15.1298 17.0096 14.9548C17.4111 14.7799 17.8517 14.714 18.2868 14.7637C18.7219 14.8134 19.1362 14.9769 19.4879 15.2379C19.8396 15.4989 20.1163 15.848 20.29 16.25C20.4304 16.5646 20.502 16.9055 20.5 17.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <Path d="M11 11.25H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <Path d="M11 8.25H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <Circle
+          cx="13.728"
+          cy="13.728"
+          r="10.487"
+          stroke="#4D5DFA"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+        />
+        <Path
+          stroke="#4D5DFA"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+          d="m21.021 21.566 4.112 4.1"
+        />
       </Svg>
     </View>
   );
@@ -933,90 +1172,39 @@ export const SuccessNotificationIcon = ({ className, ...props }: IconProps) => {
         {...props}
       >
         <Circle
-      cx="42.5"
-      cy="40.5"
-      r="31.5"
-      fill="url(#paint0_linear_936_15505)"
-    ></Circle>
-    <Circle cx="79.5" cy="12.5" r="3.5" fill="#4ADE80"></Circle>
-    <Circle cx="8.5" cy="4.5" r="4.5" fill="#4ADE80"></Circle>
-    <Circle cx="4" cy="59" r="2" fill="#4ADE80"></Circle>
-    <Circle cx="73" cy="71" r="1" fill="#4ADE80"></Circle>
-    <Path
-      fill="#fff"
-      fillRule="evenodd"
-      d="M37.309 29.167H46.7c3.672 0 6.132 2.578 6.132 6.413v8.852c0 3.823-2.46 6.401-6.132 6.401h-9.392c-3.673 0-6.143-2.578-6.143-6.401V35.58c0-3.835 2.47-6.413 6.143-6.413m4.073 14.072 5.146-5.145a.955.955 0 0 0 0-1.344.955.955 0 0 0-1.344 0l-4.474 4.474-1.896-1.895a.954.954 0 0 0-1.343 0 .955.955 0 0 0 0 1.343l2.578 2.567c.184.184.423.271.661.271.25 0 .487-.087.672-.27"
-      clipRule="evenodd"
-    ></Path>
-    <Circle cx="47" cy="2" r="1" fill="#4ADE80"></Circle>
-    <Circle cx="27.5" cy="78.5" r="1.5" fill="#4ADE80"></Circle>
-    <Circle cx="54.5" cy="76.5" r="0.5" fill="#4ADE80"></Circle>
-    <Circle cx="76" cy="49" r="1" fill="#4ADE80"></Circle>
-    <Circle cx="0.5" cy="33.5" r="0.5" fill="#4ADE80"></Circle>
-    <Defs>
-      <LinearGradient
-        id="paint0_linear_936_15505"
-        x1="74"
-        x2="-0.964"
-        y1="72"
-        y2="50.265"
-        gradientUnits="userSpaceOnUse"
-      >
-        <Stop stopColor="#1AB65C"></Stop>
-        <Stop offset="1" stopColor="#39E180"></Stop>
-      </LinearGradient>
-    </Defs>
-      </Svg>
-    </View>
-  );
-};
-
-export const CongratsImage = ({ className, ...props }: IconProps) => {
-  return (
-    <View className={cn(className)}>
-      <Svg
-        width="83"
-        height="80"
-        viewBox="0 0 83 80"
-        fill="none"
-        strokeWidth={1.6}
-        color="#4D5DFA"
-        {...props}
-      >
-        <Circle
-      cx="42.5"
-      cy="40.5"
-      r="31.5"
-      fill="url(#paint0_linear_936_15505)"
-    ></Circle>
-    <Circle cx="79.5" cy="12.5" r="3.5" fill="#4D5DFA"></Circle>
-    <Circle cx="8.5" cy="4.5" r="4.5" fill="#4D5DFA"></Circle>
-    <Circle cx="4" cy="59" r="2" fill="#4D5DFA"></Circle>
-    <Circle cx="73" cy="71" r="1" fill="#4D5DFA"></Circle>
-    <Path
-      fill="#fff"
-      fillRule="evenodd"
-      d="M37.309 29.167H46.7c3.672 0 6.132 2.578 6.132 6.413v8.852c0 3.823-2.46 6.401-6.132 6.401h-9.392c-3.673 0-6.143-2.578-6.143-6.401V35.58c0-3.835 2.47-6.413 6.143-6.413m4.073 14.072 5.146-5.145a.955.955 0 0 0 0-1.344.955.955 0 0 0-1.344 0l-4.474 4.474-1.896-1.895a.954.954 0 0 0-1.343 0 .955.955 0 0 0 0 1.343l2.578 2.567c.184.184.423.271.661.271.25 0 .487-.087.672-.27"
-      clipRule="evenodd"
-    ></Path>
-    <Circle cx="47" cy="2" r="1" fill="#4D5DFA"></Circle>
-    <Circle cx="27.5" cy="78.5" r="1.5" fill="#4D5DFA"></Circle>
-    <Circle cx="54.5" cy="76.5" r="0.5" fill="#4D5DFA"></Circle>
-    <Circle cx="76" cy="49" r="1" fill="#4D5DFA"></Circle>
-    <Circle cx="0.5" cy="33.5" r="0.5" fill="#4D5DFA"></Circle>
-    <Defs>
-      <LinearGradient
-        id="paint0_linear_936_15505"
-        x1="74"
-        x2="-0.964"
-        y1="72"
-        y2="50.265"
-        gradientUnits="userSpaceOnUse"
-      >
-        <Stop stopColor="#4D5DFA"></Stop>
-        <Stop offset="1" stopColor="#4D5DFA"></Stop>
-      </LinearGradient>
-    </Defs>
+          cx="42.5"
+          cy="40.5"
+          r="31.5"
+          fill="url(#paint0_linear_936_15505)"
+        ></Circle>
+        <Circle cx="79.5" cy="12.5" r="3.5" fill="#4ADE80"></Circle>
+        <Circle cx="8.5" cy="4.5" r="4.5" fill="#4ADE80"></Circle>
+        <Circle cx="4" cy="59" r="2" fill="#4ADE80"></Circle>
+        <Circle cx="73" cy="71" r="1" fill="#4ADE80"></Circle>
+        <Path
+          fill="#fff"
+          fillRule="evenodd"
+          d="M37.309 29.167H46.7c3.672 0 6.132 2.578 6.132 6.413v8.852c0 3.823-2.46 6.401-6.132 6.401h-9.392c-3.673 0-6.143-2.578-6.143-6.401V35.58c0-3.835 2.47-6.413 6.143-6.413m4.073 14.072 5.146-5.145a.955.955 0 0 0 0-1.344.955.955 0 0 0-1.344 0l-4.474 4.474-1.896-1.895a.954.954 0 0 0-1.343 0 .955.955 0 0 0 0 1.343l2.578 2.567c.184.184.423.271.661.271.25 0 .487-.087.672-.27"
+          clipRule="evenodd"
+        ></Path>
+        <Circle cx="47" cy="2" r="1" fill="#4ADE80"></Circle>
+        <Circle cx="27.5" cy="78.5" r="1.5" fill="#4ADE80"></Circle>
+        <Circle cx="54.5" cy="76.5" r="0.5" fill="#4ADE80"></Circle>
+        <Circle cx="76" cy="49" r="1" fill="#4ADE80"></Circle>
+        <Circle cx="0.5" cy="33.5" r="0.5" fill="#4ADE80"></Circle>
+        <Defs>
+          <LinearGradient
+            id="paint0_linear_936_15505"
+            x1="74"
+            x2="-0.964"
+            y1="72"
+            y2="50.265"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#1AB65C"></Stop>
+            <Stop offset="1" stopColor="#39E180"></Stop>
+          </LinearGradient>
+        </Defs>
       </Svg>
     </View>
   );
@@ -1034,40 +1222,40 @@ export const ErrorNotificationIcon = ({ className, ...props }: IconProps) => {
         color="#4D5DFA"
         {...props}
       >
-        <Circle 
-      cx="42.5"
-      cy="40.5"
-      r="31.5"
-      fill="url(#paint0_linear_936_15521)"
-    ></Circle>
-    <Circle cx="79.5" cy="12.5" r="3.5" fill="#F75555"></Circle>
-    <Circle cx="8.5" cy="4.5" r="4.5" fill="#F75555"></Circle>
-    <Circle cx="4" cy="59" r="2" fill="#F75555"></Circle>
-    <Circle cx="73" cy="71" r="1" fill="#F75555"></Circle>
-    <Path
-      fill="#fff"
-      fillRule="evenodd"
-      d="M37.309 29.165H46.7c3.673 0 6.132 2.578 6.132 6.413v8.852c0 3.824-2.46 6.401-6.132 6.401H37.31c-3.673 0-6.143-2.577-6.143-6.401v-8.852c0-3.835 2.47-6.413 6.143-6.413m7.952 14.082a.94.94 0 0 0 0-1.331l-1.929-1.929 1.928-1.929a.953.953 0 0 0 0-1.342.953.953 0 0 0-1.343 0L42 38.643l-1.929-1.927a.953.953 0 0 0-1.343 0 .953.953 0 0 0 0 1.342l1.928 1.93-1.928 1.917a.953.953 0 0 0 .672 1.625c.249 0 .487-.099.671-.283L42 41.331l1.928 1.916a.9.9 0 0 0 .66.283c.25 0 .488-.099.672-.283"
-      clipRule="evenodd"
-    ></Path>
-    <Circle cx="47" cy="2" r="1" fill="#F75555"></Circle>
-    <Circle cx="27.5" cy="78.5" r="1.5" fill="#F75555"></Circle>
-    <Circle cx="54.5" cy="76.5" r="0.5" fill="#F75555"></Circle>
-    <Circle cx="76" cy="49" r="1" fill="#F75555"></Circle>
-    <Circle cx="0.5" cy="33.5" r="0.5" fill="#F75555"></Circle>
-    <Defs>
-      <LinearGradient
-        id="paint0_linear_936_15521"
-        x1="74"
-        x2="-0.964"
-        y1="72"
-        y2="50.265"
-        gradientUnits="userSpaceOnUse"
-      >
-        <Stop stopColor="#FF5A5F"></Stop>
-        <Stop offset="1" stopColor="#FF9094"></Stop>
-      </LinearGradient>
-    </Defs>
+        <Circle
+          cx="42.5"
+          cy="40.5"
+          r="31.5"
+          fill="url(#paint0_linear_936_15521)"
+        ></Circle>
+        <Circle cx="79.5" cy="12.5" r="3.5" fill="#F75555"></Circle>
+        <Circle cx="8.5" cy="4.5" r="4.5" fill="#F75555"></Circle>
+        <Circle cx="4" cy="59" r="2" fill="#F75555"></Circle>
+        <Circle cx="73" cy="71" r="1" fill="#F75555"></Circle>
+        <Path
+          fill="#fff"
+          fillRule="evenodd"
+          d="M37.309 29.165H46.7c3.673 0 6.132 2.578 6.132 6.413v8.852c0 3.824-2.46 6.401-6.132 6.401H37.31c-3.673 0-6.143-2.577-6.143-6.401v-8.852c0-3.835 2.47-6.413 6.143-6.413m7.952 14.082a.94.94 0 0 0 0-1.331l-1.929-1.929 1.928-1.929a.953.953 0 0 0 0-1.342.953.953 0 0 0-1.343 0L42 38.643l-1.929-1.927a.953.953 0 0 0-1.343 0 .953.953 0 0 0 0 1.342l1.928 1.93-1.928 1.917a.953.953 0 0 0 .672 1.625c.249 0 .487-.099.671-.283L42 41.331l1.928 1.916a.9.9 0 0 0 .66.283c.25 0 .488-.099.672-.283"
+          clipRule="evenodd"
+        ></Path>
+        <Circle cx="47" cy="2" r="1" fill="#F75555"></Circle>
+        <Circle cx="27.5" cy="78.5" r="1.5" fill="#F75555"></Circle>
+        <Circle cx="54.5" cy="76.5" r="0.5" fill="#F75555"></Circle>
+        <Circle cx="76" cy="49" r="1" fill="#F75555"></Circle>
+        <Circle cx="0.5" cy="33.5" r="0.5" fill="#F75555"></Circle>
+        <Defs>
+          <LinearGradient
+            id="paint0_linear_936_15521"
+            x1="74"
+            x2="-0.964"
+            y1="72"
+            y2="50.265"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#FF5A5F"></Stop>
+            <Stop offset="1" stopColor="#FF9094"></Stop>
+          </LinearGradient>
+        </Defs>
       </Svg>
     </View>
   );
@@ -1085,164 +1273,184 @@ export const AccountNotificationIcon = ({ className, ...props }: IconProps) => {
         color="#4D5DFA"
         {...props}
       >
-       <Circle
-  cx="42.5"
-  cy="40.5"
-  r="31.5"
-  fill="url(#paint0_linear_936_15538)"
-></Circle>
-<Circle
-  cx="79.5"
-  cy="12.5"
-  r="3.5"
-  fill="url(#paint1_linear_936_15538)"
-></Circle>
-<Circle
-  cx="8.5"
-  cy="4.5"
-  r="4.5"
-  fill="url(#paint2_linear_936_15538)"
-></Circle>
-<Circle cx="4" cy="59" r="2" fill="url(#paint3_linear_936_15538)"></Circle>
-<Circle cx="73" cy="71" r="1" fill="url(#paint4_linear_936_15538)"></Circle>
-<Path
-  fill="#fff"
-  fillRule="evenodd"
-  d="M47.983 35.012v1.661c1.866.583 3.226 2.272 3.226 4.29v5.348c0 2.497-2.071 4.522-4.624 4.522h-9.169c-2.553 0-4.624-2.025-4.624-4.522v-5.349c0-2.017 1.36-3.706 3.225-4.289v-1.66c.011-3.23 2.686-5.846 5.967-5.846 3.324 0 6 2.615 6 5.845m-5.977-3.962c2.234 0 4.05 1.776 4.05 3.962v1.427h-8.112V34.99c.01-2.174 1.827-3.94 4.062-3.94m.958 13.777c0 .527-.43.947-.969.947a.95.95 0 0 1-.958-.947v-2.39c0-.517.43-.937.958-.937.54 0 .969.42.969.937z"
-  clipRule="evenodd"
-></Path>
-<Circle cx="47" cy="2" r="1" fill="url(#paint5_linear_936_15538)"></Circle>
-<Circle
-  cx="27.5"
-  cy="78.5"
-  r="1.5"
-  fill="url(#paint6_linear_936_15538)"
-></Circle>
-<Circle
-  cx="54.5"
-  cy="76.5"
-  r="0.5"
-  fill="url(#paint7_linear_936_15538)"
-></Circle>
-<Circle cx="76" cy="49" r="1" fill="url(#paint8_linear_936_15538)"></Circle>
-<Circle
-  cx="0.5"
-  cy="33.5"
-  r="0.5"
-  fill="url(#paint9_linear_936_15538)"
-></Circle>
-<Defs>
-  <LinearGradient
-    id="paint0_linear_936_15538"
-    x1="74"
-    x2="-0.964"
-    y1="72"
-    y2="50.265"
-    gradientUnits="userSpaceOnUse"
-  >
-    <Stop stopColor="#4D5DFA"></Stop>
-    <Stop offset="1" stopColor="#7784FF"></Stop>
-  </LinearGradient>
-  <LinearGradient
-    id="paint1_linear_936_15538"
-    x1="83"
-    x2="74.671"
-    y1="16"
-    y2="13.585"
-    gradientUnits="userSpaceOnUse"
-  >
-    <Stop stopColor="#4D5DFA"></Stop>
-    <Stop offset="1" stopColor="#7784FF"></Stop>
-  </LinearGradient>
-  <LinearGradient
-    id="paint2_linear_936_15538"
-    x1="13"
-    x2="2.291"
-    y1="9"
-    y2="5.895"
-    gradientUnits="userSpaceOnUse"
-  >
-    <Stop stopColor="#4D5DFA"></Stop>
-    <Stop offset="1" stopColor="#7784FF"></Stop>
-  </LinearGradient>
-  <LinearGradient
-    id="paint3_linear_936_15538"
-    x1="6"
-    x2="1.24"
-    y1="61"
-    y2="59.62"
-    gradientUnits="userSpaceOnUse"
-  >
-    <Stop stopColor="#4D5DFA"></Stop>
-    <Stop offset="1" stopColor="#7784FF"></Stop>
-  </LinearGradient>
-  <LinearGradient
-    id="paint4_linear_936_15538"
-    x1="74"
-    x2="71.62"
-    y1="72"
-    y2="71.31"
-    gradientUnits="userSpaceOnUse"
-  >
-    <Stop stopColor="#4D5DFA"></Stop>
-    <Stop offset="1" stopColor="#7784FF"></Stop>
-  </LinearGradient>
-  <LinearGradient
-    id="paint5_linear_936_15538"
-    x1="48"
-    x2="45.62"
-    y1="3"
-    y2="2.31"
-    gradientUnits="userSpaceOnUse"
-  >
-    <Stop stopColor="#4D5DFA"></Stop>
-    <Stop offset="1" stopColor="#7784FF"></Stop>
-  </LinearGradient>
-  <LinearGradient
-    id="paint6_linear_936_15538"
-    x1="29"
-    x2="25.43"
-    y1="80"
-    y2="78.965"
-    gradientUnits="userSpaceOnUse"
-  >
-    <Stop stopColor="#4D5DFA"></Stop>
-    <Stop offset="1" stopColor="#7784FF"></Stop>
-  </LinearGradient>
-  <LinearGradient
-    id="paint7_linear_936_15538"
-    x1="55"
-    x2="53.81"
-    y1="77"
-    y2="76.655"
-    gradientUnits="userSpaceOnUse"
-  >
-    <Stop stopColor="#4D5DFA"></Stop>
-    <Stop offset="1" stopColor="#7784FF"></Stop>
-  </LinearGradient>
-  <LinearGradient
-    id="paint8_linear_936_15538"
-    x1="77"
-    x2="74.62"
-    y1="50"
-    y2="49.31"
-    gradientUnits="userSpaceOnUse"
-  >
-    <Stop stopColor="#4D5DFA"></Stop>
-    <Stop offset="1" stopColor="#7784FF"></Stop>
-  </LinearGradient>
-  <LinearGradient
-    id="paint9_linear_936_15538"
-    x1="1"
-    x2="-0.19"
-    y1="34"
-    y2="33.655"
-    gradientUnits="userSpaceOnUse"
-  >
-    <Stop stopColor="#4D5DFA"></Stop>
-    <Stop offset="1" stopColor="#7784FF"></Stop>
-  </LinearGradient>
-</Defs>
+        <Circle
+          cx="42.5"
+          cy="40.5"
+          r="31.5"
+          fill="url(#paint0_linear_936_15538)"
+        ></Circle>
+        <Circle
+          cx="79.5"
+          cy="12.5"
+          r="3.5"
+          fill="url(#paint1_linear_936_15538)"
+        ></Circle>
+        <Circle
+          cx="8.5"
+          cy="4.5"
+          r="4.5"
+          fill="url(#paint2_linear_936_15538)"
+        ></Circle>
+        <Circle
+          cx="4"
+          cy="59"
+          r="2"
+          fill="url(#paint3_linear_936_15538)"
+        ></Circle>
+        <Circle
+          cx="73"
+          cy="71"
+          r="1"
+          fill="url(#paint4_linear_936_15538)"
+        ></Circle>
+        <Path
+          fill="#fff"
+          fillRule="evenodd"
+          d="M47.983 35.012v1.661c1.866.583 3.226 2.272 3.226 4.29v5.348c0 2.497-2.071 4.522-4.624 4.522h-9.169c-2.553 0-4.624-2.025-4.624-4.522v-5.349c0-2.017 1.36-3.706 3.225-4.289v-1.66c.011-3.23 2.686-5.846 5.967-5.846 3.324 0 6 2.615 6 5.845m-5.977-3.962c2.234 0 4.05 1.776 4.05 3.962v1.427h-8.112V34.99c.01-2.174 1.827-3.94 4.062-3.94m.958 13.777c0 .527-.43.947-.969.947a.95.95 0 0 1-.958-.947v-2.39c0-.517.43-.937.958-.937.54 0 .969.42.969.937z"
+          clipRule="evenodd"
+        ></Path>
+        <Circle
+          cx="47"
+          cy="2"
+          r="1"
+          fill="url(#paint5_linear_936_15538)"
+        ></Circle>
+        <Circle
+          cx="27.5"
+          cy="78.5"
+          r="1.5"
+          fill="url(#paint6_linear_936_15538)"
+        ></Circle>
+        <Circle
+          cx="54.5"
+          cy="76.5"
+          r="0.5"
+          fill="url(#paint7_linear_936_15538)"
+        ></Circle>
+        <Circle
+          cx="76"
+          cy="49"
+          r="1"
+          fill="url(#paint8_linear_936_15538)"
+        ></Circle>
+        <Circle
+          cx="0.5"
+          cy="33.5"
+          r="0.5"
+          fill="url(#paint9_linear_936_15538)"
+        ></Circle>
+        <Defs>
+          <LinearGradient
+            id="paint0_linear_936_15538"
+            x1="74"
+            x2="-0.964"
+            y1="72"
+            y2="50.265"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#4D5DFA"></Stop>
+            <Stop offset="1" stopColor="#7784FF"></Stop>
+          </LinearGradient>
+          <LinearGradient
+            id="paint1_linear_936_15538"
+            x1="83"
+            x2="74.671"
+            y1="16"
+            y2="13.585"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#4D5DFA"></Stop>
+            <Stop offset="1" stopColor="#7784FF"></Stop>
+          </LinearGradient>
+          <LinearGradient
+            id="paint2_linear_936_15538"
+            x1="13"
+            x2="2.291"
+            y1="9"
+            y2="5.895"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#4D5DFA"></Stop>
+            <Stop offset="1" stopColor="#7784FF"></Stop>
+          </LinearGradient>
+          <LinearGradient
+            id="paint3_linear_936_15538"
+            x1="6"
+            x2="1.24"
+            y1="61"
+            y2="59.62"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#4D5DFA"></Stop>
+            <Stop offset="1" stopColor="#7784FF"></Stop>
+          </LinearGradient>
+          <LinearGradient
+            id="paint4_linear_936_15538"
+            x1="74"
+            x2="71.62"
+            y1="72"
+            y2="71.31"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#4D5DFA"></Stop>
+            <Stop offset="1" stopColor="#7784FF"></Stop>
+          </LinearGradient>
+          <LinearGradient
+            id="paint5_linear_936_15538"
+            x1="48"
+            x2="45.62"
+            y1="3"
+            y2="2.31"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#4D5DFA"></Stop>
+            <Stop offset="1" stopColor="#7784FF"></Stop>
+          </LinearGradient>
+          <LinearGradient
+            id="paint6_linear_936_15538"
+            x1="29"
+            x2="25.43"
+            y1="80"
+            y2="78.965"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#4D5DFA"></Stop>
+            <Stop offset="1" stopColor="#7784FF"></Stop>
+          </LinearGradient>
+          <LinearGradient
+            id="paint7_linear_936_15538"
+            x1="55"
+            x2="53.81"
+            y1="77"
+            y2="76.655"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#4D5DFA"></Stop>
+            <Stop offset="1" stopColor="#7784FF"></Stop>
+          </LinearGradient>
+          <LinearGradient
+            id="paint8_linear_936_15538"
+            x1="77"
+            x2="74.62"
+            y1="50"
+            y2="49.31"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#4D5DFA"></Stop>
+            <Stop offset="1" stopColor="#7784FF"></Stop>
+          </LinearGradient>
+          <LinearGradient
+            id="paint9_linear_936_15538"
+            x1="1"
+            x2="-0.19"
+            y1="34"
+            y2="33.655"
+            gradientUnits="userSpaceOnUse"
+          >
+            <Stop stopColor="#4D5DFA"></Stop>
+            <Stop offset="1" stopColor="#7784FF"></Stop>
+          </LinearGradient>
+        </Defs>
       </Svg>
     </View>
   );
@@ -1260,7 +1468,7 @@ export const NotificationIcon = ({ className, ...props }: IconProps) => {
         color="#DA4BDD"
         {...props}
       >
-        <Rect width="52" height="52" fill="#fff" rx="26"/>
+        <Rect width="52" height="52" fill="#fff" rx="26" />
         <Path
           stroke="#4D5DFA"
           strokeLinecap="round"
@@ -1283,13 +1491,7 @@ export const NotificationIcon = ({ className, ...props }: IconProps) => {
 
 export const OtpImage = ({ className, ...props }: IconProps) => {
   return (
-    <Svg
-      width="288"
-      height="251"
-      fill="none"
-      viewBox="0 0 288 251"
-      {...props}
-    >
+    <Svg width="288" height="251" fill="none" viewBox="0 0 288 251" {...props}>
       <G clipPath="url(#clip0_932_13045)">
         <Path
           fill="#A0616A"
@@ -1297,514 +1499,614 @@ export const OtpImage = ({ className, ...props }: IconProps) => {
         ></Path>
         <Path
           fill="#2F2E41"
-        d="m200.847 249.762-16.51-.001v-.209a6.427 6.427 0 0 1 6.426-6.426l3.016-2.289 5.627 2.289h1.441z"
-      ></Path>
-      <Path
-        fill="#A0616A"
-        d="m238.646 244.161 5.369-.001 2.555-20.711h-7.925z"
-      ></Path>
-      <Path
-        fill="#F2F2F2"
-        d="m266.653 232.032 7.758-2.461a26.3 26.3 0 0 0-.187-12.635c-3.117 6.93-12.261 8.629-17.471 14.161a15.792 15.792 0 0 0-4.041 13.082l-1.632 5.538a26.47 26.47 0 0 0 19.264-10.959 25.6 25.6 0 0 0 2.995-5.672c-3.308-.331-6.686-1.054-6.686-1.054"
-      ></Path>
-      <Path
-        fill="#F2F2F2"
-        d="m258.363 221.792 5.846-5.663a26.3 26.3 0 0 0-5.802-11.226c.301 7.594-7.126 13.192-9.322 20.468a15.812 15.812 0 0 0 2.217 13.512l1.009 5.684a26.47 26.47 0 0 0 12.354-18.401 25.6 25.6 0 0 0 .153-6.413c-3.109 1.179-6.455 2.039-6.455 2.039"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="m238.457 249.762 16.509-.001v-.209a6.427 6.427 0 0 0-6.426-6.426l-3.016-2.289-5.626 2.289h-1.442z"
-      ></Path>
-      <Path
-        fill="#CCC"
-        d="M288 249.761a.57.57 0 0 1-.573.572H152.524a.58.58 0 0 1-.405-.167.576.576 0 0 1 0-.81.57.57 0 0 1 .405-.168h134.903a.57.57 0 0 1 .573.573"
-      ></Path>
-      <Path
-        fill="#E6E7E8"
-        d="M134.131 165.673H12.515a1.876 1.876 0 0 1 0-3.753H134.13a1.877 1.877 0 0 1 0 3.753M177.366 158.259H12.515a1.89 1.89 0 0 1-1.329-.549 1.87 1.87 0 0 1-.407-2.046 1.87 1.87 0 0 1 1.017-1.016c.228-.094.472-.142.719-.142h164.851a2.1 2.1 0 0 1 1.98 2.021 1.85 1.85 0 0 1-.63 1.278 1.85 1.85 0 0 1-1.35.454M16.939 150.607a6.3 6.3 0 1 0-.001-12.601 6.3 6.3 0 0 0 0 12.601M144.778 120.208H12.515a1.876 1.876 0 0 1 0-3.753h132.263a1.876 1.876 0 0 1 0 3.753M154.409 112.794H12.515a1.876 1.876 0 0 1 0-3.753h141.894a1.876 1.876 0 0 1 0 3.753"
-      ></Path>
-      <Path
-        fill="#4D5DFA"
-        d="M147.515 203.155c25.766 0 46.654-20.89 46.654-46.66s-20.888-46.659-46.654-46.659-46.654 20.89-46.654 46.659c0 25.77 20.888 46.66 46.654 46.66"
-      ></Path>
-      <Path
-        fill="#3F3D56"
-        d="M147.451 172.775a6.665 6.665 0 1 0 0-13.33 6.665 6.665 0 0 0 0 13.33"
-      ></Path>
-      <Path
-        fill="#4D5DFA"
-        d="M147.451 169.186a3.077 3.077 0 1 0 0-6.154 3.077 3.077 0 0 0 0 6.154"
-      ></Path>
-      <Path
-        fill="#fff"
-        d="M159.823 180.947h-24.616a9.2 9.2 0 0 1-9.193-9.194v-11.288a9.205 9.205 0 0 1 9.193-9.194h24.616a9.205 9.205 0 0 1 9.193 9.194v11.288a9.205 9.205 0 0 1-9.193 9.194m-24.616-28.714a8.243 8.243 0 0 0-8.23 8.232v11.288a8.24 8.24 0 0 0 8.23 8.231h24.616a8.237 8.237 0 0 0 8.231-8.231v-11.288a8.243 8.243 0 0 0-8.231-8.232z"
-      ></Path>
-      <Path
-        fill="#3F3D56"
-        d="M133.749 174.82h21.849a8.64 8.64 0 0 0 8.636-8.637v-9.446a8.6 8.6 0 0 0-.57-3.064 8.62 8.62 0 0 1 3.432 6.881V170a8.63 8.63 0 0 1-2.529 6.107 8.64 8.64 0 0 1-6.106 2.53h-21.849a8.63 8.63 0 0 1-8.066-5.573 8.6 8.6 0 0 0 5.203 1.756"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="M192.498 208.229c.08-1.181.71-7.717.71-7.717l1.51-13.861 2.662-36.741.173-2.405 13.942-2.677 9.529-4.568 11.325 3.621 8.819 3.307s.015 1.416.083 3.126c.091 2.239.249 4.984.627 5.698.63 1.261.472 8.031.472 8.031s.627 13.773 1.416 15.284c.789 1.51.947 4.655.709 5.286s.789 17.171.789 17.171 2.636 29.272.982 33.686c-1.653 4.414-7.902 1.522-7.902 1.522s.302-1.178-1.51-1.733-7.331-42.061-7.331-42.061-1.027-8.51-1.971-10.949-1.812-9.292-1.812-9.292-5.829-11.342-5.904-13.864c0 0-.763-2.36-1.484.238s-2.846 8.82-2.846 8.82l-2.073 7.642-2.439 11.417-1.578 9.613s-2.363 12.758-2.741 13.309c-.377.551 0 12.207 0 12.207s-1.827 9.926-4.409 11.659-9.424.028-9.424.028-.403-24.615-.324-25.797"
-      ></Path>
-      <Path
-        fill="#3F3D56"
-        d="M147.894 131.196c-4.563 0-8.574 2.066-10.845 5.167a14 14 0 0 1 8.361-2.683c7.067 0 12.815 4.95 12.815 11.035v5.058h2.484v-7.542c0-6.085-5.749-11.035-12.815-11.035"
-      ></Path>
-      <Path
-        fill="#fff"
-        d="M162.415 152.362h-29.8v-8.769c0-7.075 6.684-12.832 14.9-12.832s14.9 5.757 14.9 12.832zm-28.838-.963h27.876v-7.806c0-6.545-6.253-11.869-13.938-11.869s-13.938 5.324-13.938 11.869z"
-      ></Path>
-      <Path
-        fill="#fff"
-        d="M155.147 149.014h-15.264a2.594 2.594 0 0 1-2.59-2.591v-3.489c0-4.866 4.586-8.825 10.222-8.825 5.637 0 10.222 3.959 10.222 8.825v3.489a2.59 2.59 0 0 1-2.59 2.591m-7.632-13.942c-5.106 0-9.259 3.527-9.259 7.862v3.489a1.63 1.63 0 0 0 1.627 1.628h15.264a1.63 1.63 0 0 0 1.628-1.628v-3.489c0-4.335-4.154-7.862-9.26-7.862"
-      ></Path>
-      <Path
-        fill="#E6E7E8"
-        d="M177.366 105.38H12.515a1.88 1.88 0 0 1-1.876-1.876 1.877 1.877 0 0 1 1.876-1.876h164.851a1.875 1.875 0 1 1 0 3.752M16.939 97.729a6.3 6.3 0 1 0-.001-12.6 6.3 6.3 0 0 0 0 12.6"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="m198.446 113.996 3.1 9.337-3.825 4.553 1.684 1.734-1.242 2.45-3.239 25.682 17.758 6.736 5.981-7.499 4.715 7.499 20.548-5.022-5.24-32.75v-2.141l-1.479-4.134v-8.752l3.907-26.052-11.662-4.085-5.576-4.414-1.804 6.207-7.683-1.367-.2-4.663-5.878 5.554-4.95 1.412-5.926 1.356-.756 1.888 1.51-.378-.245 24.561z"
-      ></Path>
-      <Path
-        fill="#A0616A"
-        d="m245.032 148.16-2.982-28.873-.787-11.883 8.348-1.509s-.331 8.496.762 13.29c1.08 4.731.144 28.341.077 28.972a4.065 4.065 0 0 1-.403 6.373 4.059 4.059 0 0 1-6.252-4.3 4.06 4.06 0 0 1 1.237-2.07M193.138 148.16l2.982-28.873.788-11.883-8.348-1.509s.33 8.496-.763 13.29c-1.079 4.731-.143 28.341-.077 28.972a4.065 4.065 0 0 0 .403 6.373 4.055 4.055 0 0 0 4.606.002 4.06 4.06 0 0 0 .409-6.372"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="m253.175 125.27-2.321.48-7.966 1.65-.442.09-.94-3.738-1.091-1.163-2.076-10.881-.11-.566-3.137-6.706.718-20.155 5.183 1.45q.062.064.117.133c1.159 1.313 1.986 3.14 3.337 4.98 4.399 5.984 7.773 20.524 7.641 28.491-.004.128.129.268.287.411a4.42 4.42 0 0 1 .8 5.524M184.995 125.27l2.322.48 7.966 1.65.441.09.94-3.738 1.091-1.163 2.077-10.881.109-.566 3.138-6.706 2.17-20.155-8.071 1.45q-.062.064-.117.133c-1.159 1.313-1.986 3.14-3.338 4.98-4.398 5.984-7.773 20.524-7.64 28.491.003.128-.129.268-.287.411a4.42 4.42 0 0 0-.801 5.524"
-      ></Path>
-      <Path
-        fill="#4D5DFA"
-        d="m210.396 87.264 3.793-9.949 9.687-.177 3.215 10.125 11.553 64.552s-35.396 9.859-35.037-1.992c.377-12.459 2.081-29.01 2.081-29.01z"
-      ></Path>
-      <Path
-        fill="#E6E7E8"
-        d="M134.131 67.33H12.515a1.876 1.876 0 0 1 0-3.753H134.13a1.874 1.874 0 0 1 1.876 1.876 1.876 1.876 0 0 1-1.876 1.876M177.366 59.915H12.515a1.876 1.876 0 0 1 0-3.752h164.851a1.876 1.876 0 0 1 0 3.752"
-      ></Path>
-      <Path
-        fill="#A0616A"
-        d="M218.816 74.533c6.302 0 11.411-5.11 11.411-11.413s-5.109-11.413-11.411-11.413c-6.303 0-11.412 5.11-11.412 11.413s5.109 11.413 11.412 11.413"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="M206.731 54.84c1.858-2.022 4.182-5.724 11.221-7.279 8.697-1.92 12.806 5.937 10.613 6.066 6.414 1.942 2.294 15.216.455 14.103l-.045-.035a9.04 9.04 0 0 1-3.609-6.165l-.349-3.141c-.05 2.555-2.661 2.894-5.33 1.952a3.35 3.35 0 0 1 2.365-2.328 11.45 11.45 0 0 1-6.724 2.926 4.58 4.58 0 0 1 2.226-3.064l-.105-.103a11 11 0 0 1-3.528 1.998c-1.471.421-3.234.193-4.241-.958a3.1 3.1 0 0 1-.603-1.085c.218 2.024-1.14 4.334-2.194 3.937-.877-.17-1.388-5.477-.152-6.824"
-      ></Path>
-      <Path
-        fill="#E6E7E8"
-        d="M16.939 52.264a6.3 6.3 0 1 0 0-12.602 6.3 6.3 0 0 0 0 12.602"
-      ></Path>
-      <Path
-        fill="#3F3D56"
-        d="M219.501 16.932H.851a.87.87 0 0 1 0-1.739H219.5a.87.87 0 0 1 0 1.74M208.902 8.729h-12.505a.945.945 0 0 0-.928.947.946.946 0 0 0 .928.947h12.505a.945.945 0 0 0 .928-.947.945.945 0 0 0-.928-.947M208.902 5.18h-12.505a.945.945 0 0 0-.928.946.946.946 0 0 0 .928.947h12.505a.944.944 0 0 0 .928-.947.945.945 0 0 0-.928-.947M208.902 1.625h-12.505a.945.945 0 0 0-.928.946.945.945 0 0 0 .928.947h12.505a.945.945 0 0 0 .928-.947.945.945 0 0 0-.928-.946M50.941 10.753c2.814 0 5.096-2.332 5.096-5.21 0-2.877-2.282-5.21-5.096-5.21s-5.096 2.333-5.096 5.21c0 2.878 2.282 5.21 5.096 5.21M33.338 10.753c2.814 0 5.096-2.332 5.096-5.21 0-2.877-2.282-5.21-5.096-5.21s-5.096 2.333-5.096 5.21c0 2.878 2.282 5.21 5.096 5.21M15.734 10.753c2.815 0 5.096-2.332 5.096-5.21 0-2.877-2.281-5.21-5.096-5.21s-5.095 2.333-5.095 5.21c0 2.878 2.281 5.21 5.095 5.21"
-      ></Path>
-    </G>
-    <Defs>
-      <ClipPath id="clip0_932_13045">
-        <Path fill="#fff" d="M0 .333h288v250H0z"></Path>
-      </ClipPath>
-    </Defs>
-  </Svg>
-)}
-
+          d="m200.847 249.762-16.51-.001v-.209a6.427 6.427 0 0 1 6.426-6.426l3.016-2.289 5.627 2.289h1.441z"
+        ></Path>
+        <Path
+          fill="#A0616A"
+          d="m238.646 244.161 5.369-.001 2.555-20.711h-7.925z"
+        ></Path>
+        <Path
+          fill="#F2F2F2"
+          d="m266.653 232.032 7.758-2.461a26.3 26.3 0 0 0-.187-12.635c-3.117 6.93-12.261 8.629-17.471 14.161a15.792 15.792 0 0 0-4.041 13.082l-1.632 5.538a26.47 26.47 0 0 0 19.264-10.959 25.6 25.6 0 0 0 2.995-5.672c-3.308-.331-6.686-1.054-6.686-1.054"
+        ></Path>
+        <Path
+          fill="#F2F2F2"
+          d="m258.363 221.792 5.846-5.663a26.3 26.3 0 0 0-5.802-11.226c.301 7.594-7.126 13.192-9.322 20.468a15.812 15.812 0 0 0 2.217 13.512l1.009 5.684a26.47 26.47 0 0 0 12.354-18.401 25.6 25.6 0 0 0 .153-6.413c-3.109 1.179-6.455 2.039-6.455 2.039"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="m238.457 249.762 16.509-.001v-.209a6.427 6.427 0 0 0-6.426-6.426l-3.016-2.289-5.626 2.289h-1.442z"
+        ></Path>
+        <Path
+          fill="#CCC"
+          d="M288 249.761a.57.57 0 0 1-.573.572H152.524a.58.58 0 0 1-.405-.167.576.576 0 0 1 0-.81.57.57 0 0 1 .405-.168h134.903a.57.57 0 0 1 .573.573"
+        ></Path>
+        <Path
+          fill="#E6E7E8"
+          d="M134.131 165.673H12.515a1.876 1.876 0 0 1 0-3.753H134.13a1.877 1.877 0 0 1 0 3.753M177.366 158.259H12.515a1.89 1.89 0 0 1-1.329-.549 1.87 1.87 0 0 1-.407-2.046 1.87 1.87 0 0 1 1.017-1.016c.228-.094.472-.142.719-.142h164.851a2.1 2.1 0 0 1 1.98 2.021 1.85 1.85 0 0 1-.63 1.278 1.85 1.85 0 0 1-1.35.454M16.939 150.607a6.3 6.3 0 1 0-.001-12.601 6.3 6.3 0 0 0 0 12.601M144.778 120.208H12.515a1.876 1.876 0 0 1 0-3.753h132.263a1.876 1.876 0 0 1 0 3.753M154.409 112.794H12.515a1.876 1.876 0 0 1 0-3.753h141.894a1.876 1.876 0 0 1 0 3.753"
+        ></Path>
+        <Path
+          fill="#4D5DFA"
+          d="M147.515 203.155c25.766 0 46.654-20.89 46.654-46.66s-20.888-46.659-46.654-46.659-46.654 20.89-46.654 46.659c0 25.77 20.888 46.66 46.654 46.66"
+        ></Path>
+        <Path
+          fill="#3F3D56"
+          d="M147.451 172.775a6.665 6.665 0 1 0 0-13.33 6.665 6.665 0 0 0 0 13.33"
+        ></Path>
+        <Path
+          fill="#4D5DFA"
+          d="M147.451 169.186a3.077 3.077 0 1 0 0-6.154 3.077 3.077 0 0 0 0 6.154"
+        ></Path>
+        <Path
+          fill="#fff"
+          d="M159.823 180.947h-24.616a9.2 9.2 0 0 1-9.193-9.194v-11.288a9.205 9.205 0 0 1 9.193-9.194h24.616a9.205 9.205 0 0 1 9.193 9.194v11.288a9.205 9.205 0 0 1-9.193 9.194m-24.616-28.714a8.243 8.243 0 0 0-8.23 8.232v11.288a8.24 8.24 0 0 0 8.23 8.231h24.616a8.237 8.237 0 0 0 8.231-8.231v-11.288a8.243 8.243 0 0 0-8.231-8.232z"
+        ></Path>
+        <Path
+          fill="#3F3D56"
+          d="M133.749 174.82h21.849a8.64 8.64 0 0 0 8.636-8.637v-9.446a8.6 8.6 0 0 0-.57-3.064 8.62 8.62 0 0 1 3.432 6.881V170a8.63 8.63 0 0 1-2.529 6.107 8.64 8.64 0 0 1-6.106 2.53h-21.849a8.63 8.63 0 0 1-8.066-5.573 8.6 8.6 0 0 0 5.203 1.756"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="M192.498 208.229c.08-1.181.71-7.717.71-7.717l1.51-13.861 2.662-36.741.173-2.405 13.942-2.677 9.529-4.568 11.325 3.621 8.819 3.307s.015 1.416.083 3.126c.091 2.239.249 4.984.627 5.698.63 1.261.472 8.031.472 8.031s.627 13.773 1.416 15.284c.789 1.51.947 4.655.709 5.286s.789 17.171.789 17.171 2.636 29.272.982 33.686c-1.653 4.414-7.902 1.522-7.902 1.522s.302-1.178-1.51-1.733-7.331-42.061-7.331-42.061-1.027-8.51-1.971-10.949-1.812-9.292-1.812-9.292-5.829-11.342-5.904-13.864c0 0-.763-2.36-1.484.238s-2.846 8.82-2.846 8.82l-2.073 7.642-2.439 11.417-1.578 9.613s-2.363 12.758-2.741 13.309c-.377.551 0 12.207 0 12.207s-1.827 9.926-4.409 11.659-9.424.028-9.424.028-.403-24.615-.324-25.797"
+        ></Path>
+        <Path
+          fill="#3F3D56"
+          d="M147.894 131.196c-4.563 0-8.574 2.066-10.845 5.167a14 14 0 0 1 8.361-2.683c7.067 0 12.815 4.95 12.815 11.035v5.058h2.484v-7.542c0-6.085-5.749-11.035-12.815-11.035"
+        ></Path>
+        <Path
+          fill="#fff"
+          d="M162.415 152.362h-29.8v-8.769c0-7.075 6.684-12.832 14.9-12.832s14.9 5.757 14.9 12.832zm-28.838-.963h27.876v-7.806c0-6.545-6.253-11.869-13.938-11.869s-13.938 5.324-13.938 11.869z"
+        ></Path>
+        <Path
+          fill="#fff"
+          d="M155.147 149.014h-15.264a2.594 2.594 0 0 1-2.59-2.591v-3.489c0-4.866 4.586-8.825 10.222-8.825 5.637 0 10.222 3.959 10.222 8.825v3.489a2.59 2.59 0 0 1-2.59 2.591m-7.632-13.942c-5.106 0-9.259 3.527-9.259 7.862v3.489a1.63 1.63 0 0 0 1.627 1.628h15.264a1.63 1.63 0 0 0 1.628-1.628v-3.489c0-4.335-4.154-7.862-9.26-7.862"
+        ></Path>
+        <Path
+          fill="#E6E7E8"
+          d="M177.366 105.38H12.515a1.88 1.88 0 0 1-1.876-1.876 1.877 1.877 0 0 1 1.876-1.876h164.851a1.875 1.875 0 1 1 0 3.752M16.939 97.729a6.3 6.3 0 1 0-.001-12.6 6.3 6.3 0 0 0 0 12.6"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="m198.446 113.996 3.1 9.337-3.825 4.553 1.684 1.734-1.242 2.45-3.239 25.682 17.758 6.736 5.981-7.499 4.715 7.499 20.548-5.022-5.24-32.75v-2.141l-1.479-4.134v-8.752l3.907-26.052-11.662-4.085-5.576-4.414-1.804 6.207-7.683-1.367-.2-4.663-5.878 5.554-4.95 1.412-5.926 1.356-.756 1.888 1.51-.378-.245 24.561z"
+        ></Path>
+        <Path
+          fill="#A0616A"
+          d="m245.032 148.16-2.982-28.873-.787-11.883 8.348-1.509s-.331 8.496.762 13.29c1.08 4.731.144 28.341.077 28.972a4.065 4.065 0 0 1-.403 6.373 4.059 4.059 0 0 1-6.252-4.3 4.06 4.06 0 0 1 1.237-2.07M193.138 148.16l2.982-28.873.788-11.883-8.348-1.509s.33 8.496-.763 13.29c-1.079 4.731-.143 28.341-.077 28.972a4.065 4.065 0 0 0 .403 6.373 4.055 4.055 0 0 0 4.606.002 4.06 4.06 0 0 0 .409-6.372"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="m253.175 125.27-2.321.48-7.966 1.65-.442.09-.94-3.738-1.091-1.163-2.076-10.881-.11-.566-3.137-6.706.718-20.155 5.183 1.45q.062.064.117.133c1.159 1.313 1.986 3.14 3.337 4.98 4.399 5.984 7.773 20.524 7.641 28.491-.004.128.129.268.287.411a4.42 4.42 0 0 1 .8 5.524M184.995 125.27l2.322.48 7.966 1.65.441.09.94-3.738 1.091-1.163 2.077-10.881.109-.566 3.138-6.706 2.17-20.155-8.071 1.45q-.062.064-.117.133c-1.159 1.313-1.986 3.14-3.338 4.98-4.398 5.984-7.773 20.524-7.64 28.491.003.128-.129.268-.287.411a4.42 4.42 0 0 0-.801 5.524"
+        ></Path>
+        <Path
+          fill="#4D5DFA"
+          d="m210.396 87.264 3.793-9.949 9.687-.177 3.215 10.125 11.553 64.552s-35.396 9.859-35.037-1.992c.377-12.459 2.081-29.01 2.081-29.01z"
+        ></Path>
+        <Path
+          fill="#E6E7E8"
+          d="M134.131 67.33H12.515a1.876 1.876 0 0 1 0-3.753H134.13a1.874 1.874 0 0 1 1.876 1.876 1.876 1.876 0 0 1-1.876 1.876M177.366 59.915H12.515a1.876 1.876 0 0 1 0-3.752h164.851a1.876 1.876 0 0 1 0 3.752"
+        ></Path>
+        <Path
+          fill="#A0616A"
+          d="M218.816 74.533c6.302 0 11.411-5.11 11.411-11.413s-5.109-11.413-11.411-11.413c-6.303 0-11.412 5.11-11.412 11.413s5.109 11.413 11.412 11.413"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="M206.731 54.84c1.858-2.022 4.182-5.724 11.221-7.279 8.697-1.92 12.806 5.937 10.613 6.066 6.414 1.942 2.294 15.216.455 14.103l-.045-.035a9.04 9.04 0 0 1-3.609-6.165l-.349-3.141c-.05 2.555-2.661 2.894-5.33 1.952a3.35 3.35 0 0 1 2.365-2.328 11.45 11.45 0 0 1-6.724 2.926 4.58 4.58 0 0 1 2.226-3.064l-.105-.103a11 11 0 0 1-3.528 1.998c-1.471.421-3.234.193-4.241-.958a3.1 3.1 0 0 1-.603-1.085c.218 2.024-1.14 4.334-2.194 3.937-.877-.17-1.388-5.477-.152-6.824"
+        ></Path>
+        <Path
+          fill="#E6E7E8"
+          d="M16.939 52.264a6.3 6.3 0 1 0 0-12.602 6.3 6.3 0 0 0 0 12.602"
+        ></Path>
+        <Path
+          fill="#3F3D56"
+          d="M219.501 16.932H.851a.87.87 0 0 1 0-1.739H219.5a.87.87 0 0 1 0 1.74M208.902 8.729h-12.505a.945.945 0 0 0-.928.947.946.946 0 0 0 .928.947h12.505a.945.945 0 0 0 .928-.947.945.945 0 0 0-.928-.947M208.902 5.18h-12.505a.945.945 0 0 0-.928.946.946.946 0 0 0 .928.947h12.505a.944.944 0 0 0 .928-.947.945.945 0 0 0-.928-.947M208.902 1.625h-12.505a.945.945 0 0 0-.928.946.945.945 0 0 0 .928.947h12.505a.945.945 0 0 0 .928-.947.945.945 0 0 0-.928-.946M50.941 10.753c2.814 0 5.096-2.332 5.096-5.21 0-2.877-2.282-5.21-5.096-5.21s-5.096 2.333-5.096 5.21c0 2.878 2.282 5.21 5.096 5.21M33.338 10.753c2.814 0 5.096-2.332 5.096-5.21 0-2.877-2.282-5.21-5.096-5.21s-5.096 2.333-5.096 5.21c0 2.878 2.282 5.21 5.096 5.21M15.734 10.753c2.815 0 5.096-2.332 5.096-5.21 0-2.877-2.281-5.21-5.096-5.21s-5.095 2.333-5.095 5.21c0 2.878 2.281 5.21 5.095 5.21"
+        ></Path>
+      </G>
+      <Defs>
+        <ClipPath id="clip0_932_13045">
+          <Path fill="#fff" d="M0 .333h288v250H0z"></Path>
+        </ClipPath>
+      </Defs>
+    </Svg>
+  );
+};
 
 export const NewPasswordImage = ({ className, ...props }: IconProps) => {
-  return(
-    <Svg
-    width="200"
-    height="200"
-    fill="none"
-    viewBox="0 0 278 271"
-  >
-    <G clipPath="url(#clip0_932_13087)">
-      <Path
-        fill="#A0616A"
-        d="m232.952 259.93-4.709-.04-2.084-18.592 6.949.059z"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="M217.869 267.42a2.104 2.104 0 0 0 2.087 2.124l9.362.078 1.639-3.323.602 3.34 3.533.032-.892-11.913-1.229-.082-5.013-.346-1.618-.108-.028 3.371-7.521 5.102a2.11 2.11 0 0 0-.922 1.725"
-      ></Path>
-      <Path
-        fill="#A0616A"
-        d="m180.84 259.951-4.49-1.422 3.469-18.384 6.626 2.098z"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="M164.222 262.677a2.11 2.11 0 0 0 1.371 2.644l8.927 2.827 2.542-2.695-.405 3.37 3.367 1.068 2.647-11.649-1.151-.44-4.69-1.803-1.515-.579-1.017 3.213-8.688 2.667a2.1 2.1 0 0 0-1.388 1.377"
-      ></Path>
-      <Path
-        fill="#F2F2F2"
-        d="M247.042 260.601a1.273 1.273 0 0 0 1.303-1.544 1.27 1.27 0 0 0-.38-.665l-.087-.347.035-.084a3.42 3.42 0 0 1 3.163-2.087 3.416 3.416 0 0 1 3.147 2.111c1.032 2.486 2.346 4.977 2.67 7.606.142 1.162.082 2.34-.178 3.482a40.6 40.6 0 0 0 3.691-16.857 39 39 0 0 0-.243-4.37 41 41 0 0 0-.558-3.544 41.1 41.1 0 0 0-8.14-17.401 10.93 10.93 0 0 1-4.543-4.714 8.3 8.3 0 0 1-.757-2.278c.221.029.833-3.34.667-3.547.308-.468.859-.7 1.196-1.157 1.674-2.27 3.981-1.874 5.185 1.212 2.572 1.298 2.597 3.452 1.019 5.523-1.005 1.318-1.143 3.101-2.024 4.512.091.116.185.228.276.344a41.3 41.3 0 0 1 4.312 6.833 17.2 17.2 0 0 1 1.025-7.979c.981-2.368 2.821-4.362 4.44-6.409a3.53 3.53 0 0 1 3.717-1.232 3.52 3.52 0 0 1 2.571 3.053q-.36.204-.706.433a1.726 1.726 0 0 0-.222 2.698c.254.238.574.394.918.447l.035.006a17 17 0 0 1-.453 2.571c2.078 8.038-2.408 10.966-8.814 11.098q-.21.11-.42.214a42.2 42.2 0 0 1 2.269 10.684c.165 2.15.155 4.31-.029 6.459l.011-.076a10.58 10.58 0 0 1 3.608-6.104c2.776-2.281 6.698-3.121 9.693-4.955a1.99 1.99 0 0 1 2.135-.005 1.99 1.99 0 0 1 .903 1.935l-.012.08a11.6 11.6 0 0 0-2.009 1.06 1.73 1.73 0 0 0 .697 3.145l.035.006.073.011a17.2 17.2 0 0 1-3.165 4.957c-1.3 7.018-6.88 7.683-12.85 5.64h-.003a42 42 0 0 1-2.832 8.269h-10.115q-.054-.171-.102-.341c.937.059 1.877.003 2.799-.167-.75-.921-1.501-1.849-2.251-2.771a1 1 0 0 1-.047-.054c-.381-.472-.765-.939-1.146-1.411a16.8 16.8 0 0 1 .493-4.29"
-      ></Path>
-      <Path
-        fill="#CCC"
-        d="M133.903 269.665a.68.68 0 0 0 .195.473.68.68 0 0 0 .473.195h142.182a.668.668 0 1 0 0-1.336H134.571a.68.68 0 0 0-.473.195.66.66 0 0 0-.195.473"
-      ></Path>
-      <Path
-        fill="#4D5DFA"
-        d="M268.618 145.061a5.053 5.053 0 1 0-.002-10.106 5.053 5.053 0 0 0 .002 10.106"
-      ></Path>
-      <Path
-        fill="#F2F2F2"
-        d="M177.175 60.857h-14.739V186.55a15 15 0 0 1-1.142 5.747 15.026 15.026 0 0 1-8.125 8.127 15 15 0 0 1-5.745 1.143H34.742v.144a15.017 15.017 0 0 0 15.012 15.017h127.421a15.013 15.013 0 0 0 13.87-9.271 15 15 0 0 0 1.142-5.746V75.874a15.017 15.017 0 0 0-15.012-15.017"
-      ></Path>
-      <Path
-        fill="#A0616A"
-        d="M135.629 43.76a4.62 4.62 0 0 0 5.279 1.858 4.6 4.6 0 0 0 1.718-1.001l21.031 9.49 4.054-5.173-25.06-11.09a4.622 4.622 0 0 0-7.022 5.916"
-      ></Path>
-      <Path
-        fill="#4D5DFA"
-        d="m225.883 49.678 2.086 11.824a4.03 4.03 0 0 1-.78 3.157 4 4 0 0 1-2.861 1.546l-35.442 2.788-41.661-18.651 4.976-9.449 36.166 11.456z"
-      ></Path>
-      <Path
-        fill="#F2F2F2"
-        d="M142.933 41.205H15.513C7.22 41.205.5 47.928.5 56.222v125.835c0 8.294 6.721 15.017 15.013 15.017h127.42c8.291 0 15.013-6.723 15.013-15.017V56.222c0-8.294-6.722-15.017-15.013-15.017"
-      ></Path>
-      <Path
-        fill="#fff"
-        d="M15.513 44.293a11.92 11.92 0 0 0-11.018 7.364 11.9 11.9 0 0 0-.908 4.565v125.835a11.93 11.93 0 0 0 11.926 11.929h81.323a58 58 0 0 0 41.028-17 58.055 58.055 0 0 0 16.994-41.04V56.222a11.92 11.92 0 0 0-3.493-8.435 11.93 11.93 0 0 0-8.432-3.494z"
-      ></Path>
-      <Path
-        fill="#4D5DFA"
-        d="M167.1 198.838h-46.819a2.476 2.476 0 0 1 0-4.951H167.1a2.474 2.474 0 0 1 1.75 4.226 2.47 2.47 0 0 1-1.75.725"
-      ></Path>
-      <Path
-        fill="#fff"
-        d="M160.845 160.856H54.751a8.7 8.7 0 0 0-8.7 8.703 8.704 8.704 0 0 0 8.7 8.703h106.094a8.7 8.7 0 0 0 8.7-8.703 8.703 8.703 0 0 0-8.7-8.703"
-      ></Path>
-      <Path
-        fill="#4D5DFA"
-        d="M160.845 178.824H54.751a9.265 9.265 0 0 1 0-18.53h106.094a9.265 9.265 0 0 1 0 18.53M54.751 161.417a8.14 8.14 0 0 0-8.14 8.142 8.143 8.143 0 0 0 8.14 8.142h106.094a8.137 8.137 0 0 0 8.139-8.142 8.145 8.145 0 0 0-8.139-8.142z"
-      ></Path>
-      <Path
-        fill="#F2F2F2"
-        d="M114.843 135.264H43.324a2.475 2.475 0 0 1 0-4.951h71.519a2.474 2.474 0 0 1 2.474 2.475 2.48 2.48 0 0 1-2.474 2.476M143.885 108.89H14.282a2.475 2.475 0 0 1 0-4.95h129.603a2.474 2.474 0 0 1 1.75 4.225 2.48 2.48 0 0 1-1.75.725"
-      ></Path>
-      <Path
-        fill="#A0616A"
-        d="m221.405 101.79-12.911 27.514 49.666-5.031-10.367-26.413z"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="m255.898 116.535-45.158 8.277s-7.243 5.42-5.306 7.361 2.238 1.64.965 2.913c-1.273 1.274-4.025 2.976-4.052 4.09s-20.236 51.089-20.236 51.089 2.246-1.123.562.561-1.684 3.076-1.684 3.076l-7.859 53.075 12.763.751 12.497-48.386 27.876-45.204s2.766 40.31 2.882 42.991 1.8-.688.116 2.681-2.807 1.123-1.684 3.369-4.044 47.972-4.044 47.972h11.649l24.986-94.777s8.889-27.096-4.273-39.839"
-      ></Path>
-      <Path
-        fill="#A0616A"
-        d="M268.675 142.091a4.62 4.62 0 0 0 .512-3.85 4.62 4.62 0 0 0-2.599-2.886l.037-23.079-6.379-1.579.157 27.411a4.627 4.627 0 0 0 2.367 5.667 4.621 4.621 0 0 0 5.905-1.684"
-      ></Path>
-      <Path
-        fill="#F2F2F2"
-        d="M114.843 82.482H43.324a2.474 2.474 0 0 1 0-4.95h71.519a2.473 2.473 0 0 1 2.474 2.475 2.476 2.476 0 0 1-2.474 2.475"
-      ></Path>
-      <Path
-        fill="#4D5DFA"
-        d="m242.595 40.725-18.089-1.88-4.687 6.086-5.459 2.909a13.63 13.63 0 0 0-7.194 12.894l6.381 37.126s-5.39 12.139-1.684 15.161c3.705 3.021-2.865 10.504 5.052 6.738s42.1.561 42.1.561l-7.297-20.775 5.451-20.416.6-17.117a14.506 14.506 0 0 0-10.295-14.39l-.762-.23z"
-      ></Path>
-      <Path
-        fill="#4D5DFA"
-        d="m237.085 57.314 9.927-6.749a4.014 4.014 0 0 1 5.78 1.394l17.067 31.197.065 45.656-10.655-.668-4.374-37.693z"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="M267.499 26.853c.118 5.1-1.787 10.039-4.525 14.377-.813-2.533-2.275-4.837-3.8-7.034a21.9 21.9 0 0 1-2.33 13.866q-.12.087-.249.16c-2.231 1.343-5.06 1.887-7.474.917 4.987-5.377 5.622-14.287 1.441-20.319-1.184-1.711-2.715-3.225-3.448-5.172-1.158-3.108-.045-6.53.657-9.77.656-3.015.771-6.604-1.251-8.814a2.13 2.13 0 0 1 1.948-.897c1.247.176 2.154 1.26 2.733 2.377.578 1.117.959 2.354 1.765 3.319 1.492 1.805 4.032 2.232 6.174 3.183 5.185 2.31 8.234 8.132 8.359 13.807"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="M223.85 23.937c.296-1.037-1.746 5.304-.761 5.419 4.489.515 10.651 3.197 13.778 4.448q.211-.024.418-.053.502-.057.985-.152c7.28-1.378 10.08-12.564 10.08-12.666 0-.503-1.207-14.314-3.108-14.519a14 14 0 0 0-1.503-.081h-4.716a22 22 0 0 0-2.961-.43h-.008c-9.496-.723-16.983 5.066-16.283 12.11.004.008.013.016.017.025a14 14 0 0 1 .932 1.598c.865 1.8-1.36 4.063.115 4.485 1.962.562-5.16 19.032 2.606 19.032-3.777 1.074-.409-16.354.409-19.216"
-      ></Path>
-      <Path
-        fill="#A0616A"
-        d="M232.326 34.774c6.168 0 11.167-5 11.167-11.17s-4.999-11.17-11.167-11.17c-6.167 0-11.167 5-11.167 11.17s5 11.17 11.167 11.17"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="M219.771 18.622c.187.099.369.188.555.278q.292.143.584.274c3.739 1.697 6.783 1.885 8.63-.552.049-1.282.337-2.544.849-3.72a5.98 5.98 0 0 0 .985 3.72h3.719c3.83 2.543 5.797 2.81 3.139 11.158-.742 2.326-3.689 15.862-2.529 17.87.335-.037 3.904-14.864 4.227-14.925 7.279-1.378 11.905-13.375 11.313-14.054a12.5 12.5 0 0 0-1.296-5.564 12.8 12.8 0 0 0-4.862-5.29 22.5 22.5 0 0 0-3.884-1.46l-.095-.024a22.928 22.928 0 0 0-3.864-.695 1.971 1.971 0 0 0-1.18.266c-.004 0-.004.003-.008.003a1.9 1.9 0 0 0-.555.495 1.9 1.9 0 0 0-.406 1.182h-4.141q-.23 0-.46.012a11.1 11.1 0 0 0-10.721 11.026"
-      ></Path>
-      <Path
-        fill="#2F2E41"
-        d="M244.187 15.052a7.36 7.36 0 0 0 7.357-7.36 7.358 7.358 0 1 0-14.713 0 7.357 7.357 0 0 0 7.356 7.36"
-      ></Path>
-    </G>
-    <Defs>
-      <ClipPath id="clip0_932_13087">
-        <Path fill="#fff" d="M.5.333h277v270H.5z"></Path>
-      </ClipPath>
-    </Defs>
-  </Svg>
-  )
-}
+  return (
+    <Svg width="200" height="200" fill="none" viewBox="0 0 278 271">
+      <G clipPath="url(#clip0_932_13087)">
+        <Path
+          fill="#A0616A"
+          d="m232.952 259.93-4.709-.04-2.084-18.592 6.949.059z"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="M217.869 267.42a2.104 2.104 0 0 0 2.087 2.124l9.362.078 1.639-3.323.602 3.34 3.533.032-.892-11.913-1.229-.082-5.013-.346-1.618-.108-.028 3.371-7.521 5.102a2.11 2.11 0 0 0-.922 1.725"
+        ></Path>
+        <Path
+          fill="#A0616A"
+          d="m180.84 259.951-4.49-1.422 3.469-18.384 6.626 2.098z"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="M164.222 262.677a2.11 2.11 0 0 0 1.371 2.644l8.927 2.827 2.542-2.695-.405 3.37 3.367 1.068 2.647-11.649-1.151-.44-4.69-1.803-1.515-.579-1.017 3.213-8.688 2.667a2.1 2.1 0 0 0-1.388 1.377"
+        ></Path>
+        <Path
+          fill="#F2F2F2"
+          d="M247.042 260.601a1.273 1.273 0 0 0 1.303-1.544 1.27 1.27 0 0 0-.38-.665l-.087-.347.035-.084a3.42 3.42 0 0 1 3.163-2.087 3.416 3.416 0 0 1 3.147 2.111c1.032 2.486 2.346 4.977 2.67 7.606.142 1.162.082 2.34-.178 3.482a40.6 40.6 0 0 0 3.691-16.857 39 39 0 0 0-.243-4.37 41 41 0 0 0-.558-3.544 41.1 41.1 0 0 0-8.14-17.401 10.93 10.93 0 0 1-4.543-4.714 8.3 8.3 0 0 1-.757-2.278c.221.029.833-3.34.667-3.547.308-.468.859-.7 1.196-1.157 1.674-2.27 3.981-1.874 5.185 1.212 2.572 1.298 2.597 3.452 1.019 5.523-1.005 1.318-1.143 3.101-2.024 4.512.091.116.185.228.276.344a41.3 41.3 0 0 1 4.312 6.833 17.2 17.2 0 0 1 1.025-7.979c.981-2.368 2.821-4.362 4.44-6.409a3.53 3.53 0 0 1 3.717-1.232 3.52 3.52 0 0 1 2.571 3.053q-.36.204-.706.433a1.726 1.726 0 0 0-.222 2.698c.254.238.574.394.918.447l.035.006a17 17 0 0 1-.453 2.571c2.078 8.038-2.408 10.966-8.814 11.098q-.21.11-.42.214a42.2 42.2 0 0 1 2.269 10.684c.165 2.15.155 4.31-.029 6.459l.011-.076a10.58 10.58 0 0 1 3.608-6.104c2.776-2.281 6.698-3.121 9.693-4.955a1.99 1.99 0 0 1 2.135-.005 1.99 1.99 0 0 1 .903 1.935l-.012.08a11.6 11.6 0 0 0-2.009 1.06 1.73 1.73 0 0 0 .697 3.145l.035.006.073.011a17.2 17.2 0 0 1-3.165 4.957c-1.3 7.018-6.88 7.683-12.85 5.64h-.003a42 42 0 0 1-2.832 8.269h-10.115q-.054-.171-.102-.341c.937.059 1.877.003 2.799-.167-.75-.921-1.501-1.849-2.251-2.771a1 1 0 0 1-.047-.054c-.381-.472-.765-.939-1.146-1.411a16.8 16.8 0 0 1 .493-4.29"
+        ></Path>
+        <Path
+          fill="#CCC"
+          d="M133.903 269.665a.68.68 0 0 0 .195.473.68.68 0 0 0 .473.195h142.182a.668.668 0 1 0 0-1.336H134.571a.68.68 0 0 0-.473.195.66.66 0 0 0-.195.473"
+        ></Path>
+        <Path
+          fill="#4D5DFA"
+          d="M268.618 145.061a5.053 5.053 0 1 0-.002-10.106 5.053 5.053 0 0 0 .002 10.106"
+        ></Path>
+        <Path
+          fill="#F2F2F2"
+          d="M177.175 60.857h-14.739V186.55a15 15 0 0 1-1.142 5.747 15.026 15.026 0 0 1-8.125 8.127 15 15 0 0 1-5.745 1.143H34.742v.144a15.017 15.017 0 0 0 15.012 15.017h127.421a15.013 15.013 0 0 0 13.87-9.271 15 15 0 0 0 1.142-5.746V75.874a15.017 15.017 0 0 0-15.012-15.017"
+        ></Path>
+        <Path
+          fill="#A0616A"
+          d="M135.629 43.76a4.62 4.62 0 0 0 5.279 1.858 4.6 4.6 0 0 0 1.718-1.001l21.031 9.49 4.054-5.173-25.06-11.09a4.622 4.622 0 0 0-7.022 5.916"
+        ></Path>
+        <Path
+          fill="#4D5DFA"
+          d="m225.883 49.678 2.086 11.824a4.03 4.03 0 0 1-.78 3.157 4 4 0 0 1-2.861 1.546l-35.442 2.788-41.661-18.651 4.976-9.449 36.166 11.456z"
+        ></Path>
+        <Path
+          fill="#F2F2F2"
+          d="M142.933 41.205H15.513C7.22 41.205.5 47.928.5 56.222v125.835c0 8.294 6.721 15.017 15.013 15.017h127.42c8.291 0 15.013-6.723 15.013-15.017V56.222c0-8.294-6.722-15.017-15.013-15.017"
+        ></Path>
+        <Path
+          fill="#fff"
+          d="M15.513 44.293a11.92 11.92 0 0 0-11.018 7.364 11.9 11.9 0 0 0-.908 4.565v125.835a11.93 11.93 0 0 0 11.926 11.929h81.323a58 58 0 0 0 41.028-17 58.055 58.055 0 0 0 16.994-41.04V56.222a11.92 11.92 0 0 0-3.493-8.435 11.93 11.93 0 0 0-8.432-3.494z"
+        ></Path>
+        <Path
+          fill="#4D5DFA"
+          d="M167.1 198.838h-46.819a2.476 2.476 0 0 1 0-4.951H167.1a2.474 2.474 0 0 1 1.75 4.226 2.47 2.47 0 0 1-1.75.725"
+        ></Path>
+        <Path
+          fill="#fff"
+          d="M160.845 160.856H54.751a8.7 8.7 0 0 0-8.7 8.703 8.704 8.704 0 0 0 8.7 8.703h106.094a8.7 8.7 0 0 0 8.7-8.703 8.703 8.703 0 0 0-8.7-8.703"
+        ></Path>
+        <Path
+          fill="#4D5DFA"
+          d="M160.845 178.824H54.751a9.265 9.265 0 0 1 0-18.53h106.094a9.265 9.265 0 0 1 0 18.53M54.751 161.417a8.14 8.14 0 0 0-8.14 8.142 8.143 8.143 0 0 0 8.14 8.142h106.094a8.137 8.137 0 0 0 8.139-8.142 8.145 8.145 0 0 0-8.139-8.142z"
+        ></Path>
+        <Path
+          fill="#F2F2F2"
+          d="M114.843 135.264H43.324a2.475 2.475 0 0 1 0-4.951h71.519a2.474 2.474 0 0 1 2.474 2.475 2.48 2.48 0 0 1-2.474 2.476M143.885 108.89H14.282a2.475 2.475 0 0 1 0-4.95h129.603a2.474 2.474 0 0 1 1.75 4.225 2.48 2.48 0 0 1-1.75.725"
+        ></Path>
+        <Path
+          fill="#A0616A"
+          d="m221.405 101.79-12.911 27.514 49.666-5.031-10.367-26.413z"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="m255.898 116.535-45.158 8.277s-7.243 5.42-5.306 7.361 2.238 1.64.965 2.913c-1.273 1.274-4.025 2.976-4.052 4.09s-20.236 51.089-20.236 51.089 2.246-1.123.562.561-1.684 3.076-1.684 3.076l-7.859 53.075 12.763.751 12.497-48.386 27.876-45.204s2.766 40.31 2.882 42.991 1.8-.688.116 2.681-2.807 1.123-1.684 3.369-4.044 47.972-4.044 47.972h11.649l24.986-94.777s8.889-27.096-4.273-39.839"
+        ></Path>
+        <Path
+          fill="#A0616A"
+          d="M268.675 142.091a4.62 4.62 0 0 0 .512-3.85 4.62 4.62 0 0 0-2.599-2.886l.037-23.079-6.379-1.579.157 27.411a4.627 4.627 0 0 0 2.367 5.667 4.621 4.621 0 0 0 5.905-1.684"
+        ></Path>
+        <Path
+          fill="#F2F2F2"
+          d="M114.843 82.482H43.324a2.474 2.474 0 0 1 0-4.95h71.519a2.473 2.473 0 0 1 2.474 2.475 2.476 2.476 0 0 1-2.474 2.475"
+        ></Path>
+        <Path
+          fill="#4D5DFA"
+          d="m242.595 40.725-18.089-1.88-4.687 6.086-5.459 2.909a13.63 13.63 0 0 0-7.194 12.894l6.381 37.126s-5.39 12.139-1.684 15.161c3.705 3.021-2.865 10.504 5.052 6.738s42.1.561 42.1.561l-7.297-20.775 5.451-20.416.6-17.117a14.506 14.506 0 0 0-10.295-14.39l-.762-.23z"
+        ></Path>
+        <Path
+          fill="#4D5DFA"
+          d="m237.085 57.314 9.927-6.749a4.014 4.014 0 0 1 5.78 1.394l17.067 31.197.065 45.656-10.655-.668-4.374-37.693z"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="M267.499 26.853c.118 5.1-1.787 10.039-4.525 14.377-.813-2.533-2.275-4.837-3.8-7.034a21.9 21.9 0 0 1-2.33 13.866q-.12.087-.249.16c-2.231 1.343-5.06 1.887-7.474.917 4.987-5.377 5.622-14.287 1.441-20.319-1.184-1.711-2.715-3.225-3.448-5.172-1.158-3.108-.045-6.53.657-9.77.656-3.015.771-6.604-1.251-8.814a2.13 2.13 0 0 1 1.948-.897c1.247.176 2.154 1.26 2.733 2.377.578 1.117.959 2.354 1.765 3.319 1.492 1.805 4.032 2.232 6.174 3.183 5.185 2.31 8.234 8.132 8.359 13.807"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="M223.85 23.937c.296-1.037-1.746 5.304-.761 5.419 4.489.515 10.651 3.197 13.778 4.448q.211-.024.418-.053.502-.057.985-.152c7.28-1.378 10.08-12.564 10.08-12.666 0-.503-1.207-14.314-3.108-14.519a14 14 0 0 0-1.503-.081h-4.716a22 22 0 0 0-2.961-.43h-.008c-9.496-.723-16.983 5.066-16.283 12.11.004.008.013.016.017.025a14 14 0 0 1 .932 1.598c.865 1.8-1.36 4.063.115 4.485 1.962.562-5.16 19.032 2.606 19.032-3.777 1.074-.409-16.354.409-19.216"
+        ></Path>
+        <Path
+          fill="#A0616A"
+          d="M232.326 34.774c6.168 0 11.167-5 11.167-11.17s-4.999-11.17-11.167-11.17c-6.167 0-11.167 5-11.167 11.17s5 11.17 11.167 11.17"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="M219.771 18.622c.187.099.369.188.555.278q.292.143.584.274c3.739 1.697 6.783 1.885 8.63-.552.049-1.282.337-2.544.849-3.72a5.98 5.98 0 0 0 .985 3.72h3.719c3.83 2.543 5.797 2.81 3.139 11.158-.742 2.326-3.689 15.862-2.529 17.87.335-.037 3.904-14.864 4.227-14.925 7.279-1.378 11.905-13.375 11.313-14.054a12.5 12.5 0 0 0-1.296-5.564 12.8 12.8 0 0 0-4.862-5.29 22.5 22.5 0 0 0-3.884-1.46l-.095-.024a22.928 22.928 0 0 0-3.864-.695 1.971 1.971 0 0 0-1.18.266c-.004 0-.004.003-.008.003a1.9 1.9 0 0 0-.555.495 1.9 1.9 0 0 0-.406 1.182h-4.141q-.23 0-.46.012a11.1 11.1 0 0 0-10.721 11.026"
+        ></Path>
+        <Path
+          fill="#2F2E41"
+          d="M244.187 15.052a7.36 7.36 0 0 0 7.357-7.36 7.358 7.358 0 1 0-14.713 0 7.357 7.357 0 0 0 7.356 7.36"
+        ></Path>
+      </G>
+      <Defs>
+        <ClipPath id="clip0_932_13087">
+          <Path fill="#fff" d="M.5.333h277v270H.5z"></Path>
+        </ClipPath>
+      </Defs>
+    </Svg>
+  );
+};
 
 export const NotFoundImage = ({ className, ...props }: IconProps) => {
-  return(
-    <Svg
-    width="200"
-    height="200"
-    viewBox="0 0 748.974 457.275"
-  >
-    <G
-      id="Group_201"
-      data-name="Group 201"
-      transform="translate(-382.003 -195.455)"
-    >
+  return (
+    <Svg width="200" height="200" viewBox="0 0 748.974 457.275">
       <G
-        id="Group_200"
-        data-name="Group 200"
-        transform="translate(382.003 195.455)"
-      >
-        <Path
-          id="Path_3120-90"
-          fill="#f2f2f2"
-          d="m695.225 508.82-261.831 67.424a34.62 34.62 0 0 1-42.114-24.866L312.1 243.879a34.62 34.62 0 0 1 24.866-42.114l243.591-62.727 62.343 27.91 77.191 299.757a34.62 34.62 0 0 1-24.866 42.115"
-          data-name="Path 3120"
-          transform="translate(-311.003 -139.037)"
-        ></Path>
-        <Path
-          id="Path_3121-91"
-          fill="#fff"
-          d="M338.989 210.925a24.655 24.655 0 0 0-17.708 29.99l79.185 307.5a24.655 24.655 0 0 0 29.99 17.708L692.287 498.7a24.655 24.655 0 0 0 17.708-29.99L634 173.595l-54.792-24.529Z"
-          data-name="Path 3121"
-          transform="translate(-310.548 -138.556)"
-        ></Path>
-        <Path
-          id="Path_3122-92"
-          fill="#f2f2f2"
-          d="m629.927 168.5-40.522 10.435a11.52 11.52 0 0 1-14.026-8.282l-7.707-29.929a.72.72 0 0 1 .989-.837l61.379 27.258a.72.72 0 0 1-.113 1.355"
-          data-name="Path 3122"
-          transform="translate(-298.695 -139)"
-        ></Path>
-        <Path
-          id="Path_3123-93"
-          fill="#ccc"
-          d="m612.519 418.284-119.208 30.7a5.759 5.759 0 0 1-2.872-11.154l119.208-30.7a5.759 5.759 0 1 1 2.872 11.154"
-          data-name="Path 3123"
-          transform="translate(-302.605 -126.189)"
-        ></Path>
-        <Path
-          id="Path_3124-94"
-          fill="#ccc"
-          d="m640.149 430.592-142.213 36.622a5.759 5.759 0 1 1-2.872-11.154l142.213-36.622a5.759 5.759 0 0 1 2.872 11.154"
-          data-name="Path 3124"
-          transform="translate(-302.384 -125.599)"
-        ></Path>
-        <Circle
-          id="Ellipse_44"
-          cx="20.355"
-          cy="20.355"
-          r="20.355"
-          fill="#6c63ff"
-          data-name="Ellipse 44"
-          transform="translate(121.697 319.055)"
-        ></Circle>
-        <Path
-          id="Path_3125-95"
-          fill="#fff"
-          d="M604.421 374.437 446.1 415.191a17.835 17.835 0 0 1-21.694-12.812L391.229 273.49a17.835 17.835 0 0 1 12.812-21.69l158.32-40.754a17.835 17.835 0 0 1 21.694 12.812l33.178 128.889a17.835 17.835 0 0 1-12.812 21.69"
-          data-name="Path 3125"
-          transform="translate(-307.183 -135.611)"
-        ></Path>
-        <Path
-          id="Path_3126-96"
-          fill="#e6e6e6"
-          d="M604.421 374.437 446.1 415.191a17.835 17.835 0 0 1-21.694-12.812L391.229 273.49a17.835 17.835 0 0 1 12.812-21.69l158.32-40.754a17.835 17.835 0 0 1 21.694 12.812l33.178 128.889a17.835 17.835 0 0 1-12.812 21.69M404.563 253.826a15.737 15.737 0 0 0-11.3 19.142l33.178 128.889a15.737 15.737 0 0 0 19.142 11.3l158.317-40.75a15.737 15.737 0 0 0 11.3-19.142l-33.175-128.889a15.737 15.737 0 0 0-19.142-11.3Z"
-          data-name="Path 3126"
-          transform="translate(-307.183 -135.611)"
-        ></Path>
-        <Path
-          id="Path_411-97"
-          fill="#f2f2f2"
-          d="m550.66 252.63-79.9 20.568a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l81.335-20.937c3.286 1.665 2.421 5.07.091 5.67Z"
-          data-name="Path 411"
-          transform="translate(-303.514 -133.861)"
-        ></Path>
-        <Path
-          id="Path_412-98"
-          fill="#f2f2f2"
-          d="m554.1 266-79.9 20.568a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l81.335-20.937c3.286 1.665 2.421 5.07.091 5.67Z"
-          data-name="Path 412"
-          transform="translate(-303.349 -133.22)"
-        ></Path>
-        <Path
-          id="Path_413-99"
-          fill="#6c63ff"
-          d="m461.146 298.825-24.385 6.275a3.1 3.1 0 0 1-3.776-2.23l-7.408-28.77a3.1 3.1 0 0 1 2.23-3.776l24.385-6.277a3.105 3.105 0 0 1 3.776 2.23l7.408 28.777a3.1 3.1 0 0 1-2.23 3.776Z"
-          data-name="Path 413"
-          transform="translate(-305.513 -133.047)"
-        ></Path>
-        <Path
-          id="Path_414-100"
-          fill="#f2f2f2"
-          d="m562.854 293.445-121.945 31.39a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l123.38-31.76c3.286 1.665 2.421 5.07.091 5.67Z"
-          data-name="Path 414"
-          transform="translate(-304.946 -131.904)"
-        ></Path>
-        <Path
-          id="Path_415-101"
-          fill="#f2f2f2"
-          d="m566.3 306.822-121.947 31.391a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l123.38-31.76c3.286 1.665 2.421 5.07.091 5.67Z"
-          data-name="Path 415"
-          transform="translate(-304.781 -131.263)"
-        ></Path>
-        <Path
-          id="Path_416-102"
-          fill="#f2f2f2"
-          d="m569.739 320.192-121.945 31.39a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l123.379-31.76c3.286 1.665 2.421 5.07.091 5.67"
-          data-name="Path 416"
-          transform="translate(-304.616 -130.621)"
-        ></Path>
-        <Path
-          id="Path_417-103"
-          fill="#f2f2f2"
-          d="m573.183 333.569-121.946 31.39a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l123.38-31.76c3.285 1.665 2.421 5.07.091 5.67"
-          data-name="Path 417"
-          transform="translate(-304.45 -129.98)"
-        ></Path>
-        <Path
-          id="Path_418-104"
-          fill="#f2f2f2"
-          d="m576.624 346.939-121.945 31.39a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l123.38-31.76c3.285 1.665 2.42 5.07.09 5.67"
-          data-name="Path 418"
-          transform="translate(-304.285 -129.339)"
-        ></Path>
-        <Path
-          id="Path_395-105"
-          fill="#fff"
-          d="M448.363 470.511a2.1 2.1 0 0 1-1.335-.092l-.026-.011-5.545-2.351a2.126 2.126 0 1 1 1.664-3.913l3.593 1.528 4.708-11.076a2.125 2.125 0 0 1 2.787-1.124l-.028.072.029-.073a2.127 2.127 0 0 1 1.124 2.788l-5.539 13.023a2.13 2.13 0 0 1-1.431 1.224Z"
-          data-name="Path 395"
-          transform="translate(-304.809 -123.966)"
-        ></Path>
-      </G>
-      <G
-        id="Group_199"
-        data-name="Group 199"
-        transform="rotate(-8 1951.564 -4699.288)"
+        id="Group_201"
+        data-name="Group 201"
+        transform="translate(-382.003 -195.455)"
       >
         <G
-          id="Group_198"
-          data-name="Group 198"
-          transform="rotate(19 62.948 376.162)"
+          id="Group_200"
+          data-name="Group 200"
+          transform="translate(382.003 195.455)"
         >
           <Path
-            id="Path_3127-106"
+            id="Path_3120-90"
+            fill="#f2f2f2"
+            d="m695.225 508.82-261.831 67.424a34.62 34.62 0 0 1-42.114-24.866L312.1 243.879a34.62 34.62 0 0 1 24.866-42.114l243.591-62.727 62.343 27.91 77.191 299.757a34.62 34.62 0 0 1-24.866 42.115"
+            data-name="Path 3120"
+            transform="translate(-311.003 -139.037)"
+          ></Path>
+          <Path
+            id="Path_3121-91"
+            fill="#fff"
+            d="M338.989 210.925a24.655 24.655 0 0 0-17.708 29.99l79.185 307.5a24.655 24.655 0 0 0 29.99 17.708L692.287 498.7a24.655 24.655 0 0 0 17.708-29.99L634 173.595l-54.792-24.529Z"
+            data-name="Path 3121"
+            transform="translate(-310.548 -138.556)"
+          ></Path>
+          <Path
+            id="Path_3122-92"
+            fill="#f2f2f2"
+            d="m629.927 168.5-40.522 10.435a11.52 11.52 0 0 1-14.026-8.282l-7.707-29.929a.72.72 0 0 1 .989-.837l61.379 27.258a.72.72 0 0 1-.113 1.355"
+            data-name="Path 3122"
+            transform="translate(-298.695 -139)"
+          ></Path>
+          <Path
+            id="Path_3123-93"
+            fill="#ccc"
+            d="m612.519 418.284-119.208 30.7a5.759 5.759 0 0 1-2.872-11.154l119.208-30.7a5.759 5.759 0 1 1 2.872 11.154"
+            data-name="Path 3123"
+            transform="translate(-302.605 -126.189)"
+          ></Path>
+          <Path
+            id="Path_3124-94"
+            fill="#ccc"
+            d="m640.149 430.592-142.213 36.622a5.759 5.759 0 1 1-2.872-11.154l142.213-36.622a5.759 5.759 0 0 1 2.872 11.154"
+            data-name="Path 3124"
+            transform="translate(-302.384 -125.599)"
+          ></Path>
+          <Circle
+            id="Ellipse_44"
+            cx="20.355"
+            cy="20.355"
+            r="20.355"
+            fill="#6c63ff"
+            data-name="Ellipse 44"
+            transform="translate(121.697 319.055)"
+          ></Circle>
+          <Path
+            id="Path_3125-95"
+            fill="#fff"
+            d="M604.421 374.437 446.1 415.191a17.835 17.835 0 0 1-21.694-12.812L391.229 273.49a17.835 17.835 0 0 1 12.812-21.69l158.32-40.754a17.835 17.835 0 0 1 21.694 12.812l33.178 128.889a17.835 17.835 0 0 1-12.812 21.69"
+            data-name="Path 3125"
+            transform="translate(-307.183 -135.611)"
+          ></Path>
+          <Path
+            id="Path_3126-96"
             fill="#e6e6e6"
-            d="M304.956 386.7H34.583A34.62 34.62 0 0 1 0 352.114V34.583A34.62 34.62 0 0 1 34.583 0h251.538l53.418 42.577v309.537a34.62 34.62 0 0 1-34.583 34.586"
-            data-name="Path 3127"
+            d="M604.421 374.437 446.1 415.191a17.835 17.835 0 0 1-21.694-12.812L391.229 273.49a17.835 17.835 0 0 1 12.812-21.69l158.32-40.754a17.835 17.835 0 0 1 21.694 12.812l33.178 128.889a17.835 17.835 0 0 1-12.812 21.69M404.563 253.826a15.737 15.737 0 0 0-11.3 19.142l33.178 128.889a15.737 15.737 0 0 0 19.142 11.3l158.317-40.75a15.737 15.737 0 0 0 11.3-19.142l-33.175-128.889a15.737 15.737 0 0 0-19.142-11.3Z"
+            data-name="Path 3126"
+            transform="translate(-307.183 -135.611)"
           ></Path>
           <Path
-            id="Path_3128-107"
+            id="Path_411-97"
+            fill="#f2f2f2"
+            d="m550.66 252.63-79.9 20.568a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l81.335-20.937c3.286 1.665 2.421 5.07.091 5.67Z"
+            data-name="Path 411"
+            transform="translate(-303.514 -133.861)"
+          ></Path>
+          <Path
+            id="Path_412-98"
+            fill="#f2f2f2"
+            d="m554.1 266-79.9 20.568a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l81.335-20.937c3.286 1.665 2.421 5.07.091 5.67Z"
+            data-name="Path 412"
+            transform="translate(-303.349 -133.22)"
+          ></Path>
+          <Path
+            id="Path_413-99"
+            fill="#6c63ff"
+            d="m461.146 298.825-24.385 6.275a3.1 3.1 0 0 1-3.776-2.23l-7.408-28.77a3.1 3.1 0 0 1 2.23-3.776l24.385-6.277a3.105 3.105 0 0 1 3.776 2.23l7.408 28.777a3.1 3.1 0 0 1-2.23 3.776Z"
+            data-name="Path 413"
+            transform="translate(-305.513 -133.047)"
+          ></Path>
+          <Path
+            id="Path_414-100"
+            fill="#f2f2f2"
+            d="m562.854 293.445-121.945 31.39a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l123.38-31.76c3.286 1.665 2.421 5.07.091 5.67Z"
+            data-name="Path 414"
+            transform="translate(-304.946 -131.904)"
+          ></Path>
+          <Path
+            id="Path_415-101"
+            fill="#f2f2f2"
+            d="m566.3 306.822-121.947 31.391a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l123.38-31.76c3.286 1.665 2.421 5.07.091 5.67Z"
+            data-name="Path 415"
+            transform="translate(-304.781 -131.263)"
+          ></Path>
+          <Path
+            id="Path_416-102"
+            fill="#f2f2f2"
+            d="m569.739 320.192-121.945 31.39a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l123.379-31.76c3.286 1.665 2.421 5.07.091 5.67"
+            data-name="Path 416"
+            transform="translate(-304.616 -130.621)"
+          ></Path>
+          <Path
+            id="Path_417-103"
+            fill="#f2f2f2"
+            d="m573.183 333.569-121.946 31.39a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l123.38-31.76c3.285 1.665 2.421 5.07.091 5.67"
+            data-name="Path 417"
+            transform="translate(-304.45 -129.98)"
+          ></Path>
+          <Path
+            id="Path_418-104"
+            fill="#f2f2f2"
+            d="m576.624 346.939-121.945 31.39a2.86 2.86 0 0 1-3.467-1.8 2.757 2.757 0 0 1 1.942-3.5l123.38-31.76c3.285 1.665 2.42 5.07.09 5.67"
+            data-name="Path 418"
+            transform="translate(-304.285 -129.339)"
+          ></Path>
+          <Path
+            id="Path_395-105"
             fill="#fff"
-            d="M24.627 0A24.655 24.655 0 0 0 0 24.627v317.531a24.655 24.655 0 0 0 24.627 24.627H295a24.655 24.655 0 0 0 24.627-24.627V37.418L272.683 0Z"
-            data-name="Path 3128"
-            transform="translate(9.956 9.956)"
-          ></Path>
-          <Path
-            id="Path_3129-108"
-            fill="#6c63ff"
-            d="M128.856 11.518H5.759A5.759 5.759 0 0 1 5.759 0h123.1a5.759 5.759 0 0 1 0 11.518Z"
-            data-name="Path 3129"
-            transform="translate(123.512 90.767)"
-          ></Path>
-          <Path
-            id="Path_3130-109"
-            fill="#6c63ff"
-            d="M152.612 11.518H5.759A5.759 5.759 0 0 1 5.759 0h146.853a5.759 5.759 0 1 1 0 11.518"
-            data-name="Path 3130"
-            transform="translate(123.512 110.204)"
-          ></Path>
-          <Path
-            id="Path_3131-110"
-            fill="#ccc"
-            d="M128.852 0H5.758a5.758 5.758 0 1 0 0 11.517h123.094a5.759 5.759 0 0 0 0-11.517"
-            data-name="Path 3131"
-            transform="translate(123.517 177.868)"
-          ></Path>
-          <Path
-            id="Path_3132-111"
-            fill="#ccc"
-            d="M152.609 0H5.758a5.759 5.759 0 1 0 0 11.517h146.85a5.759 5.759 0 1 0 0-11.517Z"
-            data-name="Path 3132"
-            transform="translate(123.517 197.307)"
-          ></Path>
-          <Path
-            id="Path_3133-112"
-            fill="#ccc"
-            d="M128.856 11.518H5.759A5.759 5.759 0 0 1 5.759 0h123.1a5.759 5.759 0 0 1 0 11.518Z"
-            data-name="Path 3133"
-            transform="translate(123.512 264.975)"
-          ></Path>
-          <Path
-            id="Path_3134-113"
-            fill="#ccc"
-            d="M152.612 11.518H5.759A5.759 5.759 0 0 1 5.759 0h146.853a5.759 5.759 0 1 1 0 11.518"
-            data-name="Path 3134"
-            transform="translate(123.512 284.411)"
-          ></Path>
-          <Circle
-            id="Ellipse_44-2"
-            cx="20.355"
-            cy="20.355"
-            r="20.355"
-            fill="#6c63ff"
-            data-name="Ellipse 44"
-            transform="translate(57.655 85.89)"
-          ></Circle>
-          <Path
-            id="Path_395-2-114"
-            fill="#fff"
-            d="M6.909 15.481a2.1 2.1 0 0 1-1.27-.422l-.023-.017-4.784-3.66a2.126 2.126 0 0 1 2.587-3.374l3.1 2.376 7.32-9.552a2.125 2.125 0 0 1 2.98-.393L16.774.5l.047-.063a2.127 2.127 0 0 1 .393 2.98L8.6 14.649a2.13 2.13 0 0 1-1.691.829Z"
+            d="M448.363 470.511a2.1 2.1 0 0 1-1.335-.092l-.026-.011-5.545-2.351a2.126 2.126 0 1 1 1.664-3.913l3.593 1.528 4.708-11.076a2.125 2.125 0 0 1 2.787-1.124l-.028.072.029-.073a2.127 2.127 0 0 1 1.124 2.788l-5.539 13.023a2.13 2.13 0 0 1-1.431 1.224Z"
             data-name="Path 395"
-            transform="translate(69.085 98.528)"
-          ></Path>
-          <Path
-            id="Path_3135-115"
-            fill="#6c63ff"
-            d="M40.707 20.359a20.354 20.354 0 0 1-20.351 20.362 4 4 0 0 1-.524-.021 20.353 20.353 0 1 1 20.875-20.341"
-            data-name="Path 3135"
-            transform="translate(59.75 172.987)"
-          ></Path>
-          <Circle
-            id="Ellipse_44-3"
-            cx="20.355"
-            cy="20.355"
-            r="20.355"
-            fill="#6c63ff"
-            data-name="Ellipse 44"
-            transform="translate(57.655 260.097)"
-          ></Circle>
-          <Path
-            id="Path_3136-116"
-            fill="#ccc"
-            d="M53.362 43.143H11.518A11.52 11.52 0 0 1 0 31.625V.72A.72.72 0 0 1 1.167.156l52.642 41.7a.72.72 0 0 1-.447 1.284Z"
-            data-name="Path 3136"
-            transform="translate(285.137 .805)"
+            transform="translate(-304.809 -123.966)"
           ></Path>
         </G>
+        <G
+          id="Group_199"
+          data-name="Group 199"
+          transform="rotate(-8 1951.564 -4699.288)"
+        >
+          <G
+            id="Group_198"
+            data-name="Group 198"
+            transform="rotate(19 62.948 376.162)"
+          >
+            <Path
+              id="Path_3127-106"
+              fill="#e6e6e6"
+              d="M304.956 386.7H34.583A34.62 34.62 0 0 1 0 352.114V34.583A34.62 34.62 0 0 1 34.583 0h251.538l53.418 42.577v309.537a34.62 34.62 0 0 1-34.583 34.586"
+              data-name="Path 3127"
+            ></Path>
+            <Path
+              id="Path_3128-107"
+              fill="#fff"
+              d="M24.627 0A24.655 24.655 0 0 0 0 24.627v317.531a24.655 24.655 0 0 0 24.627 24.627H295a24.655 24.655 0 0 0 24.627-24.627V37.418L272.683 0Z"
+              data-name="Path 3128"
+              transform="translate(9.956 9.956)"
+            ></Path>
+            <Path
+              id="Path_3129-108"
+              fill="#6c63ff"
+              d="M128.856 11.518H5.759A5.759 5.759 0 0 1 5.759 0h123.1a5.759 5.759 0 0 1 0 11.518Z"
+              data-name="Path 3129"
+              transform="translate(123.512 90.767)"
+            ></Path>
+            <Path
+              id="Path_3130-109"
+              fill="#6c63ff"
+              d="M152.612 11.518H5.759A5.759 5.759 0 0 1 5.759 0h146.853a5.759 5.759 0 1 1 0 11.518"
+              data-name="Path 3130"
+              transform="translate(123.512 110.204)"
+            ></Path>
+            <Path
+              id="Path_3131-110"
+              fill="#ccc"
+              d="M128.852 0H5.758a5.758 5.758 0 1 0 0 11.517h123.094a5.759 5.759 0 0 0 0-11.517"
+              data-name="Path 3131"
+              transform="translate(123.517 177.868)"
+            ></Path>
+            <Path
+              id="Path_3132-111"
+              fill="#ccc"
+              d="M152.609 0H5.758a5.759 5.759 0 1 0 0 11.517h146.85a5.759 5.759 0 1 0 0-11.517Z"
+              data-name="Path 3132"
+              transform="translate(123.517 197.307)"
+            ></Path>
+            <Path
+              id="Path_3133-112"
+              fill="#ccc"
+              d="M128.856 11.518H5.759A5.759 5.759 0 0 1 5.759 0h123.1a5.759 5.759 0 0 1 0 11.518Z"
+              data-name="Path 3133"
+              transform="translate(123.512 264.975)"
+            ></Path>
+            <Path
+              id="Path_3134-113"
+              fill="#ccc"
+              d="M152.612 11.518H5.759A5.759 5.759 0 0 1 5.759 0h146.853a5.759 5.759 0 1 1 0 11.518"
+              data-name="Path 3134"
+              transform="translate(123.512 284.411)"
+            ></Path>
+            <Circle
+              id="Ellipse_44-2"
+              cx="20.355"
+              cy="20.355"
+              r="20.355"
+              fill="#6c63ff"
+              data-name="Ellipse 44"
+              transform="translate(57.655 85.89)"
+            ></Circle>
+            <Path
+              id="Path_395-2-114"
+              fill="#fff"
+              d="M6.909 15.481a2.1 2.1 0 0 1-1.27-.422l-.023-.017-4.784-3.66a2.126 2.126 0 0 1 2.587-3.374l3.1 2.376 7.32-9.552a2.125 2.125 0 0 1 2.98-.393L16.774.5l.047-.063a2.127 2.127 0 0 1 .393 2.98L8.6 14.649a2.13 2.13 0 0 1-1.691.829Z"
+              data-name="Path 395"
+              transform="translate(69.085 98.528)"
+            ></Path>
+            <Path
+              id="Path_3135-115"
+              fill="#6c63ff"
+              d="M40.707 20.359a20.354 20.354 0 0 1-20.351 20.362 4 4 0 0 1-.524-.021 20.353 20.353 0 1 1 20.875-20.341"
+              data-name="Path 3135"
+              transform="translate(59.75 172.987)"
+            ></Path>
+            <Circle
+              id="Ellipse_44-3"
+              cx="20.355"
+              cy="20.355"
+              r="20.355"
+              fill="#6c63ff"
+              data-name="Ellipse 44"
+              transform="translate(57.655 260.097)"
+            ></Circle>
+            <Path
+              id="Path_3136-116"
+              fill="#ccc"
+              d="M53.362 43.143H11.518A11.52 11.52 0 0 1 0 31.625V.72A.72.72 0 0 1 1.167.156l52.642 41.7a.72.72 0 0 1-.447 1.284Z"
+              data-name="Path 3136"
+              transform="translate(285.137 .805)"
+            ></Path>
+          </G>
+        </G>
+        <Path
+          id="Path_3140-117"
+          fill="#3f3d56"
+          d="M754.518 518.049a9.16 9.16 0 0 1-12.587 3.05l-106.853-65.176a9.158 9.158 0 0 1 9.538-15.637l106.852 65.176a9.16 9.16 0 0 1 3.049 12.587Z"
+          data-name="Path 3140"
+          transform="translate(123.58 101.359)"
+        ></Path>
+        <Path
+          id="Path_3141-118"
+          fill="#3f3d56"
+          d="M688.648 486.5a73.265 73.265 0 1 1-24.4-100.7 73.265 73.265 0 0 1 24.4 100.7M579.19 419.73a54.949 54.949 0 1 0 75.524-18.3 54.95 54.95 0 0 0-75.524 18.3"
+          data-name="Path 3141"
+          transform="translate(82.597 67.737)"
+        ></Path>
+        <Circle
+          id="Ellipse_44-4"
+          cx="57.007"
+          cy="57.007"
+          r="57.007"
+          fill="#6c63ff"
+          data-name="Ellipse 44"
+          transform="rotate(19 -986.937 2230.905)"
+        ></Circle>
       </G>
-      <Path
-        id="Path_3140-117"
-        fill="#3f3d56"
-        d="M754.518 518.049a9.16 9.16 0 0 1-12.587 3.05l-106.853-65.176a9.158 9.158 0 0 1 9.538-15.637l106.852 65.176a9.16 9.16 0 0 1 3.049 12.587Z"
-        data-name="Path 3140"
-        transform="translate(123.58 101.359)"
-      ></Path>
-      <Path
-        id="Path_3141-118"
-        fill="#3f3d56"
-        d="M688.648 486.5a73.265 73.265 0 1 1-24.4-100.7 73.265 73.265 0 0 1 24.4 100.7M579.19 419.73a54.949 54.949 0 1 0 75.524-18.3 54.95 54.95 0 0 0-75.524 18.3"
-        data-name="Path 3141"
-        transform="translate(82.597 67.737)"
-      ></Path>
-      <Circle
-        id="Ellipse_44-4"
-        cx="57.007"
-        cy="57.007"
-        r="57.007"
-        fill="#6c63ff"
-        data-name="Ellipse 44"
-        transform="rotate(19 -986.937 2230.905)"
-      ></Circle>
-    </G>
     </Svg>
-  )
-}
+  );
+};
+
+export const LocationFilledIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#4D5DFA"
+        {...props}
+      >
+        <Path d="M18.2961 4.63699C17.4832 3.78975 16.5074 3.11561 15.4274 2.65509C14.3473 2.19457 13.1853 1.95715 12.0111 1.95715C10.837 1.95715 9.67495 2.19457 8.59489 2.65509C7.51482 3.11561 6.53902 3.78975 5.72613 4.63699C4.19613 6.63699 3.72613 9.63698 4.58613 12.717C5.46613 16.047 7.81612 18.457 9.70612 20.387L10.6261 21.387C10.8048 21.5766 11.0188 21.7295 11.2561 21.837C11.4938 21.9426 11.751 21.9971 12.0111 21.9971C12.2712 21.9971 12.5284 21.9426 12.7661 21.837C12.999 21.7313 13.2095 21.582 13.3861 21.397L14.3161 20.397C16.2061 18.467 18.5561 16.057 19.4361 12.727C20.2461 9.63699 19.8261 6.63699 18.2961 4.63699ZM12.0061 12.887C11.3178 12.887 10.645 12.6829 10.0727 12.3005C9.50046 11.9181 9.05442 11.3746 8.79102 10.7387C8.52763 10.1029 8.45872 9.40314 8.59299 8.72809C8.72727 8.05303 9.0587 7.43295 9.54539 6.94626C10.0321 6.45957 10.6521 6.12814 11.3272 5.99387C12.0023 5.85959 12.702 5.9285 13.3379 6.19189C13.9738 6.45529 14.5172 6.90132 14.8996 7.4736C15.282 8.04589 15.4861 8.7187 15.4861 9.40698C15.4861 9.86351 15.396 10.3156 15.221 10.7372C15.046 11.1589 14.7895 11.5418 14.4663 11.8642C14.143 12.1865 13.7593 12.4419 13.3371 12.6157C12.915 12.7895 12.4627 12.8783 12.0061 12.877V12.887Z" fill="currentColor"/>
+      </Svg>
+    </View>
+  );
+};
+
+
+export const LocationIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#4D5DFA"
+        {...props}
+      >
+        <Path
+          d="M12 12.7998C13.8502 12.7998 15.3499 11.3001 15.3499 9.4499C15.3499 7.59978 13.8502 6.09995 12 6.09995C10.1498 6.09995 8.65004 7.59978 8.65004 9.4499C8.65004 11.3001 10.1498 12.7998 12 12.7998Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+        />
+        <Path
+          d="M12 2.75C5.3001 2.75 4.18345 8.33325 5.3001 12.5654C6.28275 16.2726 9.23071 18.8074 11.1737 20.8844C11.2783 20.9995 11.4059 21.0915 11.5482 21.1545C11.6905 21.2175 11.8444 21.25 12 21.25C12.1556 21.25 12.3095 21.2175 12.4518 21.1545C12.594 21.0915 12.7217 20.9995 12.8263 20.8844C14.7693 18.8074 17.7172 16.2726 18.6999 12.5654C19.8165 8.33325 18.6999 2.75 12 2.75Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+        />
+      </Svg>
+    </View>
+  );
+};
+
+export const DeliveryIcon = ({ className, ...props }: IconProps) => {
+  return (
+    <View className={cn(className)}>
+      <Svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        strokeWidth={1.6}
+        color="#4D5DFA"
+        {...props}
+      >
+        <Path
+          d="M16 6.25V15.76C15.8805 15.9087 15.7828 16.0737 15.71 16.25H8.29C8.09507 15.8049 7.77466 15.4263 7.36796 15.1604C6.96126 14.8945 6.4859 14.7529 6 14.7529C5.5141 14.7529 5.03874 14.8945 4.63204 15.1604C4.22534 15.4263 3.90493 15.8049 3.71 16.25H3C2.73478 16.25 2.48043 16.1446 2.29289 15.9571C2.10536 15.7696 2 15.5152 2 15.25V6.25C2 5.71957 2.21071 5.21086 2.58579 4.83579C2.96086 4.46071 3.46957 4.25 4 4.25H14C14.5304 4.25 15.0391 4.46071 15.4142 4.83579C15.7893 5.21086 16 5.71957 16 6.25Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M22 13.36V16.25H20.29C20.1163 15.848 19.8396 15.4989 19.4879 15.2379C19.1362 14.9769 18.7219 14.8134 18.2868 14.7637C17.8517 14.714 17.4111 14.7799 17.0096 14.9548C16.6081 15.1298 16.2599 15.4075 16 15.76V7.25H18.43C18.6035 7.25003 18.7741 7.29522 18.9249 7.38114C19.0757 7.46705 19.2015 7.59072 19.29 7.74L20.2 9.25L21.43 11.3C21.8033 11.9223 22.0004 12.6343 22 13.36Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M8.49999 17.25C8.49999 17.913 8.2366 18.5489 7.76776 19.0178C7.29892 19.4866 6.66304 19.75 5.99999 19.75C5.33695 19.75 4.70107 19.4866 4.23223 19.0178C3.76339 18.5489 3.49999 17.913 3.49999 17.25C3.49802 16.9055 3.56962 16.5646 3.70999 16.25C3.90492 15.8049 4.22533 15.4263 4.63203 15.1604C5.03873 14.8945 5.5141 14.7529 5.99999 14.7529C6.48589 14.7529 6.96125 14.8945 7.36796 15.1604C7.77466 15.4263 8.09506 15.8049 8.28999 16.25C8.43037 16.5646 8.50197 16.9055 8.49999 17.25Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M20.5 17.25C20.5 17.913 20.2366 18.5489 19.7678 19.0178C19.2989 19.4866 18.663 19.75 18 19.75C17.337 19.75 16.7011 19.4866 16.2322 19.0178C15.7634 18.5489 15.5 17.913 15.5 17.25C15.498 16.9055 15.5696 16.5646 15.71 16.25C15.7828 16.0737 15.8805 15.9087 16 15.76C16.2599 15.4075 16.6081 15.1298 17.0096 14.9548C17.4111 14.7799 17.8517 14.714 18.2868 14.7637C18.7219 14.8134 19.1362 14.9769 19.4879 15.2379C19.8396 15.4989 20.1163 15.848 20.29 16.25C20.4304 16.5646 20.502 16.9055 20.5 17.25Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M11 11.25H6"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <Path
+          d="M11 8.25H6"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </Svg>
+    </View>
+  );
+};

@@ -41,7 +41,10 @@ export default function ForgotPassword() {
 
   return (
     <View className="flex-1 bg-white">
-      <ScrollView className="flex-1 px-6 pt-6" contentContainerStyle={{ alignItems: 'center' }}>
+      <ScrollView
+        className="flex-1 px-6 pt-6"
+        contentContainerStyle={{ alignItems: "center" }}
+      >
         <OtpImage width={200} />
 
         {/* Título */}
@@ -74,7 +77,7 @@ export default function ForgotPassword() {
       </ScrollView>
 
       {/* Botão Fixo na Parte Inferior */}
-      <View className="px-6 pb-8 pt-4 bg-white border-t border-gray-100">
+      <View className="px-6 pb-20 pt-4 bg-white border-t border-gray-100">
         <Button
           title="Verificar"
           onPress={handleVerify}

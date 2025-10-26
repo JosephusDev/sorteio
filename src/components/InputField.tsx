@@ -7,6 +7,7 @@ import {
   ViewProps,
   TextInputProps,
 } from "react-native";
+import MaskInput from "react-native-mask-input";
 
 interface InputFieldProps extends ViewProps {
   label?: string;
@@ -17,6 +18,8 @@ interface InputFieldProps extends ViewProps {
   onChangeText?: (text: string) => void;
   rightIcon?: React.ReactNode;
   onRightIconPress?: () => void;
+  hasMask?: boolean; // 👈 nova prop
+  mask?: (string | RegExp)[]; // 👈 máscara opcional
 }
 
 export const InputField: React.FC<InputFieldProps> = ({
@@ -29,10 +32,11 @@ export const InputField: React.FC<InputFieldProps> = ({
   onRightIconPress,
   className,
   keyboardType = "default",
+  hasMask = false,
+  mask,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  // Função para clonar o ícone e adicionar a prop de cor
   const renderIconWithColor = (iconElement: React.ReactNode) => {
     if (React.isValidElement(iconElement)) {
       const props = iconElement.props as any;
@@ -44,25 +48,33 @@ export const InputField: React.FC<InputFieldProps> = ({
     return iconElement;
   };
 
+  const commonInputProps = {
+    value,
+    onChangeText,
+    placeholder: label,
+    secureTextEntry,
+    keyboardType,
+    onFocus: () => setIsFocused(true),
+    onBlur: () => setIsFocused(false),
+    className: "flex-1 text-gray-900 font-urbanist-regular text-base",
+  };
+
   return (
     <View
       className={cn(
-        "flex-row items-center py-2 px-4 rounded-xl bg-gray-50",
+        "flex-row items-center py-2 px-4 rounded-xl bg-gray-100",
         isFocused && "border border-primary/50 bg-primary/5",
         className,
       )}
     >
-      <View className="mr-3">{renderIconWithColor(icon)}</View>
-      <TextInput
-        className="flex-1 text-gray-900 font-urbanist-regular text-base"
-        value={value}
-        onChangeText={onChangeText}
-        placeholder={label}
-        secureTextEntry={secureTextEntry}
-        keyboardType={keyboardType}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-      />
+      {icon && <View className="mr-3">{renderIconWithColor(icon)}</View>}
+
+      {hasMask ? (
+        <MaskInput {...commonInputProps} mask={mask} placeholderTextColor={"#9E9E9E"} />
+      ) : (
+        <TextInput {...commonInputProps} placeholderTextColor={"#9E9E9E"} />
+      )}
+
       {rightIcon && (
         <TouchableOpacity
           activeOpacity={1}

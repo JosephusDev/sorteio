@@ -6,8 +6,7 @@ import { View } from "react-native";
 
 export default function () {
   return (
-    <View className="flex min-h-screen items-center justify-center bg-[rgba(0,0,0.8,0.8)]">
-      <View className="bg-white flex gap-4 items-center justify-center p-6 rounded-3xl">
+      <View className="bg-white flex-1 gap-4 items-center justify-center p-6 rounded-3xl">
         <CongratsImage />
         <Text className="text-center text-2xl font-urbanist-bold text-primary">
           Parabéns!
@@ -21,6 +20,5 @@ export default function () {
           onPress={() => router.push("/sign-in")}
         />
       </View>
-    </View>
   );
 }

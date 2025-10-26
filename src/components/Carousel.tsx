@@ -1,11 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { Text } from "@/components/Text";
-import {
-  View,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { View, Image, Dimensions, TouchableOpacity } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
@@ -16,7 +11,6 @@ import Animated, {
   scrollTo,
   SharedValue,
 } from "react-native-reanimated";
-
 
 const ADS_DATA = [
   {
@@ -51,7 +45,7 @@ const AdCard = React.memo(function AdCard({
   index,
   scrollX,
 }: {
-  item: typeof ADS_DATA[0];
+  item: (typeof ADS_DATA)[0];
   index: number;
   scrollX: SharedValue<number>;
 }) {
@@ -62,8 +56,18 @@ const AdCard = React.memo(function AdCard({
       (index + 1) * (CARD_WIDTH + SPACING),
     ];
 
-    const scale = interpolate(scrollX.value, inputRange, [0.9, 1, 0.9], "clamp");
-    const opacity = interpolate(scrollX.value, inputRange, [0.6, 1, 0.6], "clamp");
+    const scale = interpolate(
+      scrollX.value,
+      inputRange,
+      [0.9, 1, 0.9],
+      "clamp",
+    );
+    const opacity = interpolate(
+      scrollX.value,
+      inputRange,
+      [0.6, 1, 0.6],
+      "clamp",
+    );
 
     return { transform: [{ scale }], opacity };
   });
@@ -79,7 +83,12 @@ const AdCard = React.memo(function AdCard({
         activeOpacity={0.9}
         className="bg-primary rounded-2xl overflow-hidden h-48 shadow-lg"
       >
-        <Image source={{ uri: item.image }} className="w-full h-full absolute opacity-90" resizeMode="cover" blurRadius={3} />
+        <Image
+          source={{ uri: item.image }}
+          className="w-full h-full absolute opacity-90"
+          resizeMode="cover"
+          blurRadius={3}
+        />
         <View className="absolute inset-0 bg-black/30" />
         <View className="flex-1 justify-end p-6">
           <Text className="text-white text-2xl font-urbanist-bold mb-2">
@@ -111,7 +120,12 @@ const Dot = React.memo(function Dot({
       (index + 1) * (CARD_WIDTH + SPACING),
     ];
 
-    const opacity = interpolate(scrollX.value, inputRange, [0.3, 1, 0.3], "clamp");
+    const opacity = interpolate(
+      scrollX.value,
+      inputRange,
+      [0.3, 1, 0.3],
+      "clamp",
+    );
 
     return { opacity };
   });
@@ -124,8 +138,7 @@ const Dot = React.memo(function Dot({
   );
 });
 
-export function Carousel(){
-
+export function Carousel() {
   const scrollX = useSharedValue(0);
   const animatedRef = useAnimatedRef<Animated.FlatList>();
   const currentIndex = useSharedValue(0);
@@ -159,39 +172,41 @@ export function Carousel(){
     return () => clearInterval(id);
   }, [animatedRef, currentIndex]);
 
-    return(
-        <Fragment>
-            <View className="mb-6 mt-4">
-              <Animated.FlatList
-                ref={animatedRef}
-                data={ADS_DATA}
-                renderItem={({ item, index }) => (
-                  <AdCard item={item} index={index!} scrollX={scrollX} />
-                )}
-                keyExtractor={(item) => item.id}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                snapToInterval={CARD_WIDTH + SPACING}
-                decelerationRate="fast"
-                contentContainerStyle={{
-                  paddingHorizontal: (width - CARD_WIDTH) / 2,
-                }}
-                onScroll={onScroll}
-                scrollEventThrottle={16}
-              />
+  return (
+    <Fragment>
+      <View className="mb-6 mt-4">
+        <Animated.FlatList
+          ref={animatedRef}
+          data={ADS_DATA}
+          renderItem={({ item, index }) => (
+            <AdCard item={item} index={index!} scrollX={scrollX} />
+          )}
+          keyExtractor={(item) => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          snapToInterval={CARD_WIDTH + SPACING}
+          decelerationRate="fast"
+          contentContainerStyle={{
+            paddingHorizontal: (width - CARD_WIDTH) / 2,
+          }}
+          onScroll={onScroll}
+          scrollEventThrottle={16}
+        />
 
-              {/* Dots */}
-              <View className="flex-row justify-center items-center mt-4">
-                {ADS_DATA.map((_, i) => (
-                  <Dot key={i} index={i} scrollX={scrollX} />
-                ))}
-              </View>
-            </View>
-            <View className="px-5 mb-4">
-            <View className="flex-row items-center justify-between">
-                <Text className="text-greyscale-900 text-lg font-urbanist-bold">Produtos Disponíveis</Text>
-              </View>
-            </View>
-        </Fragment>
-    )
+        {/* Dots */}
+        <View className="flex-row justify-center items-center mt-4">
+          {ADS_DATA.map((_, i) => (
+            <Dot key={i} index={i} scrollX={scrollX} />
+          ))}
+        </View>
+      </View>
+      <View className="px-5 mb-4">
+        <View className="flex-row items-center justify-between">
+          <Text className="text-greyscale-900 text-lg font-urbanist-bold">
+            Produtos Disponíveis
+          </Text>
+        </View>
+      </View>
+    </Fragment>
+  );
 }

@@ -1,4 +1,8 @@
-import { getActiveProducts, getAllProducts, getProductByName } from "@/services/supabase/product.service";
+import {
+  getActiveProducts,
+  getAllProducts,
+  getProductByName,
+} from "@/services/supabase/product.service";
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetActiveProducts() {

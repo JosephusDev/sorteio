@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { View, ScrollView } from "react-native";
-import { EyeIcon, EyeOffIcon, LockIcon, NewPasswordImage } from "@/assets/icons";
+import {
+  EyeIcon,
+  EyeOffIcon,
+  LockIcon,
+  NewPasswordImage,
+} from "@/assets/icons";
 import { Text } from "@/components/Text";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
@@ -21,11 +26,16 @@ export default function RecoveryPassword() {
 
   return (
     <View className="flex-1 bg-white">
-      <ScrollView className="flex-1 px-6 pt-6" contentContainerStyle={{ alignItems: 'center' }}>
+      <ScrollView
+        className="flex-1 px-6 pt-6"
+        contentContainerStyle={{ alignItems: "center" }}
+      >
         <NewPasswordImage />
 
         {/* Título */}
-        <Text className="text-gray-900 mt-12 text-left w-full">Crie sua nova senha</Text>
+        <Text className="text-gray-900 mt-12 text-left w-full">
+          Crie sua nova senha
+        </Text>
 
         {/* Campos de Código */}
         <View className="flex w-full justify-center gap-4 my-8">
@@ -53,7 +63,7 @@ export default function RecoveryPassword() {
       </ScrollView>
 
       {/* Botão Fixo na Parte Inferior */}
-      <View className="px-6 pb-8 pt-4 bg-white border-t border-gray-100">
+      <View className="px-6 pb-20 pt-4 bg-white border-t border-gray-100">
         <Button
           title="Continuar"
           onPress={handleContinue}

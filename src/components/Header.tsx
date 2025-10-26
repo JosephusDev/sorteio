@@ -5,88 +5,113 @@ import { router } from "expo-router";
 import { useGetUserInfo } from "@/queries/auth";
 import { UserInfoSkeleton } from "./skeleton/UserInfoSkeleton";
 import { useGetNotificationsByUser } from "@/queries/notifications";
-import { useNotificationCountStore } from "@/stores/Notifications";
+import { useNotificationStore } from "@/stores/Notifications";
 import { useEffect, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export function Header() {
   const { data, isPending } = useGetUserInfo();
-  const { data: notifications, isPending: isPendingNotifications } = useGetNotificationsByUser();
-  const notificationStore = useNotificationCountStore();
-  const [qtdNotifications, setQtdNotifications] = useState(0);
+  const { data: notifications, isPending: isPendingNotifications } =
+    useGetNotificationsByUser();
+  const notificationStore = useNotificationStore();
+  const [hasNotification, setHasNotification] = useState(false);
+
   const [isHydrated, setIsHydrated] = useState(false);
 
-  // Aguarda o estado de notificações lidas persistido do zustand ser carregado do AsyncStorage
+  // safe area
+  const insets = useSafeAreaInsets();
+  const statusBarHeight = insets.top ?? 0;
+
   useEffect(() => {
-    const unsub = useNotificationCountStore.persist.onFinishHydration(() => {
+    const unsub = useNotificationStore.persist.onFinishHydration(() => {
       setIsHydrated(true);
     });
-
-    if (useNotificationCountStore.persist.hasHydrated()) {
+    if (useNotificationStore.persist.hasHydrated()) {
       setIsHydrated(true);
     }
-
     return unsub;
   }, []);
 
   useEffect(() => {
     if (!isHydrated || !notifications) return;
-
-    const storedQtd = Number(notificationStore.qtd ?? 0);
-    const totalNotifications = Number(notifications?.length ?? 0);
-
-    // Calcula a quantidade de notificações não lidas
-    const qtd_notifications = Math.max(totalNotifications - storedQtd, 0);
-
-    setQtdNotifications(qtd_notifications);
+    setTimeout(() => {
+      const existingQtdNotification = notificationStore.qtdNotification || 0;
+      const hasNotification = notifications.length > existingQtdNotification;
+      if (hasNotification) {
+        setHasNotification(hasNotification);
+        notificationStore.setQtdNotification(notifications.length);
+      }
+    }, 5_000);
   }, [isHydrated, notifications]);
 
-  const goToNotificationsPage = (qtd: number) => {
-    setQtdNotifications(0)
-    notificationStore.setQtd(notifications?.length ?? 0);
-    router.push("/notifications")
-  }
+  const goToNotificationsPage = () => {
+    setHasNotification(false);
+    router.push("/notifications");
+  };
 
   if (isPending || !data || isPendingNotifications) return <UserInfoSkeleton />;
 
   return (
-    <View className="bg-white px-5 p-4 flex-row items-center justify-between shadow-sm">
-      <View className="flex-row gap-2">
+    <View
+      style={{
+        backgroundColor: "white",
+        paddingTop: statusBarHeight + 10, // fixo e consistente
+        paddingHorizontal: 20,
+        paddingBottom: 16,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        shadowColor: "#000",
+        shadowOpacity: 0.05,
+        shadowOffset: { width: 0, height: 1 },
+      }}
+    >
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
         {data.avatarUrl ? (
           <TouchableOpacity onPress={() => router.push("/(tabs)/profile")}>
-            <Image source={{ uri: data.avatarUrl }} className="w-12 h-12 rounded-2xl" />
+            <Image
+              source={{ uri: data.avatarUrl }}
+              style={{ width: 48, height: 48, borderRadius: 16 }}
+            />
           </TouchableOpacity>
         ) : (
-          <View className="w-12 h-12 rounded-full bg-greyscale-200 items-center justify-center">
-            <Text className="text-greyscale-800 text-lg font-urbanist-medium">
+          <View
+            style={{
+              width: 48,
+              height: 48,
+              borderRadius: 24,
+              backgroundColor: "#E0E0E0",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text className="text-greyscale-600 text-lg font-urbanist-medium">
               {data?.nome ? data.nome.charAt(0).toUpperCase() : ""}
             </Text>
           </View>
         )}
         <View>
-          <Text className="text-greyscale-600 text-sm font-urbanist-regular">Olá! 👋</Text>
-          <Text className="text-greyscale-900 text-lg font-urbanist-bold">{data.nome}</Text>
+          <Text className="text-greyscale-600 text-sm font-urbanist-regular">
+            Olá! 👋
+          </Text>
+          <Text className="text-greyscale-800 text-lg font-urbanist-bold">
+            {data.nome}
+          </Text>
         </View>
       </View>
 
-      <View className="flex-row justify-center items-center">
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
         <TouchableOpacity onPress={() => router.push("/search")}>
           <SearchIcon width={24} />
         </TouchableOpacity>
         <TouchableOpacity
-          className="relative ml-2"
-          onPress={() => goToNotificationsPage(qtdNotifications)}
+          style={{ marginLeft: 8 }}
+          onPress={goToNotificationsPage}
           activeOpacity={1}
         >
           <NotificationIcon />
-          {qtdNotifications > 0 && (
-            <View className="absolute top-2 right-2 w-4 h-4 bg-error rounded-full items-center justify-center">
-              <Text
-                className="text-white text-xs font-urbanist-bold"
-                style={{ fontSize: 9 }}
-              >
-                {qtdNotifications > 9 ? "+9" : qtdNotifications}
-              </Text>
-            </View>
+          {hasNotification && (
+            <View className="absolute top-3 right-3 w-3 h-3 bg-error rounded-full items-center justify-center" />
           )}
         </TouchableOpacity>
       </View>

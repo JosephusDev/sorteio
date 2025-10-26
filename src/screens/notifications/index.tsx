@@ -2,11 +2,15 @@ import { View, SectionList } from "react-native";
 import { Text } from "@/components/Text";
 import { NotificationCard } from "@/components/NotificationCard";
 import { NotificationSkeleton } from "@/components/skeleton/NotificationSkeleton";
-import { useGetNotificationsByUser, useGetNotificationsByUserToday } from "@/queries/notifications";
+import {
+  useGetNotificationsByUser,
+  useGetNotificationsByUserToday,
+} from "@/queries/notifications";
 
 export function Notifications() {
   const { data: oldNotifications, isLoading } = useGetNotificationsByUser();
-  const { data: todayNotifications, isLoading: isLoadingToday } = useGetNotificationsByUserToday();
+  const { data: todayNotifications, isLoading: isLoadingToday } =
+    useGetNotificationsByUserToday();
 
   if (isLoading || isLoadingToday) {
     return (

@@ -9,15 +9,13 @@ import Divider from "@/components/Divider";
 import { useSignInMutation } from "@/queries/auth";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { LabelError } from "@/components/LabelError";
-import { SignInSchema } from "@/schemas/Auth";
+import { SignInType, SignInSchema } from "@/schemas/Auth";
 
 export default function SignIn() {
   const {
     control,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(SignInSchema),
@@ -25,13 +23,10 @@ export default function SignIn() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const { mutateAsync: signIn, isPending, error } = useSignInMutation({
-    email: getValues("email"),
-    password: getValues("password"),
-  });
+  const { mutateAsync: signIn, isPending, error } = useSignInMutation();
 
-  const onSubmit = () => {
-    signIn();
+  const onSubmit = (data: SignInType) => {
+    signIn(data);
     console.log(error);
   };
 
@@ -39,7 +34,7 @@ export default function SignIn() {
     <View className="flex-1 bg-white">
       <ScrollView className="flex-1 px-6 pt-12">
         {/* Título */}
-        <Text className="text-3xl font-urbanist-bold text-gray-900 mb-12">
+        <Text className="text-3xl font-urbanist-bold text-gray-900 my-12">
           Fazer Login
         </Text>
 
@@ -81,9 +76,7 @@ export default function SignIn() {
             )}
             name="password"
           />
-          {errors.password && (
-            <LabelError message={errors.password.message!} />
-          )}
+          {errors.password && <LabelError message={errors.password.message!} />}
 
           <Button
             title={isPending ? "Entrando..." : "Entrar"}

@@ -21,6 +21,8 @@ export const SignUpSchema = yup
   })
   .required();
 
+export type SignUpType = yup.InferType<typeof SignUpSchema>;
+
 export const SignInSchema = yup
   .object({
     email: yup
@@ -33,3 +35,5 @@ export const SignInSchema = yup
       .required("A palavra-passe é obrigatório"),
   })
   .required();
+
+export type SignInType = yup.InferType<typeof SignInSchema>;

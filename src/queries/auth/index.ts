@@ -1,19 +1,25 @@
-import { signUp, signIn, logOut, getUserInfo } from "@/services/supabase/auth.service";
+import {
+  signUp,
+  signIn,
+  logOut,
+  getUserInfo,
+  updateProfile,
+} from "@/services/supabase/auth.service";
 import { Auth } from "@/types";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { User } from "@/types/database.types";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-export function useSignUpMutation({ name, password, email, phone }: Auth) {
+export function useSignUpMutation() {
   return useMutation({
-    mutationFn: () => signUp({ name, password, email, phone }),
+    mutationFn: ({ name, password, email, phone }: Auth) =>
+      signUp({ name, password, email, phone }),
   });
 }
 
-export function useSignInMutation({
-  password,
-  email,
-}: Omit<Auth, "name" | "phone">) {
+export function useSignInMutation() {
   return useMutation({
-    mutationFn: () => signIn({ password, email }),
+    mutationFn: ({ password, email }: Omit<Auth, "name" | "phone">) =>
+      signIn({ password, email }),
   });
 }
 
@@ -23,11 +29,21 @@ export function useLogOutMutation() {
   });
 }
 
-
 export function useGetUserInfo() {
   return useQuery({
     queryKey: ["user-info"],
     queryFn: () => getUserInfo(),
-    staleTime: Infinity
+    refetchInterval: 1000 * 5,
+  });
+}
+
+export function useUpdateProfileMutation() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Omit<User, "auth_id" | "created_at" | "role_id">) =>
+      updateProfile(data),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["user-info"] });
+    },
   });
 }

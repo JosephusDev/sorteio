@@ -1,36 +1,32 @@
-import React, { useEffect, useRef } from "react";
-import { View, Animated, Dimensions } from "react-native";
+import React from "react";
+import { View } from "react-native";
+import ContentLoader, { Rect } from "react-content-loader/native";
 
 export function ProductSkeleton() {
-  const opacity = useRef(new Animated.Value(0.3)).current;
-
-  // animação de pulsar
-  useEffect(() => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(opacity, { toValue: 1, duration: 700, useNativeDriver: true }),
-        Animated.timing(opacity, { toValue: 0.3, duration: 700, useNativeDriver: true }),
-      ])
-    ).start();
-  }, []);
-
   return (
     <View className="flex-row flex-wrap justify-between px-4 mt-2">
       {[1, 2, 3, 4].map((_, index) => (
-        <Animated.View
+        <View
           key={index}
-          style={{ opacity }}
-          className={`w-[48%] bg-white rounded-2xl mb-4 border border-greyscale-200 overflow-hidden`}
+          className="w-[48%] bg-white rounded-2xl mb-4 border border-greyscale-200 overflow-hidden"
         >
-          {/* imagem */}
-          <View className="bg-greyscale-200 h-40 w-full" />
+          <ContentLoader
+            speed={1.2}
+            width="100%"
+            height={230}
+            backgroundColor="#f3f3f3"
+            foregroundColor="#ecebeb"
+          >
+            {/* imagem */}
+            <Rect x="0" y="0" rx="8" ry="8" width="100%" height="160" />
 
-          {/* conteúdo */}
-          <View className="p-3 space-y-2">
-            <View className="bg-greyscale-200 h-4 w-3/4 rounded-md" />
-            <View className="bg-greyscale-200 h-5 w-1/2 rounded-md mt-2" />
-          </View>
-        </Animated.View>
+            {/* título */}
+            <Rect x="12" y="175" rx="6" ry="6" width="70%" height="12" />
+
+            {/* subtítulo/preço */}
+            <Rect x="12" y="195" rx="6" ry="6" width="50%" height="14" />
+          </ContentLoader>
+        </View>
       ))}
     </View>
   );
