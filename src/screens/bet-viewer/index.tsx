@@ -3,7 +3,7 @@ import { useGetBetDetails, useGetParticipantsByBet } from "@/queries/bets";
 import { useLocalSearchParams } from "expo-router";
 import { View, Image, ScrollView, ActivityIndicator } from "react-native";
 import { Fragment, useEffect, useState, useRef } from "react";
-import { ClockIcon, CalendarFillIcon, MoneyIcon, UsersIcon, TrophyIcon } from "@/assets/icons";
+import { ClockIcon, CalendarFillIcon, MoneyIcon, UserStrokeIcon, TrophyIcon } from "@/assets/icons";
 import { formatPrice, formatToExtensionDate } from "@/utils";
 import { EmptyList } from "@/components/EmptyList";
 import { DrawWheel } from "@/components/DrawWheel";
@@ -110,7 +110,7 @@ export function BetViewer() {
           {/* Informações do Produto */}
           <View className="px-6">
             <View className="flex-row items-center">
-                <UsersIcon width={20} />
+                <UserStrokeIcon width={20} />
                 <Text className="ml-2 text-sm font-urbanist-medium text-greyscale-700">
                     Número de participantes
                 </Text>
