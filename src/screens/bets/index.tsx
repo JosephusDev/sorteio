@@ -19,10 +19,11 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const BetCard = ({ item }: ListRenderItemInfo<BetsData[0]>) => {
-
   const handleLongPress = () => {
     Vibration.vibrate(50);
-    router.push(`/(modals)/confirm-delete-bet?id=${item.aposta_id}&name=${item.nome_produto}`);
+    router.push(
+      `/(modals)/confirm-delete-bet?id=${item.aposta_id}&name=${item.nome_produto}`,
+    );
   };
 
   const handlePress = () => {
@@ -34,7 +35,9 @@ const BetCard = ({ item }: ListRenderItemInfo<BetsData[0]>) => {
       activeOpacity={0.9}
       key={item.aposta_id}
       onPress={handlePress}
-      onLongPress={item.status_produto === "inactivo" ? () => {} : handleLongPress}
+      onLongPress={
+        item.status_produto === "inactivo" ? () => {} : handleLongPress
+      }
     >
       <View className="flex-row justify-between items-center">
         <View className="flex-row justify-center items-center gap-4">
@@ -100,23 +103,23 @@ export function Bets() {
         icon={<SearchIcon width={16} />}
         onChangeText={setSearch}
       />
-        <View className="flex-1">
-          {isLoading ? (
-            <BetSkeleton />
-              ) : (
-                  <FlatList
-                    data={data}
-                    renderItem={BetCard}
-                    ItemSeparatorComponent={() => (
-                      <View className="w-full border border-gray-100 my-4" />
-                    )}
-                    ListEmptyComponent={
-                      <EmptyList description="Nenhuma aposta encontrada." />
-                    }
-                    ListFooterComponent={<View className="h-8" />}
-                  />
-              )}
-        </View>
+      <View className="flex-1">
+        {isLoading ? (
+          <BetSkeleton />
+        ) : (
+          <FlatList
+            data={data}
+            renderItem={BetCard}
+            ItemSeparatorComponent={() => (
+              <View className="w-full border border-gray-100 my-4" />
+            )}
+            ListEmptyComponent={
+              <EmptyList description="Nenhuma aposta encontrada." />
+            }
+            ListFooterComponent={<View className="h-8" />}
+          />
+        )}
+      </View>
     </SafeAreaView>
   );
 }

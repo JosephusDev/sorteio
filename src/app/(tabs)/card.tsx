@@ -1,9 +1,5 @@
 import React from "react";
-import { 
-  View, 
-  FlatList,
-  ListRenderItemInfo,
-} from "react-native";
+import { View, FlatList, ListRenderItemInfo } from "react-native";
 import { Text } from "@/components/Text";
 import { EmptyList } from "@/components/EmptyList";
 import { BetSkeleton } from "@/components/skeleton/BetSkeleton";
@@ -12,35 +8,33 @@ import { useGetAllTransactions } from "@/queries/transactions";
 import { formatPrice, formatToExtensionDate } from "@/utils";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-
 export default function TransactionsScreen() {
-  const { data, isLoading } = useGetAllTransactions()
-
+  const { data, isLoading } = useGetAllTransactions();
 
   const TransactionCard = ({ item }: ListRenderItemInfo<Transaction>) => (
-      <View className="flex-row items-center justify-between">
-        {/* LADO ESQUERDO: Nome do produto e data */}
-        <View className="flex-1 gap-2">
-          <Text className="text-base font-urbanist-semiBold">
-            {item.tipo.toUpperCase()}
-          </Text>
-          <Text className="text-sm text-gray-500 mt-1">
-            {formatToExtensionDate(item.created_at!)}
-          </Text>
-        </View>
-        
-        {/* LADO DIREITO: Tipo e valor */}
-        <View className="items-end gap-2">
-          <Text className="text-base font-urbanist-semiBold">
-            Valor
-          </Text>
-          <Text className={`text-sm font-urbanist-medium ${
-            item.tipo === "aposta" ? "text-green-600" : "text-red-600"
-          } mt-1`}>
-            {formatPrice(item.valor)}
-          </Text>
-        </View>
+    <View className="flex-row items-center justify-between">
+      {/* LADO ESQUERDO: Nome do produto e data */}
+      <View className="flex-1 gap-2">
+        <Text className="text-base font-urbanist-semiBold">
+          {item.tipo.toUpperCase()}
+        </Text>
+        <Text className="text-sm text-gray-500 mt-1">
+          {formatToExtensionDate(item.created_at!)}
+        </Text>
       </View>
+
+      {/* LADO DIREITO: Tipo e valor */}
+      <View className="items-end gap-2">
+        <Text className="text-base font-urbanist-semiBold">Valor</Text>
+        <Text
+          className={`text-sm font-urbanist-medium ${
+            item.tipo === "aposta" ? "text-green-600" : "text-red-600"
+          } mt-1`}
+        >
+          {formatPrice(item.valor)}
+        </Text>
+      </View>
+    </View>
   );
 
   return (

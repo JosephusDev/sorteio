@@ -70,7 +70,11 @@ export const InputField: React.FC<InputFieldProps> = ({
       {icon && <View className="mr-3">{renderIconWithColor(icon)}</View>}
 
       {hasMask ? (
-        <MaskInput {...commonInputProps} mask={mask} placeholderTextColor={"#9E9E9E"} />
+        <MaskInput
+          {...commonInputProps}
+          mask={mask}
+          placeholderTextColor={"#9E9E9E"}
+        />
       ) : (
         <TextInput {...commonInputProps} placeholderTextColor={"#9E9E9E"} />
       )}

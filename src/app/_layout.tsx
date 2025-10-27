@@ -13,7 +13,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Session } from "@supabase/supabase-js";
 import supabase from "@/services/supabase";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import * as NavigationBar from 'expo-navigation-bar';
+import * as NavigationBar from "expo-navigation-bar";
 
 export default function Layout() {
   const queryClient = new QueryClient();
@@ -27,12 +27,12 @@ export default function Layout() {
     Urbanist_700Bold,
   });
 
-  async function configNavigationBar(){
-    await NavigationBar.setButtonStyleAsync("dark")
-  } 
+  async function configNavigationBar() {
+    await NavigationBar.setButtonStyleAsync("dark");
+  }
 
   useEffect(() => {
-    configNavigationBar()
+    configNavigationBar();
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
@@ -73,7 +73,7 @@ export default function Layout() {
             animation: "fade",
             headerTitleStyle: { fontFamily: "Urbanist_700Bold", fontSize: 18 },
             contentStyle: { backgroundColor: "white" },
-            headerShadowVisible: false
+            headerShadowVisible: false,
           }}
         >
           <Stack.Protected guard={!session?.user}>

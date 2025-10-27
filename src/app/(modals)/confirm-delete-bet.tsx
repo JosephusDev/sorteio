@@ -17,9 +17,12 @@ export default function ModalDeleteBet() {
     <View className="flex-1 justify-center items-center bg-white">
       <View className="bg-white rounded-2xl mx-6 p-6 w-full max-w-sm">
         <View className="items-center mb-4">
-          <Text className="text-xl font-urbanist-bold text-error text-center mb-4">{name.toString().toUpperCase()}</Text>
+          <Text className="text-xl font-urbanist-bold text-error text-center mb-4">
+            {name.toString().toUpperCase()}
+          </Text>
           <Text className="text-gray-600 text-center text-sm">
-            Tem certeza que deseja cancelar essa aposta? O seu dinheiro será devolvido.
+            Tem certeza que deseja cancelar essa aposta? O seu dinheiro será
+            devolvido.
           </Text>
         </View>
         <View className="mt-6">

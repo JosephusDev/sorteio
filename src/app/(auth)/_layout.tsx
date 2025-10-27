@@ -2,8 +2,8 @@ import { Stack } from "expo-router";
 import { Fragment } from "react";
 
 export const unstable_settings = {
-	initialRouteName: 'sign-in',
-}
+  initialRouteName: "sign-in",
+};
 
 export default function AuthLayout() {
   return (
@@ -25,10 +25,7 @@ export default function AuthLayout() {
           name="recovery-password"
           options={{ headerShown: true, title: "Criar Nova Senha" }}
         />
-        <Stack.Screen
-          name="congrats"
-          options={{ presentation: "modal" }}
-        />
+        <Stack.Screen name="congrats" options={{ presentation: "modal" }} />
       </Stack>
     </Fragment>
   );

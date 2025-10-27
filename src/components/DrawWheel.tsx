@@ -9,7 +9,7 @@ import Animated, {
   Easing,
   runOnJS,
 } from "react-native-reanimated";
-import { useAudioPlayer } from 'expo-audio';
+import { useAudioPlayer } from "expo-audio";
 
 interface Participant {
   id: string;
@@ -27,7 +27,11 @@ const { width } = Dimensions.get("window");
 const CARD_SIZE = 200;
 const CARD_SPACING = 16;
 
-export function DrawWheel({ participants, winnerId, onDrawComplete }: DrawWheelProps) {
+export function DrawWheel({
+  participants,
+  winnerId,
+  onDrawComplete,
+}: DrawWheelProps) {
   const scrollX = useSharedValue(0);
   const isDrawing = useSharedValue(false);
 
@@ -42,26 +46,26 @@ export function DrawWheel({ participants, winnerId, onDrawComplete }: DrawWheelP
 
   const ONE_SECOND_IN_MS = 1000;
 
-  const PATTERN = [
-    1 * ONE_SECOND_IN_MS,
-    2 * ONE_SECOND_IN_MS
-  ];
+  const PATTERN = [1 * ONE_SECOND_IN_MS, 2 * ONE_SECOND_IN_MS];
 
   useEffect(() => {
     // Encontra o índice do vencedor no array extendido
-    const winnerIndex = extendedParticipants.findIndex(p => p.id === winnerId);
-    
+    const winnerIndex = extendedParticipants.findIndex(
+      (p) => p.id === winnerId,
+    );
+
     if (winnerIndex === -1) return;
 
     // Calcula posição final centralizada
     const centerOffset = (width - CARD_SIZE) / 2;
-    const finalPosition = -(winnerIndex * (CARD_SIZE + CARD_SPACING)) + centerOffset;
+    const finalPosition =
+      -(winnerIndex * (CARD_SIZE + CARD_SPACING)) + centerOffset;
 
     // Inicia animação após pequeno delay
     const timer = setTimeout(() => {
       isDrawing.value = true;
 
-      Vibration.vibrate(PATTERN)
+      Vibration.vibrate(PATTERN);
 
       // Animação em 3 fases: rápido -> médio -> lento
       scrollX.value = withSequence(
@@ -76,14 +80,18 @@ export function DrawWheel({ participants, winnerId, onDrawComplete }: DrawWheelP
           easing: Easing.linear,
         }),
         // Fase 3: Desacelera até o vencedor (3.5s)
-        withTiming(finalPosition, {
-          duration: 3500,
-          easing: Easing.bezier(0.25, 0.46, 0.45, 0.94),
-        }, (finished) => {
-          if (finished && onDrawComplete) {
-            runOnJS(onDrawComplete)(winnerId);
-          }
-        })
+        withTiming(
+          finalPosition,
+          {
+            duration: 3500,
+            easing: Easing.bezier(0.25, 0.46, 0.45, 0.94),
+          },
+          (finished) => {
+            if (finished && onDrawComplete) {
+              runOnJS(onDrawComplete)(winnerId);
+            }
+          },
+        ),
       );
     }, 500);
 
@@ -167,21 +175,13 @@ const ParticipantCard = React.memo(function ParticipantCard({
     const rotate = (distance / 200) * 15;
 
     return {
-      transform: [
-        { scale },
-        { rotateY: `${rotate}deg` },
-      ],
+      transform: [{ scale }, { rotateY: `${rotate}deg` }],
       opacity,
     };
   });
 
   return (
-    <Animated.View
-      style={[
-        styles.card,
-        animatedStyle,
-      ]}
-    >
+    <Animated.View style={[styles.card, animatedStyle]}>
       <View className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-primary/20">
         <Image
           source={{ uri: participant.imagem_url }}
@@ -189,7 +189,7 @@ const ParticipantCard = React.memo(function ParticipantCard({
           resizeMode="cover"
         />
         <View className="bg-primary/10 p-3">
-          <Text 
+          <Text
             className="text-sm font-urbanist-bold text-greyscale-900 text-center"
             numberOfLines={1}
           >
