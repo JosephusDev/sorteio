@@ -62,7 +62,7 @@ export function Profile({
           {userName}
         </Text>
         <Text className="text-gray-600 mt-1 text-center font-urbanist-semiBold">
-          +244 {userPhone}
+          +244 {userPhone.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
         </Text>
       </View>
 
