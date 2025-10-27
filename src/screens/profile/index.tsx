@@ -70,7 +70,7 @@ export function Profile({
         </Text>
       </View>
 
-      <ScrollView className="flex-1 mt-4" showsVerticalScrollIndicator={false}>
+      <ScrollView className="flex-1 mt-24" showsVerticalScrollIndicator={false}>
         {/* SEÇÃO PERFIL */}
         <View>
           <MenuItem
