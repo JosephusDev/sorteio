@@ -1,4 +1,4 @@
-import { getAllTransactions } from "@/services/supabase/transation.service";
+import { getAllTransactions } from "@/services/supabase/transaction.service";
 import { useQuery } from "@tanstack/react-query";
   
   export function useGetAllTransactions() {
