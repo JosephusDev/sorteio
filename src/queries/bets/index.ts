@@ -1,4 +1,9 @@
-import { deleteBet, getAllBets, getBetDetails, getParticipantsByBet } from "@/services/supabase/bets.service";
+import {
+  deleteBet,
+  getAllBets,
+  getBetDetails,
+  getParticipantsByBet,
+} from "@/services/supabase/bets.service";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function useGetAllBets(product_name: string) {

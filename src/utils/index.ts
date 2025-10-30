@@ -21,7 +21,6 @@ export const formatDate = ({
   return `${year}-${month}-${day}`;
 };
 
-
 export function formatToExtensionDate(dateString: string): string {
   const date = new Date(dateString);
   return date.toLocaleDateString("pt-AO", {

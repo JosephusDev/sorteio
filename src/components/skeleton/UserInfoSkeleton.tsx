@@ -4,7 +4,6 @@ import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export function UserInfoSkeleton() {
-
   // safe area
   const insets = useSafeAreaInsets();
   const statusBarHeight = insets.top ?? 0;

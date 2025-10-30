@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ScrollView, TouchableOpacity } from "react-native";
+import { View, ScrollView, TouchableOpacity, StatusBar } from "react-native";
 import { LogOutIcon, UserStrokeIcon, HelpStrikeIcon } from "@/assets/icons";
 import { Text } from "@/components/Text";
 import { ProfilePhoto } from "@/components/ProfilePhoto";
@@ -54,49 +54,55 @@ export function Profile({
   );
 
   return (
-    <View className="flex-1 bg-white">
-      {/* Header do Perfil - REMOVIDO O BG AZUL */}
-      <View className="items-center pt-8 pb-4 px-6 bg-white">
-        <ProfilePhoto url={avatarUrl} />
-        <Text className="text-2xl font-urbanist-bold text-gray-800 text-center mt-4">
-          {userName}
-        </Text>
-        <Text className="text-gray-600 mt-1 text-center font-urbanist-semiBold">
-          +244 {userPhone}
-        </Text>
+    <View className="flex-1 relative">
+      <StatusBar barStyle={"light-content"} backgroundColor={"#4D5DFA"} />
+      <View className="flex-1 bg-white">
+        <View className="items-center pt-16 pb-4 px-12 bg-primary">
+          <View className="bg-white absolute rounded-full mt-24 mr-60">
+            <ProfilePhoto url={avatarUrl} />
+          </View>
+          <Text className="text-2xl font-urbanist-bold text-white text-center mt-4 -mr-40">
+            {userName}
+          </Text>
+          <Text className="text-blue-100 mt-1 text-center font-urbanist-semiBold -mr-40">
+            +244 {userPhone.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+          </Text>
+        </View>
+        <ScrollView
+          className="flex-1 mt-12"
+          showsVerticalScrollIndicator={false}
+        >
+          {/* SEÇÃO PERFIL */}
+          <View>
+            <MenuItem
+              icon={<UserStrokeIcon />}
+              title="Editar Perfil"
+              subtitle="Altere suas informações pessoais"
+              onPress={() => router.push("/edit-profile")}
+            />
+          </View>
+
+          {/* SEÇÃO AJUDA */}
+          <View>
+            <MenuItem
+              icon={<HelpStrikeIcon />}
+              title="Ajuda"
+              subtitle="Tire suas dúvidas e obtenha suporte"
+              onPress={() => router.push("/help")}
+            />
+          </View>
+
+          {/* SEÇÃO CONFIGURAÇÕES */}
+          <View className="pb-4 pt-2">
+            <MenuItem
+              icon={<LogOutIcon />}
+              title="Terminar Sessão"
+              onPress={() => router.push("/(modals)/confirm-logout")}
+              isDestructive={true}
+            />
+          </View>
+        </ScrollView>
       </View>
-
-      <ScrollView className="flex-1 mt-4" showsVerticalScrollIndicator={false}>
-        {/* SEÇÃO PERFIL */}
-        <View>
-          <MenuItem
-            icon={<UserStrokeIcon />}
-            title="Editar Perfil"
-            subtitle="Altere suas informações pessoais"
-            onPress={() => router.push("/edit-profile")}
-          />
-        </View>
-
-        {/* SEÇÃO AJUDA */}
-        <View>
-          <MenuItem
-            icon={<HelpStrikeIcon />}
-            title="Ajuda"
-            subtitle="Tire suas dúvidas e obtenha suporte"
-            onPress={() => router.push("/help")}
-          />
-        </View>
-
-        {/* SEÇÃO CONFIGURAÇÕES */}
-        <View className="pb-4 pt-2">
-          <MenuItem
-            icon={<LogOutIcon />}
-            title="Terminar Sessão"
-            onPress={() => router.push("/(modals)/confirm-logout")}
-            isDestructive={true}
-          />
-        </View>
-      </ScrollView>
     </View>
   );
 }

@@ -12,7 +12,7 @@ export async function getAllBets(product_name: string) {
     "getbets",
     { p_name: product_name, p_user_id: id_usuario },
     { get: true },
-  )
+  );
 
   if (error) throw error;
   return data;
@@ -30,9 +30,10 @@ export async function getParticipantsByBet(product_id: string) {
 }
 
 export async function getBetDetails(bet_id: string) {
-  const { data, error } = await supabase.rpc(
-    "getbets"
-  ).eq("aposta_id", bet_id).single();
+  const { data, error } = await supabase
+    .rpc("getbets")
+    .eq("aposta_id", bet_id)
+    .single();
 
   if (error) throw error;
   return data;
