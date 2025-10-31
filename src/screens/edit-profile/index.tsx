@@ -20,19 +20,14 @@ import { LabelError } from "@/components/LabelError";
 import { formatDate } from "@/utils";
 
 export function EditProfile() {
-  const { data, isLoading } = useGetUserInfo();
+  const { data, isLoading, isFetched } = useGetUserInfo();
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(ProfileSchema),
-    defaultValues: {
-      name: data?.nome!,
-      phone: data?.telefone!,
-      address: data?.endereco!,
-      birthdate: formatDate({ date: data?.data_nascimento!, inverse: true }),
-    },
+    resolver: yupResolver(ProfileSchema)
   });
 
   const {
@@ -87,8 +82,12 @@ export function EditProfile() {
   };
 
   useEffect(() => {
+    setValue('name', data?.nome!)
+    setValue('phone', data?.telefone!)
+    setValue('address', data?.endereco!)
+    setValue('birthdate', formatDate({ date: data?.data_nascimento!, inverse: true }))
     requestPermissions();
-  }, []);
+  }, [isFetched]);
 
   if(isLoading) return (
     <View className="flex-1 items-center justify-center bg-white">

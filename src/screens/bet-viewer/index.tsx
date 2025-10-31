@@ -285,7 +285,7 @@ export function BetViewer() {
               >
                 <ActivityIndicator size="large" color="#4D5DFA" />
                 <Text className="mt-6 font-urbanist-medium text-greyscale-800">
-                  Sorteio começa em breve...
+                  O Sorteio começa em breve...
                 </Text>
               </View>
             </View>

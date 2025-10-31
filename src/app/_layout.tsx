@@ -93,12 +93,12 @@ export default function Layout() {
     });
     setTimeout(() => {
       setIsReady(true);
+      SplashScreen.hide();
     }, 2_000);
   }, []);
 
   useEffect(() => {
     if (isReady && pendingRoute) {
-      SplashScreen.hide();
       router.push(pendingRoute);
       setPendingRoute(null);
     }

@@ -44,17 +44,18 @@
         }
       ],
       [
-				"expo-splash-screen",
-				{
-					"backgroundColor": "#ffffff",
-					"image": "./assets/splash-icon.png",
-					"dark": {
-						"image": "./assets/splash-icon.png",
-						"backgroundColor": "#000000"
-					},
-					"imageWidth": 200
-				}
-			]
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#ffffff",
+          "image": "./assets/splash-icon.png",
+          "dark": {
+            "image": "./assets/splash-icon.png",
+            "backgroundColor": "#ffffff"
+          },
+          "imageWidth": 200
+        }
+      ],
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true

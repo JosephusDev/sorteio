@@ -64,14 +64,14 @@ export function Profile({
           loading ? (
             <ProfileSkeleton />
           ) : (
-            <View className="items-center pt-16 pb-4 px-12 bg-gray-300 border-b border-b-gray-200">
+            <View className="items-center pt-16 pb-4 px-12 bg-gray-200 border-b border-b-gray-200">
               <View className="bg-white absolute rounded-full mt-24 mr-60">
                 <ProfilePhoto url={avatarUrl} className="w-28 h-28" />
               </View>
               <Text className="text-xl font-urbanist-bold text-center mt-4 ml-16">
                 {userName}
               </Text>
-              <Text className="text-gray-400 mt-1 text-center font-urbanist-semiBold ml-16">
+              <Text className="text-gray-500 mt-1 text-center font-urbanist-semiBold ml-16">
                 +244 {userPhone.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
               </Text>
             </View>

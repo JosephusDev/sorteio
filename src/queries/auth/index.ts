@@ -35,13 +35,14 @@ export function useGetUserInfo() {
     queryKey: ["user-info"],
     queryFn: () => getUserInfo(),
     refetchInterval: 1000 * 5,
+    refetchOnWindowFocus: true
   });
 }
 
 export function useUpdateProfileMutation() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: Omit<User, "auth_id" | "created_at" | "role_id">) =>
+    mutationFn: (data: Omit<User, "auth_id" | "created_at" | "role_id" | "push_token">) =>
       updateProfile(data),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["user-info"] });

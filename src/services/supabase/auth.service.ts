@@ -59,7 +59,7 @@ export async function getUserInfo() {
 }
 
 export async function updateProfile(
-  data: Omit<User, "auth_id" | "created_at" | "role_id">,
+  data: Omit<User, "auth_id" | "created_at" | "role_id" | "push_token">,
 ) {
   const session = await supabase.auth.getSession();
   if (session.data.session?.user) {
