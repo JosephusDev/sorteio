@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "316621812045",
+    "project_id": "sorteio-5852f",
+    "storage_bucket": "sorteio-5852f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316621812045:android:b2c4d2ca9fb0a6a2bf8704",
+        "android_client_info": {
+          "package_name": "com.josephusdev.sorteio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCivoRz_g8-6viUqTgZrIPH2_owM8vIwuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

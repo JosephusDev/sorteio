@@ -27,7 +27,7 @@ const BetCard = ({ item }: ListRenderItemInfo<BetsData[0]>) => {
   };
 
   const handlePress = () => {
-    router.push(`/bet-viewer?id=${item.aposta_id}`);
+    router.push(`/bet-viewer?id=${item.produto_id}`);
   };
 
   return (

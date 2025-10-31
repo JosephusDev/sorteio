@@ -4,6 +4,7 @@ import {
   logOut,
   getUserInfo,
   updateProfile,
+  setPushToken,
 } from "@/services/supabase/auth.service";
 import { Auth } from "@/types";
 import { User } from "@/types/database.types";
@@ -42,6 +43,17 @@ export function useUpdateProfileMutation() {
   return useMutation({
     mutationFn: (data: Omit<User, "auth_id" | "created_at" | "role_id">) =>
       updateProfile(data),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["user-info"] });
+    },
+  });
+}
+
+export function useSetPushTokenMutation() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (push_token: string) =>
+      setPushToken(push_token),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["user-info"] });
     },

@@ -71,3 +71,15 @@ export async function updateProfile(
     if (error) throw error;
   }
 }
+
+export async function setPushToken(push_token: string) {
+  const session = await supabase.auth.getSession();
+  if (session.data.session?.user) {
+    const userId = session.data.session?.user.id;
+    const { error } = await supabase
+      .from("usuario")
+      .update({push_token})
+      .eq("auth_id", userId!);
+    if (error) throw error;
+  }
+}

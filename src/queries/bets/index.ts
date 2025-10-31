@@ -14,10 +14,10 @@ export function useGetAllBets(product_name: string) {
   });
 }
 
-export function useGetBetDetails(bet_id: string) {
+export function useGetBetDetails(product_id: string) {
   return useQuery({
-    queryKey: ["BetDetails", bet_id],
-    queryFn: () => getBetDetails(bet_id),
+    queryKey: ["BetDetails", product_id],
+    queryFn: () => getBetDetails(product_id),
     refetchInterval: 1000,
   });
 }

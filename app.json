@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "sorteio",
+    "name": "Sorteio",
     "slug": "sorteio",
     "scheme": "sorteio",
     "version": "1.0.0",
@@ -22,20 +22,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.josephusdev.sorteio",
-      "intentFilters": [
-        {
-          "action": "VIEW",
-          "autoVerify": true,
-          "data": [
-            {
-              "scheme": "https",
-              "host": "*.webapp.io",
-              "pathPrefix": "/records"
-            }
-          ],
-          "category": ["BROWSABLE", "DEFAULT"]
-        }
-      ]
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -43,6 +30,7 @@
     "plugins": [
       "expo-router",
       "expo-font",
+      "expo-notifications",
       [
         "expo-image-picker",
         {
@@ -54,7 +42,19 @@
         {
           "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
         }
-      ]
+      ],
+      [
+				"expo-splash-screen",
+				{
+					"backgroundColor": "#ffffff",
+					"image": "./assets/splash-icon.png",
+					"dark": {
+						"image": "./assets/splash-icon.png",
+						"backgroundColor": "#000000"
+					},
+					"imageWidth": 200
+				}
+			]
     ],
     "experiments": {
       "typedRoutes": true

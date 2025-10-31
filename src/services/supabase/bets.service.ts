@@ -29,14 +29,13 @@ export async function getParticipantsByBet(product_id: string) {
   return data;
 }
 
-export async function getBetDetails(bet_id: string) {
+export async function getBetDetails(product_id: string) {
   const { data, error } = await supabase
     .rpc("getbets")
-    .eq("aposta_id", bet_id)
-    .single();
+    .eq("produto_id", product_id)
 
   if (error) throw error;
-  return data;
+  return data[0];
 }
 
 export async function deleteBet(id: string) {

@@ -1,9 +1,19 @@
 import { CardIcon, HomeIcon, MoneyIcon, UserIcon } from "@/assets/icons";
+import { registerForPushNotificationsAsync } from "@/services/notifications";
 import { Tabs } from "expo-router";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { StatusBar } from "react-native";
+import { useSetPushTokenMutation } from "@/queries/auth";
 
 export default function ProtectedLayout() {
+
+  const {mutateAsync: setExpoPushToken} = useSetPushTokenMutation()
+
+  useEffect(() => {
+    registerForPushNotificationsAsync()
+      .then(token => setExpoPushToken(token ?? ''))
+  }, []);
+
   return (
     <Fragment>
       <StatusBar barStyle={"dark-content"} />

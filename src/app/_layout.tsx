@@ -1,5 +1,8 @@
+import { View, ActivityIndicator, StatusBar, LogBox } from "react-native";
+LogBox.ignoreAllLogs()
+
 import "../../global.css";
-import { Stack } from "expo-router";
+import { router, Stack } from "expo-router";
 import {
   useFonts,
   Urbanist_400Regular,
@@ -7,18 +10,36 @@ import {
   Urbanist_600SemiBold,
   Urbanist_700Bold,
 } from "@expo-google-fonts/urbanist";
-import { View, ActivityIndicator, StatusBar } from "react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Session } from "@supabase/supabase-js";
 import supabase from "@/services/supabase";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import * as NavigationBar from "expo-navigation-bar";
+import * as Notifications from 'expo-notifications';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
+SplashScreen.setOptions({
+  fade: true,
+});
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+    shouldShowBanner: true,
+    shouldShowList: true,
+  }),
+});
 
 export default function Layout() {
+
   const queryClient = new QueryClient();
   const [session, setSession] = useState<Session | null>(null);
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(false);  
+  const [pendingRoute, setPendingRoute] = useState<any>(null)
+
 
   const [fontsLoaded] = useFonts({
     Urbanist_400Regular,
@@ -30,6 +51,37 @@ export default function Layout() {
   async function configNavigationBar() {
     await NavigationBar.setButtonStyleAsync("dark");
   }
+
+  useEffect(() => {
+    const handleNotificationNavigation = (data: any) => {
+    if (data?.screen) {
+        // Se o Router ainda não estiver pronto, guarda a rota
+        setPendingRoute({
+          pathname: data.screen,
+          params: data.params || {}
+        });
+      }
+    };
+
+    // Caso o app tenha sido aberto clicando na notificação
+    const checkInitialNotification = async () => {
+      const response = Notifications.getLastNotificationResponse();
+      if (response) {
+        const data = response.notification.request.content.data;
+        handleNotificationNavigation(data);
+      }
+    };
+
+    checkInitialNotification();
+
+    const subscription = Notifications.addNotificationResponseReceivedListener(response => {
+      const data = response.notification.request.content.data
+      handleNotificationNavigation(data);
+    });
+
+    return () => subscription.remove();
+
+  }, [])
 
   useEffect(() => {
     configNavigationBar();
@@ -44,9 +96,17 @@ export default function Layout() {
     }, 2_000);
   }, []);
 
+  useEffect(() => {
+    if (isReady && pendingRoute) {
+      SplashScreen.hide();
+      router.push(pendingRoute);
+      setPendingRoute(null);
+    }
+  }, [isReady, pendingRoute]);
+
   if (!fontsLoaded || !isReady) {
     return (
-      <Fragment>
+      <SafeAreaProvider>
         <StatusBar
           translucent={false}
           barStyle="dark-content"
@@ -55,7 +115,7 @@ export default function Layout() {
         <View className="flex-1 items-center justify-center bg-white">
           <ActivityIndicator color={"#4D5DFA"} size={"large"} />
         </View>
-      </Fragment>
+      </SafeAreaProvider>
     );
   }
 
