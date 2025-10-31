@@ -1,5 +1,6 @@
 import { Stack } from "expo-router";
 import { Fragment } from "react";
+import { StatusBar } from "react-native";
 
 export const unstable_settings = {
   initialRouteName: "sign-in",
@@ -8,6 +9,7 @@ export const unstable_settings = {
 export default function AuthLayout() {
   return (
     <Fragment>
+      <StatusBar barStyle={"dark-content"} />
       <Stack
         screenOptions={{
           headerShown: false,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, ScrollView, Alert } from "react-native";
+import { View, ScrollView, Alert, ActivityIndicator } from "react-native";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
 import { ProfilePhoto } from "@/components/ProfilePhoto";
@@ -19,12 +19,11 @@ import { useGetUserInfo, useUpdateProfileMutation } from "@/queries/auth";
 import { LabelError } from "@/components/LabelError";
 import { formatDate } from "@/utils";
 
-export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
-  const { data } = useGetUserInfo();
+export function EditProfile() {
+  const { data, isLoading } = useGetUserInfo();
   const {
     control,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(ProfileSchema),
@@ -39,7 +38,6 @@ export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
   const {
     mutateAsync: updateProfile,
     isPending,
-    error,
   } = useUpdateProfileMutation();
 
   const onSubmit = async (values: ProfileFormValues) => {
@@ -56,7 +54,7 @@ export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
     }
   };
 
-  const [image, setImage] = useState<string | null>(avatarUrl!);
+  const [image, setImage] = useState<string | null>(data?.avatarUrl!);
   const { setImage: setPickerResult } = usePickerImageStore();
 
   const requestPermissions = async () => {
@@ -92,6 +90,12 @@ export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
     requestPermissions();
   }, []);
 
+  if(isLoading) return (
+    <View className="flex-1 items-center justify-center bg-white">
+      <ActivityIndicator size="large" color="#4D5DFA" />
+    </View>
+  );
+
   return (
     <ScrollView
       className="flex-1 px-6 pt-6 bg-white"
@@ -99,7 +103,7 @@ export function EditProfile({ avatarUrl }: { avatarUrl?: string }) {
     >
       {/* Foto de Perfil com ícone de edição */}
       <View className="items-center mb-6">
-        <ProfilePhoto onEditPress={pickImage} isEditable url={image!} />
+        <ProfilePhoto onEditPress={pickImage} isEditable url={image!} className="w-28 h-28" />
       </View>
 
       {/* Formulário */}

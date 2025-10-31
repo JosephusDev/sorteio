@@ -13,7 +13,7 @@ export default function TransactionsScreen() {
 
   const TransactionCard = ({ item }: ListRenderItemInfo<Transaction>) => (
     <View className="flex-row items-center justify-between">
-      {/* LADO ESQUERDO: Nome do produto e data */}
+      {/* LADO ESQUERDO: Tipo de transação e data */}
       <View className="flex-1 gap-2">
         <Text className="text-base font-urbanist-semiBold">
           {item.tipo.toUpperCase()}
@@ -23,7 +23,7 @@ export default function TransactionsScreen() {
         </Text>
       </View>
 
-      {/* LADO DIREITO: Tipo e valor */}
+      {/* LADO DIREITO: Valor */}
       <View className="items-end gap-2">
         <Text className="text-base font-urbanist-semiBold">Valor</Text>
         <Text

@@ -61,12 +61,8 @@ export default function Layout() {
 
   return (
     <SafeAreaProvider>
+      <StatusBar barStyle={"dark-content"} />
       <QueryClientProvider client={queryClient}>
-        <StatusBar
-          translucent={false}
-          barStyle="dark-content"
-          backgroundColor="#fff"
-        />
         <Stack
           screenOptions={{
             headerShown: false,
@@ -100,10 +96,6 @@ export default function Layout() {
             />
             <Stack.Screen
               name="bet-viewer"
-              options={({ route }) => ({
-                headerShown: true,
-                headerTitle: (route.params as { nome?: string })?.nome,
-              })}
             />
             <Stack.Screen
               name="(modals)"

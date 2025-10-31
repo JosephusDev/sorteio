@@ -18,7 +18,7 @@ export function useGetBetDetails(bet_id: string) {
   return useQuery({
     queryKey: ["BetDetails", bet_id],
     queryFn: () => getBetDetails(bet_id),
-    refetchInterval: 1000 * 60 * 5,
+    refetchInterval: 1000,
   });
 }
 

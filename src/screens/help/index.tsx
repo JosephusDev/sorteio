@@ -3,7 +3,6 @@ import { View, ScrollView, Linking, TouchableOpacity } from "react-native";
 import { Text } from "@/components/Text";
 import Button from "@/components/Button";
 import { Ionicons } from "@expo/vector-icons";
-import { PhoneIcon } from "@/assets/icons";
 
 export function Help() {
   const [openQuestion, setOpenQuestion] = useState<number | null>(null);
@@ -84,21 +83,6 @@ export function Help() {
         },
       ],
     },
-    {
-      categoria: "Gestão Escolar e Outros Serviços",
-      perguntas: [
-        {
-          pergunta: "A plataforma oferece serviços para escolas?",
-          resposta:
-            "Sim! Temos módulo específico para gestão escolar: cadastro de estudantes e professores, gestão de propinas, notas, horários e comunicação escola-aluno.",
-        },
-        {
-          pergunta: "Quais outros serviços estão disponíveis?",
-          resposta:
-            "Futuramente: gestão de eventos (bilhetes), serviços comunitários (energia, água, recargas), e sistema de estágios ligando estudantes a empresas.",
-        },
-      ],
-    },
   ];
 
   return (
@@ -107,10 +91,7 @@ export function Help() {
       showsVerticalScrollIndicator={false}
     >
       <View className="mb-8">
-        <Text className="text-2xl font-bold text-gray-900 mb-2">
-          Ajuda e Suporte - JILAN Marketplace
-        </Text>
-        <Text className="text-base text-gray-600">
+        <Text className="text-md font-urbanist-bold text-gray-600">
           Tire suas dúvidas sobre nosso sistema de apostas, marketplace e
           serviços
         </Text>
@@ -118,7 +99,7 @@ export function Help() {
 
       {faqData.map((categoria, catIndex) => (
         <View key={catIndex} className="mb-6">
-          <Text className="text-lg font-semibold text-gray-900 mb-3">
+          <Text className="text-base font-urbanist-semiBold text-gray-900 mb-3">
             {categoria.categoria}
           </Text>
 
@@ -134,6 +115,7 @@ export function Help() {
                 <TouchableOpacity
                   className="flex-row justify-between items-center p-4"
                   onPress={() => setOpenQuestion(isOpen ? null : uniqueIndex)}
+                  activeOpacity={0.8}
                 >
                   <Text className="flex-1 text-base font-medium text-gray-900 mr-2">
                     {item.pergunta}
@@ -158,7 +140,7 @@ export function Help() {
         </View>
       ))}
 
-      <View className="bg-blue-50 rounded-lg p-6 mb-8">
+      <View className="bg-blue-50 rounded-lg p-6 mb-20">
         <Text className="text-lg font-semibold text-center text-gray-900 mb-2">
           Precisa de mais ajuda?
         </Text>
@@ -171,11 +153,10 @@ export function Help() {
           className="mt-2"
         />
         <TouchableOpacity
-          className="mt-3"
+          className="mt-6"
           onPress={() => Linking.openURL("tel:+244924831314")}
         >
-          <Text className="text-center text-blue-600 text-sm">
-            <PhoneIcon />
+          <Text className="text-center text-primary text-sm">
             924 831 314 / 923 229 991
           </Text>
         </TouchableOpacity>

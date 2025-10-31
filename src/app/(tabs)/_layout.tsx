@@ -1,10 +1,12 @@
 import { CardIcon, HomeIcon, MoneyIcon, UserIcon } from "@/assets/icons";
 import { Tabs } from "expo-router";
 import { Fragment } from "react";
+import { StatusBar } from "react-native";
 
 export default function ProtectedLayout() {
   return (
     <Fragment>
+      <StatusBar barStyle={"dark-content"} />
       <Tabs
         screenOptions={{
           headerShown: false,
@@ -14,6 +16,7 @@ export default function ProtectedLayout() {
             fontFamily: "Urbanist_600SemiBold",
             fontSize: 13,
           },
+          headerShadowVisible: false
         }}
       >
         <Tabs.Screen

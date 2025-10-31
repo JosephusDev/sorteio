@@ -1,20 +1,25 @@
 import { AvatarImage, PencilStrokeIcon } from "@/assets/icons";
-import { Image, TouchableOpacity, View } from "react-native";
+import { cn } from "@/utils/cn";
+import { Image, TouchableOpacity, View, ImageProps } from "react-native";
+
+interface ProfilePhotoProps extends ImageProps {
+  isEditable?: boolean;
+  url?: string;
+  onEditPress?: () => void;
+}
 
 export const ProfilePhoto = ({
   onEditPress,
   url,
   isEditable = false,
-}: {
-  isEditable?: boolean;
-  url?: string;
-  onEditPress?: () => void;
-}) => (
+  className,
+  ...rest
+}: ProfilePhotoProps) => (
   <TouchableOpacity onPress={onEditPress} activeOpacity={0.9}>
     <View className="relative">
       <View className="bg-white w-24 h-24 rounded-full items-center justify-center border-4 border-white">
         {url ? (
-          <Image source={{ uri: url }} className="w-24 h-24 rounded-full" />
+          <Image source={{ uri: url }} className={cn("w-24 h-24 rounded-full", className)} {...rest} />
         ) : (
           <AvatarImage />
         )}

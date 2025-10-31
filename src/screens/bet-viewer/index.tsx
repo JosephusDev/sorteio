@@ -1,21 +1,21 @@
 import { Text } from "@/components/Text";
 import { useGetBetDetails, useGetParticipantsByBet } from "@/queries/bets";
-import { useLocalSearchParams } from "expo-router";
-import { View, Image, ScrollView, ActivityIndicator } from "react-native";
+import { router, useLocalSearchParams } from "expo-router";
+import { View, Image, ScrollView, ActivityIndicator, TouchableOpacity } from "react-native";
 import { Fragment, useEffect, useState, useRef } from "react";
 import {
-  ClockIcon,
   CalendarFillIcon,
+  ChevronLeftIcon,
   MoneyIcon,
-  UserStrokeIcon,
   TrophyIcon,
 } from "@/assets/icons";
-import { formatPrice, formatToExtensionDate } from "@/utils";
+import { capitalizeText, formatPrice, formatToExtensionDate } from "@/utils";
 import { EmptyList } from "@/components/EmptyList";
 import { DrawWheel } from "@/components/DrawWheel";
 import { Confetti, ConfettiMethods } from "react-native-fast-confetti";
 import { useAudioPlayer } from "expo-audio";
 import Divider from "@/components/Divider";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface TimeRemaining {
   days: number;
@@ -101,14 +101,30 @@ export function BetViewer() {
   const hasEventDate = data.aposta_data_evento !== null;
   const isDrawTime =
     hasEventDate && timeRemaining && timeRemaining.isPast && isActive;
+  
+  const shouldShowWheel =
+  isDrawTime &&
+  participants &&
+  participants.length > 0 &&
+  data.id_vencedor &&
+  !showDrawComplete;
+
+  const isWaiting = !shouldShowWheel && !data.id_vencedor && isDrawTime
+
 
   return (
-    <Fragment>
+    <SafeAreaView className="flex-1">
       <ScrollView
         className="flex-1 bg-white"
         showsVerticalScrollIndicator={false}
       >
-        <View className="flex-row items-center h-36">
+        <View className="items-center h-48 mb-8">
+          <View className="flex-row gap-4 w-full p-4 items-start">
+            <TouchableOpacity activeOpacity={0.9} onPress={() => router.push('/(tabs)/bet')}>
+              <ChevronLeftIcon />
+            </TouchableOpacity>
+            <Text className="font-urbanist-bold text-xl">{capitalizeText(data.nome_produto)}</Text>
+          </View>
           {/* Imagem do Produto */}
           <View className="bg-white w-full h-48 p-6">
             <Image
@@ -124,8 +140,7 @@ export function BetViewer() {
         {/* Informações do Produto */}
         <View className="px-6">
           <View className="flex-row items-center">
-            <UserStrokeIcon width={20} />
-            <Text className="ml-2 text-sm font-urbanist-medium text-greyscale-700">
+            <Text className="text-sm font-urbanist-medium text-greyscale-700">
               Número de participantes
             </Text>
           </View>
@@ -190,8 +205,7 @@ export function BetViewer() {
         {hasEventDate && timeRemaining && !timeRemaining.isPast && (
           <View className="mx-6 mt-6 bg-greyscale-50 rounded-2xl p-6 shadow-md">
             <View className="flex-row items-center mb-4">
-              <ClockIcon width={20} />
-              <Text className="ml-2 text-base font-urbanist-semiBold text-greyscale-900">
+              <Text className="text-base font-urbanist-semiBold text-greyscale-900">
                 Tempo Restante
               </Text>
             </View>
@@ -244,17 +258,39 @@ export function BetViewer() {
           </View>
         )}
 
-        {/* Sorteio ao Vivo - Novo Componente */}
-        {isDrawTime &&
-          participants &&
-          participants.length > 0 &&
-          !showDrawComplete && (
-            <DrawWheel
-              participants={participants}
-              winnerId={data.id_vencedor}
-              onDrawComplete={handleDrawComplete}
-            />
-          )}
+        {/* Wheel aparece somente quando já pode sortear */}
+        {shouldShowWheel && (
+          <DrawWheel
+            participants={participants}
+            winnerId={data.id_vencedor}
+            onDrawComplete={handleDrawComplete}
+          />
+        )}
+
+        {/* Loader aparece APENAS quando NÃO deve mostrar a roleta */}
+        {
+          isWaiting && (
+            <View
+              className="h-screen absolute top-0 left-0 right-0 bottom-0 justify-center items-center bg-black/80"
+              style={{ zIndex: 999 }}
+            >
+              <View
+                className="bg-white rounded-xl p-6 backdrop-blur-md"
+                style={{
+                  shadowColor: "#000",
+                  shadowOpacity: 0.15,
+                  shadowOffset: { width: 0, height: 4 },
+                  shadowRadius: 8,
+                }}
+              >
+                <ActivityIndicator size="large" color="#4D5DFA" />
+                <Text className="mt-6 font-urbanist-medium text-greyscale-800">
+                  Sorteio começa em breve...
+                </Text>
+              </View>
+            </View>
+        )}
+
 
         {/* Mensagem pós-sorteio com Confetti */}
         {isDrawTime && showDrawComplete && (
@@ -338,6 +374,6 @@ export function BetViewer() {
           colors={["#4D5DFA", "#FF6B6B", "#4ECDC4", "#FFD93D", "#6BCB77"]}
         />
       )}
-    </Fragment>
+    </SafeAreaView>
   );
 }

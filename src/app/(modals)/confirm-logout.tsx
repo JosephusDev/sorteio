@@ -5,7 +5,7 @@ import { router } from "expo-router";
 import { View } from "react-native";
 
 export default function ModalLogout() {
-  const { mutateAsync: logout } = useLogOutMutation();
+  const { mutateAsync: logout, isPending } = useLogOutMutation();
 
   return (
     <View className="flex-1 justify-center items-center bg-white">
@@ -19,7 +19,7 @@ export default function ModalLogout() {
           </Text>
         </View>
         <View className="mt-6">
-          <Button className="mb-3" onPress={() => logout()} title="Sair" />
+          <Button className="mb-3 bg-error" onPress={() => logout()} title={isPending ? "Saindo..." : "Sair"} />
           <Button
             variant="outline"
             onPress={() => router.back()}
