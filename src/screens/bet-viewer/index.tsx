@@ -1,6 +1,6 @@
 import { Text } from "@/components/Text";
 import { useGetBetDetails, useGetParticipantsByBet } from "@/queries/bets";
-import { router, useLocalSearchParams } from "expo-router";
+import { Link, router, useLocalSearchParams } from "expo-router";
 import { View, Image, ScrollView, ActivityIndicator, TouchableOpacity } from "react-native";
 import { Fragment, useEffect, useState, useRef } from "react";
 import {
@@ -113,16 +113,16 @@ export function BetViewer() {
 
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 bg-white">
       <ScrollView
         className="flex-1 bg-white"
         showsVerticalScrollIndicator={false}
       >
         <View className="items-center h-48 mb-8">
           <View className="flex-row gap-4 w-full p-4 items-start">
-            <TouchableOpacity activeOpacity={0.9} onPress={() => router.push('/(tabs)/bet')}>
+            <Link asChild href={'/(tabs)/bet'}>
               <ChevronLeftIcon />
-            </TouchableOpacity>
+            </Link>
             <Text className="font-urbanist-bold text-xl">{capitalizeText(data.nome_produto)}</Text>
           </View>
           {/* Imagem do Produto */}

@@ -24,7 +24,7 @@ export function useGetBetDetails(product_id: string) {
 
 export function useGetParticipantsByBet(product_id: string) {
   return useQuery({
-    queryKey: ["ParticpantBet", product_id],
+    queryKey: ["ParticipantBet", product_id],
     queryFn: () => getParticipantsByBet(product_id),
     refetchInterval: 1000 * 60 * 5,
   });

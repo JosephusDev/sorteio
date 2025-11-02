@@ -1,5 +1,13 @@
-import { getNotificationByUser } from "@/services/supabase/notification.service";
+import { getAllNotificationByUser, getNotificationByUser } from "@/services/supabase/notification.service";
 import { useQuery } from "@tanstack/react-query";
+
+export function useGetAllNotificationsByUser() {
+  return useQuery({
+    queryKey: ["all-notifications-user"],
+    queryFn: () => getAllNotificationByUser(),
+    refetchInterval: 1000 * 60,
+  });
+}
 
 export function useGetNotificationsByUser() {
   return useQuery({

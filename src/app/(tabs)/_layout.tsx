@@ -16,7 +16,7 @@ export default function ProtectedLayout() {
 
   return (
     <Fragment>
-      <StatusBar barStyle={"dark-content"} />
+      <StatusBar barStyle={"dark-content"} backgroundColor={"#fff"} />
       <Tabs
         screenOptions={{
           headerShown: false,

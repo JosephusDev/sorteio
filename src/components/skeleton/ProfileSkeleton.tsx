@@ -7,10 +7,10 @@ export function ProfileSkeleton() {
   return (
     <View className="bg-white">
       {/* Header */}
-      <View className="items-center pt-16 pb-6 px-12 bg-gray-300 border-b border-b-gray-200">
+      <View className="items-center pb-6 px-12 bg-gray-200 border-b border-b-gray-200">
 
         {/* Avatar */}
-        <View className="absolute mt-20 mr-60">
+        <View className="absolute mt-28 mr-60">
           <ContentLoader
             speed={2}
             width={112}
@@ -30,7 +30,7 @@ export function ProfileSkeleton() {
           height={28}
           backgroundColor="#f3f3f3"
           foregroundColor="#ecebeb"
-          style={{ marginTop: 50, marginLeft: 120 }}
+          style={{ marginTop: 85, marginLeft: 120 }}
         >
           <Rect x="0" y="0" rx="6" ry="6" width="180" height="20" />
         </ContentLoader>

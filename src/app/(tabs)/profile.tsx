@@ -1,6 +1,5 @@
-import { useGetUserInfo, useLogOutMutation } from "@/queries/auth";
+import { useGetUserInfo } from "@/queries/auth";
 import { Profile } from "@/screens/profile";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ProfileScreen() {
   const { data: userInfo, isLoading } = useGetUserInfo();

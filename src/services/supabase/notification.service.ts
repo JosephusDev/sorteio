@@ -20,3 +20,12 @@ export async function getNotificationByUser({
   if (error) throw error;
   return data;
 }
+
+export async function getAllNotificationByUser() {
+  const { data, error } = await supabase
+    .from("notificacao")
+    .select("*")
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return data;
+}

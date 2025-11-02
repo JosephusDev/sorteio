@@ -4,7 +4,7 @@ import { NotificationIcon, SearchIcon } from "@/assets/icons";
 import { router } from "expo-router";
 import { useGetUserInfo } from "@/queries/auth";
 import { UserInfoSkeleton } from "./skeleton/UserInfoSkeleton";
-import { useGetNotificationsByUser } from "@/queries/notifications";
+import { useGetAllNotificationsByUser } from "@/queries/notifications";
 import { useNotificationStore } from "@/stores/Notifications";
 import { useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -12,7 +12,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 export function Header() {
   const { data, isPending } = useGetUserInfo();
   const { data: notifications, isPending: isPendingNotifications } =
-    useGetNotificationsByUser();
+    useGetAllNotificationsByUser();
   const notificationStore = useNotificationStore();
   const [hasNotification, setHasNotification] = useState(false);
 
@@ -39,13 +39,13 @@ export function Header() {
       const hasNotification = notifications.length > existingQtdNotification;
       if (hasNotification) {
         setHasNotification(hasNotification);
-        notificationStore.setQtdNotification(notifications.length);
       }
     }, 5_000);
   }, [isHydrated, notifications]);
 
   const goToNotificationsPage = () => {
     setHasNotification(false);
+    notificationStore.setQtdNotification(notifications?.length || 0);
     router.push("/notifications");
   };
 
