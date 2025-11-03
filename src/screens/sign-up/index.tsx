@@ -77,6 +77,20 @@ export default function SignUp() {
                 onBlur={onBlur}
                 icon={<PhoneIcon />}
                 keyboardType="number-pad"
+                hasMask
+                mask={[
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  " ",
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  " ",
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                ]}
               />
             )}
             name="phone"

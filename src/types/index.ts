@@ -25,3 +25,13 @@ export type ImageStore = {
   setImage: (image: ImagePicker.ImagePickerResult) => void;
   resetImage: () => void;
 };
+
+export type PushTokenStore = {
+  pushToken: string | null;
+  setPushToken: (token: string) => void;
+};
+
+export type PhoneStore = {
+  phone: string | null;
+  setPhone: (phone: string) => void;
+};

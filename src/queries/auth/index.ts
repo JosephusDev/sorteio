@@ -6,15 +6,19 @@ import {
   getUserInfo,
   updateProfile,
   setPushToken,
+  verifyOtp,
 } from "@/services/supabase/auth.service";
+import { usePhoneStore } from "@/stores/phone";
 import { Auth } from "@/types";
 import { User } from "@/types/database.types";
 import { authExceptionMessages } from "@/utils/auth-exceptions";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { router } from "expo-router";
 
 export function useSignUpMutation() {
   
   const {showToast} = useToast()
+  const {setPhone} = usePhoneStore()
 
   return useMutation({
     mutationFn: ({ name, password, email, phone }: Auth) =>
@@ -27,12 +31,9 @@ export function useSignUpMutation() {
         variant: 'error',
       });
     },
-    onSuccess: () => {
-      showToast({
-        title: 'Aviso',
-        message: 'Conta criada com sucesso',
-        variant: 'success',
-      });
+    onSuccess: (_, {phone}) => {
+      setPhone(phone)
+      router.navigate('/(auth)/verify-otp')
     }
   });
 }
@@ -42,8 +43,8 @@ export function useSignInMutation() {
   const {showToast} = useToast()
 
   return useMutation({
-    mutationFn: ({ password, email }: Omit<Auth, "name" | "phone">) =>
-      signIn({ password, email }),
+    mutationFn: ({ password, phone }: Omit<Auth, "name" | "email">) =>
+      signIn({ password, phone }),
     onError: (error: Error & { code: string }) => {
       const code = error?.code;
       showToast({
@@ -58,6 +59,32 @@ export function useSignInMutation() {
         message: 'Sessão iniciada com sucesso',
         variant: 'success',
       });
+    }
+  });
+}
+
+export function useVerifyOtp() {
+
+  const {showToast} = useToast()
+
+  return useMutation({
+    mutationFn: ({ otp, phone }: { otp: string; phone: string }) =>
+      verifyOtp({ otp, phone }),
+    onError: (error: Error & { code: string }) => {
+      const code = error?.code;
+      showToast({
+        title: 'Aviso',
+        message: authExceptionMessages[code],
+        variant: 'error',
+      });
+    },
+    onSuccess: () => {
+      showToast({
+        title: 'Aviso',
+        message: 'Código verificado com sucesso',
+        variant: 'success',
+      });
+      router.replace('/(tabs)/home')
     }
   });
 }

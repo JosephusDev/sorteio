@@ -1,10 +1,11 @@
 import { Auth } from "@/types";
 import supabase from ".";
 import { User } from "@/types/database.types";
+import { router } from "expo-router";
 
-export async function signUp({ name, email, password, phone }: Auth) {
+export async function signUp({ name, phone, password }: Auth) {
   const { data, error } = await supabase.auth.signUp({
-    email,
+    phone,
     password,
   });
   if (data.user?.id) {
@@ -19,14 +20,40 @@ export async function signUp({ name, email, password, phone }: Auth) {
 }
 
 export async function signIn({
-  email,
+  phone,
   password,
-}: Omit<Auth, "name" | "phone">) {
+}: Omit<Auth, "name" | "email">) {
   const { data, error } = await supabase.auth.signInWithPassword({
-    email,
+    phone,
     password,
   });
-  if (error) throw error;
+  if (error) {
+    if(error.code === "phone_not_confirmed"){
+      await supabase.auth.resend({
+        phone,
+        type: "sms",
+      }).then(() => router.navigate('/(auth)/verify-otp'))
+    }
+    throw error
+  };
+  return data;
+}
+
+export async function verifyOtp({
+  otp,
+  phone
+}: {
+  otp: string;
+  phone: string
+}) {
+  const { error, data } = await supabase.auth.verifyOtp({
+    token: otp,
+    type: "sms",
+    phone: phone!,
+  });
+  if (error) {
+    throw error;
+  }
   return data;
 }
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, ScrollView, TouchableOpacity } from "react-native";
-import { EmailIcon, EyeIcon, EyeOffIcon, LockIcon } from "@/assets/icons";
+import { EmailIcon, EyeIcon, EyeOffIcon, LockIcon, PhoneIcon } from "@/assets/icons";
 import { Text } from "@/components/Text";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
@@ -39,23 +39,37 @@ export default function SignIn() {
 
         {/* Formulário */}
         <View className="flex-col gap-4 mb-8">
-          {/* E-mail */}
+          {/* Telefone */}
           <Controller
             control={control}
             rules={{ required: true }}
             render={({ field: { onChange, onBlur, value } }) => (
               <InputField
-                label="E-mail"
+                label="Telefone"
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
-                icon={<EmailIcon />}
-                keyboardType="email-address"
+                icon={<PhoneIcon />}
+                keyboardType="phone-pad"
+                hasMask
+                mask={[
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  " ",
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                  " ",
+                  /\d/,
+                  /\d/,
+                  /\d/,
+                ]}
               />
             )}
-            name="email"
+            name="phone"
           />
-          {errors.email && <LabelError message={errors.email.message!} />}
+          {errors.phone && <LabelError message={errors.phone.message!} />}
 
           {/* Palavra-passe */}
           <Controller

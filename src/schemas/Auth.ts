@@ -25,10 +25,11 @@ export type SignUpType = yup.InferType<typeof SignUpSchema>;
 
 export const SignInSchema = yup
   .object({
-    email: yup
+    phone: yup
       .string()
-      .email("E-mail inválido")
-      .required("O E-mail é obrigatório"),
+      .transform((value) => value.replace(/\D/g, "")) // remove tudo que não é número
+      .length(9, "O telefone deve ter apenas 9 dígitos")
+      .required("O Telefone é obrigatório"),
     password: yup
       .string()
       .min(6, "A palavra-passe deve ter 6 dígitos no mínimo")

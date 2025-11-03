@@ -4,14 +4,15 @@ import { Tabs } from "expo-router";
 import { Fragment, useEffect } from "react";
 import { StatusBar } from "react-native";
 import { useSetPushTokenMutation } from "@/queries/auth";
+import { usePushTokenStore } from "@/stores/PushToken";
 
 export default function ProtectedLayout() {
 
   const {mutateAsync: setExpoPushToken} = useSetPushTokenMutation()
+  const {pushToken} = usePushTokenStore()
 
   useEffect(() => {
-    registerForPushNotificationsAsync()
-      .then(token => setExpoPushToken(token ?? ''))
+    setExpoPushToken(pushToken!)
   }, []);
 
   return (
