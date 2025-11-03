@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import * as NavigationBar from "expo-navigation-bar";
 import { useFonts, Urbanist_400Regular, Urbanist_500Medium, Urbanist_600SemiBold, Urbanist_700Bold } from "@expo-google-fonts/urbanist";
-import { usePushTokenStore } from "@/stores/PushToken";
+import { usePushTokenStore } from "@/stores/push-token";
 import { registerForPushNotificationsAsync } from "@/services/notifications";
 
 SplashScreen.preventAutoHideAsync();

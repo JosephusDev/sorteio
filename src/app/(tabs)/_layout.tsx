@@ -4,7 +4,7 @@ import { Tabs } from "expo-router";
 import { Fragment, useEffect } from "react";
 import { StatusBar } from "react-native";
 import { useSetPushTokenMutation } from "@/queries/auth";
-import { usePushTokenStore } from "@/stores/PushToken";
+import { usePushTokenStore } from "@/stores/push-token";
 
 export default function ProtectedLayout() {
 

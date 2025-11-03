@@ -1,4 +1,4 @@
-import { usePickerImageStore } from "@/stores/Image";
+import { usePickerImageStore } from "@/stores/image";
 import supabase from ".";
 import { uploadFile } from "./upload";
 

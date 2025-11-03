@@ -5,9 +5,9 @@ import { router } from "expo-router";
 import { useGetUserInfo } from "@/queries/auth";
 import { UserInfoSkeleton } from "./skeleton/UserInfoSkeleton";
 import { useGetAllNotificationsByUser } from "@/queries/notifications";
-import { useNotificationStore } from "@/stores/Notifications";
 import { useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useNotificationStore } from "@/stores/notifications";
 
 export function Header() {
   const { data, isPending } = useGetUserInfo();

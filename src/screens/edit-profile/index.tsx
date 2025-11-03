@@ -11,7 +11,7 @@ import {
   UserIcon,
 } from "@/assets/icons";
 import { router } from "expo-router";
-import { usePickerImageStore } from "@/stores/Image";
+import { usePickerImageStore } from "@/stores/image";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ProfileFormValues, ProfileSchema } from "@/schemas/Profile";
 import { Controller, useForm } from "react-hook-form";
