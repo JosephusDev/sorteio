@@ -9,26 +9,28 @@ import {
 import { Text } from "@/components/Text";
 import InputField from "@/components/InputField";
 import Button from "@/components/Button";
-import { router } from "expo-router";
+import { useChangePassword } from "@/queries/auth";
 
 export default function RecoveryPassword() {
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const {mutateAsync: changePassword, isPending} = useChangePassword()
 
   const handleContinue = () => {
     if (password !== confirmPassword) {
       return;
     }
-    router.push("/congrats");
+    changePassword({password})
   };
 
   return (
     <View className="flex-1 bg-white">
       <ScrollView
-        className="flex-1 px-6 pt-6"
-        contentContainerStyle={{ alignItems: "center" }}
+        className="px-6 pt-6"
+        contentContainerStyle={{ flex: 1, alignItems: "center" }}
       >
         <NewPasswordImage />
 
@@ -65,12 +67,13 @@ export default function RecoveryPassword() {
       {/* Botão Fixo na Parte Inferior */}
       <View className="px-6 pb-20 pt-4 bg-white border-t border-gray-100">
         <Button
-          title="Continuar"
+          title={isPending ? "Carregando..." : "Continuar"}
           onPress={handleContinue}
           disabled={
             password !== confirmPassword ||
             password.length === 0 ||
-            confirmPassword.length === 0
+            confirmPassword.length === 0 ||
+            isPending
           }
         />
       </View>

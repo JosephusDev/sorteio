@@ -7,6 +7,8 @@ import {
   updateProfile,
   setPushToken,
   verifyOtp,
+  recoveryPassword,
+  changePassword,
 } from "@/services/supabase/auth.service";
 import { usePhoneStore } from "@/stores/phone";
 import { Auth } from "@/types";
@@ -27,7 +29,7 @@ export function useSignUpMutation() {
       const code = error?.code;
       showToast({
         title: 'Aviso',
-        message: authExceptionMessages[code],
+        message: authExceptionMessages[code] || 'Erro ao criar conta, tente novamente.',
         variant: 'error',
       });
     },
@@ -41,6 +43,7 @@ export function useSignUpMutation() {
 export function useSignInMutation() {
 
   const {showToast} = useToast()
+  const {setPhone} = usePhoneStore()
 
   return useMutation({
     mutationFn: ({ password, phone }: Omit<Auth, "name" | "email">) =>
@@ -49,11 +52,12 @@ export function useSignInMutation() {
       const code = error?.code;
       showToast({
         title: 'Aviso',
-        message: authExceptionMessages[code],
+        message: authExceptionMessages[code] || 'Erro ao fazer login, tente novamente.',
         variant: 'error',
       });
     },
-    onSuccess: () => {
+    onSuccess: (_, {phone}) => {
+      setPhone(phone)
       showToast({
         title: 'Aviso',
         message: 'Sessão iniciada com sucesso',
@@ -68,7 +72,7 @@ export function useVerifyOtp() {
   const {showToast} = useToast()
 
   return useMutation({
-    mutationFn: ({ otp, phone }: { otp: string; phone: string }) =>
+    mutationFn: ({ otp, phone }: { otp: string; phone: string, type: 'recovery' | 'create-account' }) =>
       verifyOtp({ otp, phone }),
     onError: (error: Error & { code: string }) => {
       const code = error?.code;
@@ -78,13 +82,13 @@ export function useVerifyOtp() {
         variant: 'error',
       });
     },
-    onSuccess: () => {
+    onSuccess: (_, {type}) => {
       showToast({
         title: 'Aviso',
         message: 'Código verificado com sucesso',
         variant: 'success',
       });
-      router.replace('/(tabs)/home')
+      type === 'create-account' ? router.replace('/(tabs)/home') : router.replace('/recovery-password')
     }
   });
 }
@@ -131,5 +135,58 @@ export function useSetPushTokenMutation() {
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["user-info"] });
     },
+  });
+}
+
+export function useRecoveryPassword() {
+
+  const {showToast} = useToast()
+  const {setPhone} = usePhoneStore()
+
+  return useMutation({
+    mutationFn: ({ phone }: { phone: string }) =>
+      recoveryPassword({ phone }),
+    onError: (error: Error & { code: string }) => {
+      const code = error?.code;
+      showToast({
+        title: 'Aviso',
+        message: authExceptionMessages[code] || 'Erro ao gerar OTP, tente novamente.',
+        variant: 'error',
+      });
+    },
+    onSuccess: (_, {phone}) => {
+      setPhone(phone)
+      showToast({
+        title: 'Aviso',
+        message: 'OTP gerado com sucesso',
+        variant: 'success',
+      });
+    }
+  });
+}
+
+export function useChangePassword() {
+
+  const {showToast} = useToast()
+
+  return useMutation({
+    mutationFn: ({ password }: {password: string}) =>
+      changePassword({ password }),
+    onError: (error: Error & { code: string }) => {
+      const code = error?.code;
+      showToast({
+        title: 'Aviso',
+        message: authExceptionMessages[code] || 'Erro ao alterar a palavra-passe, tente novamente.',
+        variant: 'error',
+      });
+    },
+    onSuccess: () => {
+      showToast({
+        title: 'Aviso',
+        message: 'Palavra-passe alterada com sucesso',
+        variant: 'success',
+      });
+      router.push('/congrats')
+    }
   });
 }

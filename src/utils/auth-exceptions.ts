@@ -91,7 +91,7 @@ export const authExceptionMessages: ErrorMessages = {
   too_many_enrolled_mfa_factors: "Limite de fatores MFA inscritos alcançado.",
   unexpected_audience: "A audiência do token JWT não corresponde.",
   unexpected_failure: "Erro inesperado no serviço de autenticação.",
-  user_already_exists: "Já existe um Usuário com este e-mail.",
+  user_already_exists: "Já existe um Usuário com este e-mail ou telefone.",
   user_banned: "Usuário banido.",
   user_not_found: "Usuário não encontrado.",
   user_sso_managed: "Certos campos do usuário SSO não podem ser atualizados.",

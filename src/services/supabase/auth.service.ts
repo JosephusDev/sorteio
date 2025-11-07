@@ -6,7 +6,7 @@ import { router } from "expo-router";
 export async function signUp({ name, phone, password }: Auth) {
   const { data, error } = await supabase.auth.signUp({
     phone,
-    password,
+    password
   });
   if (data.user?.id) {
     const { error } = await supabase.from("usuario").insert({
@@ -109,4 +109,22 @@ export async function setPushToken(push_token: string) {
       .eq("auth_id", userId!);
     if (error) throw error;
   }
+}
+
+export async function changePassword({ password }: { password: string }) {
+  const session = await supabase.auth.getSession();
+  if (session.data.session?.user) {
+    const {error} = await supabase.auth.updateUser({
+      password
+    })
+    if (error) throw error;
+  }
+}
+
+export async function recoveryPassword({ phone }: { phone: string }) {
+  const { error } = await supabase.auth.signInWithOtp({
+    phone,
+    options: { shouldCreateUser: false },
+  });
+  if (error) throw error;
 }

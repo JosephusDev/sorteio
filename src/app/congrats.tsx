@@ -4,10 +4,10 @@ import { Text } from "@/components/Text";
 import { router } from "expo-router";
 import { View } from "react-native";
 
-export default function () {
+export default function Congrats () {
   return (
-    <View className="bg-white flex-1 gap-4 items-center justify-center p-6 rounded-3xl">
-      <CongratsImage />
+    <View className="bg-white flex-1 gap-8 items-center justify-center p-6 rounded-3xl">
+      <CongratsImage width={150} height={150} />
       <Text className="text-center text-2xl font-urbanist-bold text-primary">
         Parabéns!
       </Text>
@@ -16,8 +16,8 @@ export default function () {
       </Text>
       <Button
         className="w-60 mt-2"
-        title="Ir para o Início"
-        onPress={() => router.push("/sign-in")}
+        title="Continuar"
+        onPress={() => router.push("/(tabs)/home")}
       />
     </View>
   );

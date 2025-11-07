@@ -36,6 +36,11 @@ export function AppRoutes({ session, isConnected }: { session: Session, isConnec
         <Stack.Screen name="edit-profile" options={{ headerShown: true, title: "Editar Perfil" }} />
         <Stack.Screen name="bet-viewer" />
         <Stack.Screen name="(modals)" options={{ presentation: "formSheet", sheetAllowedDetents: [0.4], sheetCornerRadius: 20 }} />
+        <Stack.Screen
+          name="recovery-password"
+          options={{ headerShown: true, title: "Criar Nova Senha" }}
+        />
+        <Stack.Screen name="congrats" options={{ presentation: "modal" }} />
       </Stack.Protected>
     </Stack>
   );

@@ -138,7 +138,7 @@ export default function SignUp() {
           {errors.password && <LabelError message={errors.password.message!} />}
 
           <Button
-            title={isPending ? "Carregando..." : "Criar Conta"}
+            title={isPending ? "Criando..." : "Criar Conta"}
             onPress={handleSubmit(onSubmit)}
             disabled={isPending}
             className="mt-4"

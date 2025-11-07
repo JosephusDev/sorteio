@@ -27,11 +27,6 @@ export default function AuthLayout() {
           name="verify-otp"
           options={{ headerShown: true, title: "Confirme o Código" }}
         />
-        <Stack.Screen
-          name="recovery-password"
-          options={{ headerShown: true, title: "Criar Nova Senha" }}
-        />
-        <Stack.Screen name="congrats" options={{ presentation: "modal" }} />
       </Stack>
     </Fragment>
   );

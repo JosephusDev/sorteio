@@ -16,6 +16,7 @@ export const SignUpSchema = yup
       .required("A palavra-passe é obrigatório"),
     phone: yup
       .string()
+      .transform((value) => value.replace(/\D/g, ""))
       .length(9, "O telefone deve ter apenas 9 dígitos")
       .required("O Telefone é obrigatório"),
   })
@@ -27,7 +28,7 @@ export const SignInSchema = yup
   .object({
     phone: yup
       .string()
-      .transform((value) => value.replace(/\D/g, "")) // remove tudo que não é número
+      .transform((value) => value.replace(/\D/g, ""))
       .length(9, "O telefone deve ter apenas 9 dígitos")
       .required("O Telefone é obrigatório"),
     password: yup
