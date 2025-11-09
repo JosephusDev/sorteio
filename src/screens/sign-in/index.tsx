@@ -11,6 +11,7 @@ import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LabelError } from "@/components/LabelError";
 import { SignInType, SignInSchema } from "@/schemas/Auth";
+import GoogleSignInButton from "@/components/GoogleSignIn";
 
 export default function SignIn() {
   const {
@@ -103,9 +104,12 @@ export default function SignIn() {
         <TouchableOpacity
           activeOpacity={1}
           onPress={() => router.push("/forgot-password")}
+          className="mb-4"
         >
           <Divider text="Esqueceu a palavra-passe?" />
         </TouchableOpacity>
+
+        <GoogleSignInButton />
 
         {/* Criar conta */}
         <View className="flex-row justify-center items-center my-8">

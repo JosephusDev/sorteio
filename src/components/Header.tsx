@@ -71,7 +71,7 @@ export function Header() {
           <TouchableOpacity onPress={() => router.push("/(tabs)/profile")}>
             <Image
               source={{ uri: data.avatarUrl }}
-              style={{ width: 48, height: 48, borderRadius: 16 }}
+              style={{ width: 48, height: 48, borderRadius: 16, backgroundColor: "#e5e7eb" }}
             />
           </TouchableOpacity>
         ) : (

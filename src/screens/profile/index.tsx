@@ -55,7 +55,7 @@ export function Profile({
     </TouchableOpacity>
   );
 
-  const loading = isLoading || !userName || !userPhone
+  const loading = isLoading || !userName
 
   return (
     <View className="flex-1 relative">
@@ -66,18 +66,26 @@ export function Profile({
           ) : (
             <View className="items-center pt-16 pb-4 px-12 bg-gray-200 border-b border-b-gray-200">
               <View className="bg-white absolute rounded-full mt-24 mr-60">
-                <ProfilePhoto url={avatarUrl} className="w-28 h-28" />
+                <ProfilePhoto url={avatarUrl} className="w-24 h-24 bg-gray-200 border-[0.5px] border-gray-400" />
               </View>
               <Text className="text-xl font-urbanist-bold text-center mt-4 ml-16">
                 {userName}
               </Text>
-              <Text className="text-gray-500 mt-1 text-center font-urbanist-semiBold ml-16">
-                +244 {userPhone.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
-              </Text>
+              {
+                userPhone ? (
+                  <Text className="text-gray-500 mt-1 text-center font-urbanist-semiBold ml-16">
+                    +244 {userPhone.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+                  </Text>
+                ) : (
+                  <Text className="text-gray-500 mt-1 text-center font-urbanist-semiBold ml-16">
+                    Sem Telefone
+                  </Text>
+                )
+              }
             </View>
           )}
         <ScrollView
-          className={`flex-1 ${loading ? 'mt-6' : 'mt-20'}`}
+          className={`flex-1 ${loading ? 'mt-16' : 'mt-20'}`}
           showsVerticalScrollIndicator={false}
         >
           {/* SEÇÃO PERFIL */}

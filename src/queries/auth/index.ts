@@ -9,6 +9,7 @@ import {
   verifyOtp,
   recoveryPassword,
   changePassword,
+  signInWithGoogle,
 } from "@/services/supabase/auth.service";
 import { usePhoneStore } from "@/stores/phone";
 import { Auth } from "@/types";
@@ -58,10 +59,23 @@ export function useSignInMutation() {
     },
     onSuccess: (_, {phone}) => {
       setPhone(phone)
+    }
+  });
+}
+
+export function useSignInWithGoogleMutation() {
+
+  const {showToast} = useToast()
+
+  return useMutation({
+    mutationFn: ({ token, displayName, image_url }: {token: string, displayName: string, image_url: string}) =>
+      signInWithGoogle({ token, displayName, image_url }),
+    onError: (error: Error & { code: string }) => {
+      const code = error?.code;
       showToast({
         title: 'Aviso',
-        message: 'Sessão iniciada com sucesso',
-        variant: 'success',
+        message: authExceptionMessages[code] || 'Erro ao fazer login com Google, tente novamente.',
+        variant: 'error',
       });
     }
   });

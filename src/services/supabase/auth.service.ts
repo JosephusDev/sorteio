@@ -39,6 +39,33 @@ export async function signIn({
   return data;
 }
 
+export async function signInWithGoogle({
+  token,
+  displayName,
+  image_url
+}: {token: string, displayName: string, image_url: string}) {
+  const { data, error } = await supabase.auth.signInWithIdToken({
+    provider: 'google',
+    token,
+  })
+  if (data.user?.id) {
+    const { error } = await supabase.from("usuario").upsert({
+      nome: displayName,
+      telefone: '',
+      auth_id: data.user.id,
+    });
+    if (error) throw error;
+    const { error: errorImage } = await supabase.from("imagem_usuario").insert({
+      url: image_url,
+      id_usuario: data.user.id,
+    });
+    if (errorImage) throw errorImage;
+  }
+  if (error) {
+    throw error
+  };
+}
+
 export async function verifyOtp({
   otp,
   phone

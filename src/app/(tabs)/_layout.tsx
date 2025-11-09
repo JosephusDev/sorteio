@@ -1,5 +1,4 @@
 import { CardIcon, HomeIcon, MoneyIcon, UserIcon } from "@/assets/icons";
-import { registerForPushNotificationsAsync } from "@/services/notifications";
 import { Tabs } from "expo-router";
 import { Fragment, useEffect } from "react";
 import { StatusBar } from "react-native";

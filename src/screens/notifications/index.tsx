@@ -6,6 +6,7 @@ import {
   useGetNotificationsByUser,
   useGetNotificationsByUserToday,
 } from "@/queries/notifications";
+import { EmptyList } from "@/components/EmptyList";
 
 export function Notifications() {
   const { data: oldNotifications, isLoading } = useGetNotificationsByUser();
@@ -36,10 +37,8 @@ export function Notifications() {
 
   if (isEmpty) {
     return (
-      <View className="flex-1 bg-white items-center justify-center">
-        <Text className="text-greyscale-400 text-base font-urbanist-medium">
-          Nenhuma notificação disponível
-        </Text>
+      <View className="flex-1 bg-white items-center justify-center -mt-40">
+        <EmptyList description="Nenhuma notificação disponível" />
       </View>
     );
   }
