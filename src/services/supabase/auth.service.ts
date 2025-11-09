@@ -51,7 +51,6 @@ export async function signInWithGoogle({
   if (data.user?.id) {
     const { error } = await supabase.from("usuario").upsert({
       nome: displayName,
-      telefone: '',
       auth_id: data.user.id,
     });
     if (error) throw error;
